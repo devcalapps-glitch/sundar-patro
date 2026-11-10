@@ -27,9 +27,12 @@ Use this checklist to track requirements for publishing **Sundar Patro** (`com.s
 
 ## 3. Privacy Policy & Hosting
 
-- [x] **Privacy Policy Drafted:** Available locally in `privacy-policy.html` (zero data collection/retention).
-- [ ] **Public HTTPS URL:** Google Play Console requires a live, publicly accessible URL.
-  - Recommended: Host via GitHub Pages (`https://devcalapps-glitch.github.io/sundar-patro/privacy-policy.html`) or custom domain.
+- [x] **Privacy Policy Drafted:** Available locally in [`docs/privacy/index.html`](docs/privacy/index.html) and [`privacy-policy.html`](privacy-policy.html) (modeled after standard production privacy policy; zero data collection/retention, no analytics, no ads).
+- [x] **Public HTTPS URL (GitHub Pages):** Live publicly accessible URLs for Google Play Console:
+  - **Primary Privacy Policy URL:** `https://devcalapps-glitch.github.io/sundar-patro/privacy/`
+  - **Direct Root URL:** `https://devcalapps-glitch.github.io/sundar-patro/privacy-policy.html`
+  - **GitHub Source:** [GitHub Docs Privacy Source](https://github.com/devcalapps-glitch/sundar-patro/blob/main/docs/privacy/index.html)
+  - **Support & FAQ URL:** `https://devcalapps-glitch.github.io/sundar-patro/support/`
 
 ---
 
@@ -43,6 +46,7 @@ Use this checklist to track requirements for publishing **Sundar Patro** (`com.s
   - Category: `Productivity` or `Tools`
   - Tags: `Calendar`, `Events`, `Productivity`
 - [ ] **App Content & Policies:**
+  - **Privacy Policy:** Enter `https://devcalapps-glitch.github.io/sundar-patro/privacy/` in the Play Console under **Policy > App content > Privacy policy**.
   - **Data Safety:** Select **No** to all questions (app does not collect, transmit, or share user data).
   - **Ads:** Select **No, my app does not contain ads**.
   - **App Access:** Select **All functionality is available without special access**.

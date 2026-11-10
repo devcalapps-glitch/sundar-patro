@@ -81,5 +81,8 @@ When setting up your app in the [Google Play Console](https://play.google.com/co
      - *Does your app collect or share any of the required user data types?* -> **No**.
    - **Ads:** Select *No, my app does not contain ads*.
    - **Financial Features / Government Features:** Select *No*.
-   - **Privacy Policy:** Required by Google Play. You can host a simple one-page policy stating that Sundar Patro is an offline calendar application that does not collect, transmit, or share personal data.
+   - **Privacy Policy:** Required by Google Play. Hosted live on GitHub Pages:
+     - Live Policy URL: [https://devcalapps-glitch.github.io/sundar-patro/privacy/](https://devcalapps-glitch.github.io/sundar-patro/privacy/)
+     - Live Support URL: [https://devcalapps-glitch.github.io/sundar-patro/support/](https://devcalapps-glitch.github.io/sundar-patro/support/)
+     - Policy Source: [`docs/privacy/index.html`](docs/privacy/index.html) (also mirrored at [`privacy-policy.html`](privacy-policy.html))
 

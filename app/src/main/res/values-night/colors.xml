@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="canvas">#121214</color>
+    <color name="ink">#F9F9F7</color>
+    <color name="splash_bg">#121214</color>
+
+    <!-- Brand Palette: The Minimal Focus Grid -->
+    <color name="brand_crimson">#E11D48</color>
+    <color name="brand_gold">#F59E0B</color>
+    <color name="brand_grid_dot">#52525B</color>
+    <color name="brand_frame_stroke">#3F3F46</color>
+</resources>
+

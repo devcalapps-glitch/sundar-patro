@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sundar Patro — Brand & Logo Directions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Mukta:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #09090b;
+      --card-bg: #141417;
+      --card-border: #27272a;
+      --text: #f4f4f5;
+      --muted: #a1a1aa;
+      --crimson: #e11d48;
+      --gold: #f59e0b;
+      --ink: #18181b;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 40px 20px 80px;
+    }
+
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 14px;
+      background: rgba(225, 29, 72, 0.12);
+      border: 1px solid rgba(225, 29, 72, 0.3);
+      color: #fb7185;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: clamp(32px, 5vw, 44px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 8px;
+      color: #ffffff;
+    }
+
+    h1 span.dev {
+      font-family: 'Mukta', sans-serif;
+      font-weight: 600;
+      color: #fbbf24;
+      margin-left: 8px;
+    }
+
+    p.subtitle {
+      font-size: 17px;
+      color: var(--muted);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 32px;
+      margin-bottom: 56px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .card:hover {
+      border-color: #3f3f46;
+      transform: translateY(-2px);
+    }
+
+    .card-hero {
+      background: radial-gradient(circle at 50% 50%, #222228 0%, #111114 100%);
+      padding: 44px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid var(--card-border);
+      position: relative;
+    }
+
+    .hero-svg {
+      width: 140px;
+      height: 140px;
+      filter: drop-shadow(0 12px 28px rgba(0,0,0,0.5));
+    }
+
+    .card-body {
+      padding: 28px 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .option-tag {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .option-title {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+
+    .option-desc {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+
+    /* Icon in context */
+    .context-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #71717a;
+      margin-bottom: 12px;
+    }
+
+    .context-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: rgba(0,0,0,0.25);
+      border: 1px solid #1f1f23;
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin-top: auto;
+    }
+
+    .icon-preview {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .squircle {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    }
+
+    .squircle.dark {
+      background: #111111;
+      border: 1px solid #27272a;
+    }
+
+    .squircle.light {
+      background: #ffffff;
+      border: 1px solid #e4e4e7;
+    }
+
+    .squircle svg {
+      width: 36px;
+      height: 36px;
+    }
+
+    .icon-name {
+      font-size: 11px;
+      color: #71717a;
+    }
+
+    /* Section 2: Side by Side Real Scale Mockup */
+    .comparison-section {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 36px 32px;
+    }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .section-desc {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 32px;
+    }
+
+    .homescreen-dock {
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 28px;
+      padding: 24px 32px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .dock-app {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      text-align: center;
+    }
+
+    .dock-app .app-icon {
+      width: 68px;
+      height: 68px;
+      border-radius: 17px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+      position: relative;
+    }
+
+    .dock-app span.label {
+      font-size: 12px;
+      font-weight: 500;
+      color: #e4e4e7;
+    }
+
+    .dock-app span.opt-tag {
+      font-size: 10px;
+      color: var(--gold);
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <div class="badge">Brand Identity Concept</div>
+      <h1>Sundar Patro <span class="dev">(सुन्दर पात्रो)</span></h1>
+      <p class="subtitle">Review the 3 visual directions below. Each logo represents a unique balance of cultural heritage and modern digital elegance.</p>
+    </header>
+
+    <!-- 3 LOGO OPTIONS -->
+    <div class="grid">
+
+      <!-- OPTION 1 -->
+      <div class="card">
+        <div class="card-hero">
+          <!-- Option 1 Hero SVG -->
+          <svg class="hero-svg" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Calendar Card Frame -->
+            <rect x="15" y="24" width="90" height="82" rx="18" fill="#18181B" stroke="#3F3F46" stroke-width="3"/>
+            <!-- Top Binder Lugs -->
+            <rect x="36" y="14" width="8" height="18" rx="4" fill="#E4E4E7"/>
+            <rect x="76" y="14" width="8" height="18" rx="4" fill="#E4E4E7"/>
+            <!-- Calendar Header Bar -->
+            <line x1="15" y1="46" x2="105" y2="46" stroke="#27272A" stroke-width="2"/>
+            <!-- Radiant Sun Body (Surya) -->
+            <circle cx="60" cy="74" r="18" fill="url(#gradSun)"/>
+            <!-- Sun Rays Minimal Accents -->
+            <circle cx="60" cy="74" r="23" stroke="#F59E0B" stroke-width="2" stroke-dasharray="2 6" stroke-linecap="round"/>
+            <!-- Crescent Moon (Chandra / Tithi) overlay -->
+            <path d="M60 56C50.0589 56 42 64.0589 42 74C42 83.9411 50.0589 92 60 92C54.5 87 52 79 56 70C59 63 65 59 60 56Z" fill="#FFF1F2"/>
+            <circle cx="70" cy="67" r="3.5" fill="#E11D48"/>
+            <defs>
+              <linearGradient id="gradSun" x1="42" y1="56" x2="78" y2="92" gradientUnits="userSpaceOnUse">
+                <stop offset="0" stop-color="#FBBF24"/>
+                <stop offset="1" stop-color="#D97706"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+
+        <div class="card-body">
+          <div class="option-tag">Option 1 • Recommended</div>
+          <h2 class="option-title">The Surya-Patro (सूर्य-पात्रो)</h2>
+          <p class="option-desc">
+            A harmonious fusion of a modern calendar tablet with celestial icons: the radiant <strong>Sun (Surya)</strong> representing solar Bikram Sambat dates, entwined with the subtle <strong>Crescent Moon (Chandra)</strong> for lunar <em>Tithi</em> and a vermilion <em>Sindoor</em> bindi.
+          </p>
+
+          <div class="context-label">App Icon Preview (Light & Dark)</div>
+          <div class="context-row">
+            <div class="icon-preview">
+              <div class="squircle dark">
+                <svg viewBox="0 0 120 120" fill="none">
+                  <rect x="15" y="24" width="90" height="82" rx="18" fill="#18181B" stroke="#3F3F46" stroke-width="3"/>
+                  <rect x="36" y="14" width="8" height="18" rx="4" fill="#E4E4E7"/>
+                  <rect x="76" y="14" width="8" height="18" rx="4" fill="#E4E4E7"/>
+                  <line x1="15" y1="46" x2="105" y2="46" stroke="#27272A" stroke-width="2"/>
+                  <circle cx="60" cy="74" r="17" fill="#F59E0B"/>
+                  <path d="M60 57C50.5 57 43 64.5 43 74C43 83.5 50.5 91 60 91C54.8 86 52.5 78.5 56.5 70C59.5 63.5 65 59.8 60 57Z" fill="#FFF1F2"/>
+                  <circle cx="70" cy="67" r="3.5" fill="#E11D48"/>
+                </svg>
+              </div>
+              <span class="icon-name">Dark</span>
+            </div>
+
+            <div class="icon-preview">
+              <div class="squircle light">
+                <svg viewBox="0 0 120 120" fill="none">
+                  <rect x="15" y="24" width="90" height="82" rx="18" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="4"/>
+                  <rect x="36" y="14" width="8" height="18" rx="4" fill="#0F172A"/>
+                  <rect x="76" y="14" width="8" height="18" rx="4" fill="#0F172A"/>
+                  <line x1="15" y1="46" x2="105" y2="46" stroke="#E2E8F0" stroke-width="3"/>
+                  <circle cx="60" cy="74" r="17" fill="#F59E0B"/>
+                  <path d="M60 57C50.5 57 43 64.5 43 74C43 83.5 50.5 91 60 91C54.8 86 52.5 78.5 56.5 70C59.5 63.5 65 59.8 60 57Z" fill="#0F172A"/>
+                  <circle cx="70" cy="67" r="3.5" fill="#E11D48"/>
+                </svg>
+              </div>
+              <span class="icon-name">Light</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- OPTION 2 -->
+      <div class="card">
+        <div class="card-hero">
+          <!-- Option 2 Hero SVG -->
+          <svg class="hero-svg" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Background Pill -->
+            <rect x="14" y="14" width="92" height="92" rx="24" fill="#18181B" stroke="#3F3F46" stroke-width="3"/>
+            <!-- Top Shirorekha (Calendar Binding Line) -->
+            <rect x="30" y="32" width="60" height="6" rx="3" fill="#F4F4F5"/>
+            <!-- Devanagari 'Su' (सु) Stem & Curves -->
+            <path d="M64 36V80" stroke="#F4F4F5" stroke-width="6" stroke-linecap="round"/>
+            <!-- The 'Sa' loop forming a rising sun -->
+            <path d="M46 52C40 52 36 57 36 63C36 71 44 76 64 76" stroke="#F4F4F5" stroke-width="6" stroke-linecap="round"/>
+            <path d="M40 64H64" stroke="#F4F4F5" stroke-width="5" stroke-linecap="round"/>
+            <!-- The 'U-kar' curve (ु) swept like a golden crescent -->
+            <path d="M64 80C64 90 54 94 46 88" stroke="#F59E0B" stroke-width="6" stroke-linecap="round"/>
+            <!-- Auspicious Bindi/Tika dot -->
+            <circle cx="76" cy="46" r="5" fill="#E11D48"/>
+          </svg>
+        </div>
+
+        <div class="card-body">
+          <div class="option-tag">Option 2 • Cultural Monogram</div>
+          <h2 class="option-title">The Devanagari ‘सु’ (कलात्मक सु)</h2>
+          <p class="option-desc">
+            A bespoke typographic glyph for the letter <strong>‘सु’ (Su for Sundar)</strong>. The traditional <em>Shirorekha</em> acts as the top calendar binding, the glyph’s curve forms a rising morning sun, and a radiant <em>Tika</em> sits at the top right.
+          </p>
+
+          <div class="context-label">App Icon Preview (Light & Dark)</div>
+          <div class="context-row">
+            <div class="icon-preview">
+              <div class="squircle dark">
+                <svg viewBox="0 0 120 120" fill="none">
+                  <rect x="14" y="14" width="92" height="92" rx="24" fill="#18181B" stroke="#3F3F46" stroke-width="3"/>
+                  <rect x="30" y="32" width="60" height="6" rx="3" fill="#F4F4F5"/>
+                  <path d="M64 36V80" stroke="#F4F4F5" stroke-width="6" stroke-linecap="round"/>
+                  <path d="M46 52C40 52 36 57 36 63C36 71 44 76 64 76" stroke="#F4F4F5" stroke-width="6" stroke-linecap="round"/>
+                  <path d="M40 64H64" stroke="#F4F4F5" stroke-width="5" stroke-linecap="round"/>
+                  <path d="M64 80C64 90 54 94 46 88" stroke="#F59E0B" stroke-width="6" stroke-linecap="round"/>
+                  <circle cx="76" cy="46" r="5" fill="#E11D48"/>
+                </svg>
+              </div>
+              <span class="icon-name">Dark</span>
+            </div>
+
+            <div class="icon-preview">
+              <div class="squircle light">
+                <svg viewBox="0 0 120 120" fill="none">
+                  <rect x="14" y="14" width="92" height="92" rx="24" fill="#FFFFFF" stroke="#E4E4E7" stroke-width="4"/>
+                  <rect x="30" y="32" width="60" height="6" rx="3" fill="#111111"/>
+                  <path d="M64 36V80" stroke="#111111" stroke-width="6" stroke-linecap="round"/>
+                  <path d="M46 52C40 52 36 57 36 63C36 71 44 76 64 76" stroke="#111111" stroke-width="6" stroke-linecap="round"/>
+                  <path d="M40 64H64" stroke="#111111" stroke-width="5" stroke-linecap="round"/>
+                  <path d="M64 80C64 90 54 94 46 88" stroke="#D97706" stroke-width="6" stroke-linecap="round"/>
+                  <circle cx="76" cy="46" r="5" fill="#E11D48"/>
+                </svg>
+              </div>
+              <span class="icon-name">Light</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- OPTION 3 -->
+      <div class="card">
+        <div class="card-hero">
+          <!-- Option 3 Hero SVG -->
+          <svg class="hero-svg" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Calendar Card -->
+            <rect x="16" y="22" width="88" height="84" rx="20" fill="#18181B" stroke="#3F3F46" stroke-width="3"/>
+            <!-- Binder Tabs -->
+            <rect x="34" y="14" width="8" height="16" rx="4" fill="#E4E4E7"/>
+            <rect x="78" y="14" width="8" height="16" rx="4" fill="#E4E4E7"/>
+            <!-- 3x3 Architectural Grid of Dots -->
+            <!-- Row 1 -->
+            <circle cx="38" cy="46" r="4" fill="#52525B"/>
+            <circle cx="60" cy="46" r="4" fill="#52525B"/>
+            <circle cx="82" cy="46" r="4" fill="#52525B"/>
+            <!-- Row 2 -->
+            <circle cx="38" cy="66" r="4" fill="#52525B"/>
+            <!-- Center Today Node: Concentric Focus Ring -->
+            <circle cx="60" cy="66" r="14" stroke="#E11D48" stroke-width="3.5"/>
+            <circle cx="60" cy="66" r="6" fill="#F59E0B"/>
+            <circle cx="82" cy="66" r="4" fill="#52525B"/>
+            <!-- Row 3 -->
+            <circle cx="38" cy="86" r="4" fill="#52525B"/>
+            <circle cx="60" cy="86" r="4" fill="#52525B"/>
+            <circle cx="82" cy="86" r="4" fill="#52525B"/>
+          </svg>
+        </div>
+
+        <div class="card-body">
+          <div class="option-tag">Option 3 • Architectural Minimal</div>
+          <h2 class="option-title">The Minimal Focus Grid (बिन्दु र वृत्त)</h2>
+          <p class="option-desc">
+            An ultra-clean, architectural calendar grid inspired by modern utilities (Cal.com & Apple Human Interface). The 3×3 matrix highlights <strong>"Today" (आज)</strong> with an energetic vermilion focal ring surrounding a golden center dot.
+          </p>
+
+          <div class="context-label">App Icon Preview (Light & Dark)</div>
+          <div class="context-row">
+            <div class="icon-preview">
+              <div class="squircle dark">
+                <svg viewBox="0 0 120 120" fill="none">
+                  <rect x="16" y="22" width="88" height="84" rx="20" fill="#18181B" stroke="#3F3F46" stroke-width="3"/>
+                  <rect x="34" y="14" width="8" height="16" rx="4" fill="#E4E4E7"/>
+                  <rect x="78" y="14" width="8" height="16" rx="4" fill="#E4E4E7"/>
+                  <circle cx="38" cy="46" r="4" fill="#52525B"/>
+                  <circle cx="60" cy="46" r="4" fill="#52525B"/>
+                  <circle cx="82" cy="46" r="4" fill="#52525B"/>
+                  <circle cx="38" cy="66" r="4" fill="#52525B"/>
+                  <circle cx="60" cy="66" r="14" stroke="#E11D48" stroke-width="3.5"/>
+                  <circle cx="60" cy="66" r="6" fill="#F59E0B"/>
+                  <circle cx="82" cy="66" r="4" fill="#52525B"/>
+                  <circle cx="38" cy="86" r="4" fill="#52525B"/>
+                  <circle cx="60" cy="86" r="4" fill="#52525B"/>
+                  <circle cx="82" cy="86" r="4" fill="#52525B"/>
+                </svg>
+              </div>
+              <span class="icon-name">Dark</span>
+            </div>
+
+            <div class="icon-preview">
+              <div class="squircle light">
+                <svg viewBox="0 0 120 120" fill="none">
+                  <rect x="16" y="22" width="88" height="84" rx="20" fill="#FFFFFF" stroke="#E4E4E7" stroke-width="4"/>
+                  <rect x="34" y="14" width="8" height="16" rx="4" fill="#18181B"/>
+                  <rect x="78" y="14" width="8" height="16" rx="4" fill="#18181B"/>
+                  <circle cx="38" cy="46" r="4" fill="#CBD5E1"/>
+                  <circle cx="60" cy="46" r="4" fill="#CBD5E1"/>
+                  <circle cx="82" cy="46" r="4" fill="#CBD5E1"/>
+                  <circle cx="38" cy="66" r="4" fill="#CBD5E1"/>
+                  <circle cx="60" cy="66" r="14" stroke="#E11D48" stroke-width="3.5"/>
+                  <circle cx="60" cy="66" r="6" fill="#F59E0B"/>
+                  <circle cx="82" cy="66" r="4" fill="#CBD5E1"/>
+                  <circle cx="38" cy="86" r="4" fill="#CBD5E1"/>
+                  <circle cx="60" cy="86" r="4" fill="#CBD5E1"/>
+                  <circle cx="82" cy="86" r="4" fill="#CBD5E1"/>
+                </svg>
+              </div>
+              <span class="icon-name">Light</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- SIDE BY SIDE LAUNCHER DOCK MOCKUP -->
+    <div class="comparison-section">
+      <h3 class="section-title">📱 Side-by-Side: On the Android Home Screen</h3>
+      <p class="section-desc">See how each option looks at standard app icon scale on an Android launcher dock.</p>
+
+      <div class="homescreen-dock">
+        <!-- App 1 -->
+        <div class="dock-app">
+          <div class="app-icon" style="background: #111111; border: 1px solid #27272a;">
+            <svg width="44" height="44" viewBox="0 0 120 120" fill="none">
+              <rect x="15" y="24" width="90" height="82" rx="18" fill="#18181B" stroke="#3F3F46" stroke-width="3"/>
+              <rect x="36" y="14" width="8" height="18" rx="4" fill="#E4E4E7"/>
+              <rect x="76" y="14" width="8" height="18" rx="4" fill="#E4E4E7"/>
+              <line x1="15" y1="46" x2="105" y2="46" stroke="#27272A" stroke-width="2"/>
+              <circle cx="60" cy="74" r="17" fill="#F59E0B"/>
+              <path d="M60 57C50.5 57 43 64.5 43 74C43 83.5 50.5 91 60 91C54.8 86 52.5 78.5 56.5 70C59.5 63.5 65 59.8 60 57Z" fill="#FFF1F2"/>
+              <circle cx="70" cy="67" r="3.5" fill="#E11D48"/>
+            </svg>
+          </div>
+          <span class="label">Sundar Patro</span>
+          <span class="opt-tag">Option 1</span>
+        </div>
+
+        <!-- App 2 -->
+        <div class="dock-app">
+          <div class="app-icon" style="background: #111111; border: 1px solid #27272a;">
+            <svg width="44" height="44" viewBox="0 0 120 120" fill="none">
+              <rect x="14" y="14" width="92" height="92" rx="24" fill="#18181B" stroke="#3F3F46" stroke-width="3"/>
+              <rect x="30" y="32" width="60" height="6" rx="3" fill="#F4F4F5"/>
+              <path d="M64 36V80" stroke="#F4F4F5" stroke-width="6" stroke-linecap="round"/>
+              <path d="M46 52C40 52 36 57 36 63C36 71 44 76 64 76" stroke="#F4F4F5" stroke-width="6" stroke-linecap="round"/>
+              <path d="M40 64H64" stroke="#F4F4F5" stroke-width="5" stroke-linecap="round"/>
+              <path d="M64 80C64 90 54 94 46 88" stroke="#F59E0B" stroke-width="6" stroke-linecap="round"/>
+              <circle cx="76" cy="46" r="5" fill="#E11D48"/>
+            </svg>
+          </div>
+          <span class="label">Sundar Patro</span>
+          <span class="opt-tag">Option 2</span>
+        </div>
+
+        <!-- App 3 -->
+        <div class="dock-app">
+          <div class="app-icon" style="background: #111111; border: 1px solid #27272a;">
+            <svg width="44" height="44" viewBox="0 0 120 120" fill="none">
+              <rect x="16" y="22" width="88" height="84" rx="20" fill="#18181B" stroke="#3F3F46" stroke-width="3"/>
+              <rect x="34" y="14" width="8" height="16" rx="4" fill="#E4E4E7"/>
+              <rect x="78" y="14" width="8" height="16" rx="4" fill="#E4E4E7"/>
+              <circle cx="38" cy="46" r="4" fill="#52525B"/>
+              <circle cx="60" cy="46" r="4" fill="#52525B"/>
+              <circle cx="82" cy="46" r="4" fill="#52525B"/>
+              <circle cx="38" cy="66" r="4" fill="#52525B"/>
+              <circle cx="60" cy="66" r="14" stroke="#E11D48" stroke-width="3.5"/>
+              <circle cx="60" cy="66" r="6" fill="#F59E0B"/>
+              <circle cx="82" cy="66" r="4" fill="#52525B"/>
+              <circle cx="38" cy="86" r="4" fill="#52525B"/>
+              <circle cx="60" cy="86" r="4" fill="#52525B"/>
+              <circle cx="82" cy="86" r="4" fill="#52525B"/>
+            </svg>
+          </div>
+          <span class="label">Sundar Patro</span>
+          <span class="opt-tag">Option 3</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

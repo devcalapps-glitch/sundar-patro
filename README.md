@@ -61,7 +61,7 @@ cd /Users/bbhanda1/Desktop/sundar-patro
 
 ## 📋 Google Play Console Submission Checklist
 
-A detailed, trackable release checklist is available in [PLAY_STORE_CHECKLIST.md](PLAY_STORE_CHECKLIST.md).
+A detailed, trackable release checklist is available in [PLAY_STORE_CHECKLIST.md](PLAY_STORE_CHECKLIST.md). Upcoming work (post-launch checks, the ads release, the per-release routine) is in [NEXT_STEPS.md](NEXT_STEPS.md).
 
 When setting up your app in the [Google Play Console](https://play.google.com/console):
 

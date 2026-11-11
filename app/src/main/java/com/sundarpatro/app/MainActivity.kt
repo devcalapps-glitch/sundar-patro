@@ -118,9 +118,9 @@ class MainActivity : AppCompatActivity() {
                             document.getElementById('dc-close').click();
                             return true;
                         }
-                        // 2. Return from sub-views (Auspicious, Date Converter, About) back to 'More'
+                        // 2. Return from sub-views (Auspicious, Date Converter, Clocks, About, Privacy, Support) back to 'More'
                         var activeView = document.querySelector('.view:not([hidden])');
-                        if (activeView && (activeView.id === 'view-about' || activeView.id === 'view-convert' || activeView.id === 'view-auspicious')) {
+                        if (activeView && (activeView.id === 'view-about' || activeView.id === 'view-convert' || activeView.id === 'view-auspicious' || activeView.id === 'view-clocks' || activeView.id === 'view-privacy' || activeView.id === 'view-support')) {
                             var backBtn = activeView.querySelector('.back') || document.querySelector('.tb[data-view="more"]');
                             if (backBtn) { backBtn.click(); return true; }
                         }

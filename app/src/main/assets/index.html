@@ -219,11 +219,15 @@ footer .mark .dot{width:10px;height:10px;border-radius:9999px;background:var(--i
 .more-icon.ic-ausp{background:rgba(245,158,11,.12);color:#d97706}
 .more-icon.ic-conv{background:rgba(59,130,246,.12);color:#2563eb}
 .more-icon.ic-about{background:rgba(16,185,129,.12);color:#059669}
+.more-icon.ic-priv{background:rgba(14,165,233,.12);color:#0284c7}
+.more-icon.ic-supp{background:rgba(225,29,72,.12);color:#e11d48}
 .more-icon.ic-theme{background:rgba(139,92,246,.12);color:#7c3aed}
 .more-icon svg .half{fill:currentColor}
 :root[data-theme="dark"] .more-icon.ic-ausp{background:rgba(245,158,11,.18);color:#fbbf24}
 :root[data-theme="dark"] .more-icon.ic-conv{background:rgba(59,130,246,.18);color:#60a5fa}
 :root[data-theme="dark"] .more-icon.ic-about{background:rgba(16,185,129,.18);color:#34d399}
+:root[data-theme="dark"] .more-icon.ic-priv{background:rgba(14,165,233,.18);color:#38bdf8}
+:root[data-theme="dark"] .more-icon.ic-supp{background:rgba(225,29,72,.18);color:#fb7185}
 :root[data-theme="dark"] .more-icon.ic-theme{background:rgba(139,92,246,.18);color:#a78bfa}
 .more-icon.ic-clock{background:rgba(236,72,153,.12);color:#db2777}
 :root[data-theme="dark"] .more-icon.ic-clock{background:rgba(236,72,153,.18);color:#f472b6}
@@ -297,6 +301,16 @@ footer .mark .dot{width:10px;height:10px;border-radius:9999px;background:var(--i
         <div class="more-text"><span class="title" data-t="about.title"></span><small class="desc" data-t="more.about.sub"></small></div>
         <div class="more-arrow">›</div>
       </button>
+      <button type="button" class="more-item more-row" data-view="privacy">
+        <div class="more-icon ic-priv"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div class="more-text"><span class="title" data-t="priv.title"></span><small class="desc" data-t="more.priv.sub"></small></div>
+        <div class="more-arrow">›</div>
+      </button>
+      <button type="button" class="more-item more-row" data-view="support">
+        <div class="more-icon ic-supp"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></div>
+        <div class="more-text"><span class="title" data-t="supp.title"></span><small class="desc" data-t="more.supp.sub"></small></div>
+        <div class="more-arrow">›</div>
+      </button>
       <button type="button" class="more-item theme-row" id="themeRow" role="switch" aria-checked="false">
         <div class="more-icon ic-theme"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path class="half" d="M12 3a9 9 0 0 0 0 18z"/></svg></div>
         <div class="more-text"><span class="title" data-t="more.theme"></span><small class="desc" data-t="more.theme.sub"></small></div>
@@ -333,6 +347,42 @@ footer .mark .dot{width:10px;height:10px;border-radius:9999px;background:var(--i
       <div class="card"><div class="title-md" data-t="about.2h"></div><p class="note" style="margin:8px 0 0" data-t="about.2p"></p></div>
       <div class="card"><div class="title-md" data-t="about.3h"></div><p class="note" style="margin:8px 0 0" data-t="about.3p"></p></div>
       <div class="card"><div class="title-md" data-t="about.4h"></div><p class="note" style="margin:8px 0 0" data-t="about.4p"></p></div>
+    </div>
+  </section>
+
+  <!-- PRIVACY -->
+  <section class="view" id="view-privacy" hidden>
+    <button type="button" class="btn btn-secondary back" data-view="more" data-t="back"></button>
+    <div class="head"><div><h1 class="display-lg" data-t="priv.title"></h1><div class="sub" data-t="priv.sub"></div></div></div>
+    <div class="two">
+      <div class="card"><div class="title-md" data-t="priv.1h"></div><p class="note" style="margin:8px 0 0" data-t="priv.1p"></p></div>
+      <div class="card"><div class="title-md" data-t="priv.2h"></div><p class="note" style="margin:8px 0 0" data-t="priv.2p"></p></div>
+      <div class="card"><div class="title-md" data-t="priv.3h"></div><p class="note" style="margin:8px 0 0" data-t="priv.3p"></p></div>
+      <div class="card">
+        <div class="title-md" data-t="priv.4h"></div>
+        <p class="note" style="margin:8px 0 12px" data-t="priv.4p"></p>
+        <a href="https://devcalapps-glitch.github.io/sundar-patro/privacy/" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="display:inline-flex;align-items:center;text-decoration:none" data-t="priv.open"></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUPPORT -->
+  <section class="view" id="view-support" hidden>
+    <button type="button" class="btn btn-secondary back" data-view="more" data-t="back"></button>
+    <div class="head"><div><h1 class="display-lg" data-t="supp.title"></h1><div class="sub" data-t="supp.sub"></div></div></div>
+    <div class="two">
+      <div class="card">
+        <div class="title-md" data-t="supp.1h"></div>
+        <p class="note" style="margin:8px 0 12px" data-t="supp.1p"></p>
+        <a href="mailto:support@longestchariot.com?subject=Sundar%20Patro%20Support" class="btn btn-primary" style="display:inline-flex;align-items:center;text-decoration:none" data-t="supp.mail"></a>
+      </div>
+      <div class="card"><div class="title-md" data-t="supp.2h"></div><p class="note" style="margin:8px 0 0" data-t="supp.2p"></p></div>
+      <div class="card"><div class="title-md" data-t="supp.3h"></div><p class="note" style="margin:8px 0 0" data-t="supp.3p"></p></div>
+      <div class="card">
+        <div class="title-md" data-t="supp.4h"></div>
+        <p class="note" style="margin:8px 0 12px" data-t="supp.4p"></p>
+        <a href="https://devcalapps-glitch.github.io/sundar-patro/support/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="display:inline-flex;align-items:center;text-decoration:none" data-t="supp.open"></a>
+      </div>
     </div>
   </section>
 
@@ -630,7 +680,7 @@ function saait(info,type){const R=[]; let block=null;
 
 /* ============ UI ============ */
 const $=s=>document.querySelector(s);
-const VIEWS=['today','month','festivals','holidays','more','auspicious','convert','clocks','about'];
+const VIEWS=['today','month','festivals','holidays','more','auspicious','convert','clocks','about','privacy','support'];
 const AD_MONTHS_NE=['जनवरी','फेब्रुअरी','मार्च','अप्रिल','मे','जुन','जुलाई','अगस्ट','सेप्टेम्बर','अक्टोबर','नोभेम्बर','डिसेम्बर'];
 const NAK_NE=['अश्विनी','भरणी','कृत्तिका','रोहिणी','मृगशिरा','आर्द्रा','पुनर्वसु','पुष्य','आश्लेषा','मघा','पूर्वफाल्गुनी','उत्तरफाल्गुनी','हस्त','चित्रा','स्वाती','विशाखा','अनुराधा','ज्येष्ठा','मूल','पूर्वाषाढा','उत्तराषाढा','श्रवण','धनिष्ठा','शतभिषा','पूर्वभाद्रपद','उत्तरभाद्रपद','रेवती'];
 const RASHI_NE=['मेष','वृष','मिथुन','कर्कट','सिंह','कन्या','तुला','वृश्चिक','धनु','मकर','कुम्भ','मीन'];
@@ -660,6 +710,29 @@ const T={
  'ausp.none':['No favourable days in this window. Try a longer span; Chaturmas (roughly July–November) and Kharmas (mid-December to mid-January, mid-March to mid-April) close the season for marriage, bratabandha and griha pravesh.','यस अवधिमा शुभ दिन छैन। लामो अवधि छान्नुहोस्; चातुर्मास (साउन–कात्तिक) र खरमास (पुस र चैत) मा विवाह, व्रतबन्ध र गृहप्रवेश हुँदैन।'],
  'conv.title':['Convert dates','मिति रूपान्तरण'],'conv.sub':['Bikram Sambat ⇄ Gregorian, BS 2000–2092 (AD 1943–2036)','विक्रम सम्वत् ⇄ ईस्वी सम्वत्, वि.सं. २०००–२०९२ (ई.सं. १९४३–२०३६)'],'conv.bs2ad':['BS → AD','वि.सं. → ई.सं.'],'conv.ad2bs':['AD → BS','ई.सं. → वि.सं.'],'conv.year':['Year','वर्ष'],'conv.month':['Month','महिना'],'conv.day':['Day','गते'],'conv.addate':['Gregorian date','ईस्वी मिति'],'conv.range':['Out of range','सीमाभन्दा बाहिर'],'conv.supported':['Supported: 14 April 1943 to 12 April 2036.','समर्थित: १४ अप्रिल १९४३ देखि १२ अप्रिल २०३६।'],
  'day.tithi':['Tithi','तिथि'],'day.lmonth':['Lunar month','चान्द्र मास'],'day.nak':['Nakshatra','नक्षत्र'],'day.rashi':['Sun rashi','सूर्य राशि'],'day.sun':['Sun','सूर्य'],'day.until':['until','सम्म'],'day.midnight':['after midnight','मध्यरात्रिपछि'],'day.paksha':['paksha','पक्ष'],'day.adhik':['Adhik','अधिक'],'day.noevent':['No festival or holiday.','कुनै चाड वा बिदा छैन।'],'day.close':['Close','बन्द'],
+ 'priv.title':['Privacy policy','गोपनीयता नीति'],'more.priv.sub':['Zero data collection, 100% offline','शून्य डेटा संकलन, पूर्णतः अफलाइन'],
+ 'priv.sub':['How Sundar Patro protects your privacy','सुन्दर पात्रोले तपाईंको गोपनीयता कसरी सुरक्षित गर्छ'],
+ 'priv.1h':['Zero data collection','व्यक्तिगत डेटा संकलन शून्य'],
+ 'priv.1p':['Sundar Patro does not collect, store, or share any personal data. There are no user accounts, no sign-in, and no tracking.','सुन्दर पात्रोले कुनै पनि व्यक्तिगत डेटा संकलन, भण्डारण वा साझेदारी गर्दैन। कुनै खाता, साइन-इन वा ट्र्याकिङ छैन।'],
+ 'priv.2h':['100% offline operation','पूर्णतः अफलाइन सञ्चालन'],
+ 'priv.2p':['All calendar tables, panchang computations, and preferences are stored strictly on your device. The app makes no external network requests.','सबै पात्रो, पञ्चाङ्ग गणना र सेटिङहरू तपाईंको उपकरणमै सुरक्षित रहन्छन्। एपले कुनै बाह्य नेटवर्क कल गर्दैन।'],
+ 'priv.3h':['Zero dangerous permissions','कुनै जोखिमपूर्ण अनुमति छैन'],
+ 'priv.3p':['The app does not access your microphone, camera, location, contacts, storage, or device identifiers.','यस एपले क्यामेरा, माइक, स्थान, सम्पर्क, भण्डारण वा उपकरण पहिचानकर्ता पहुँच गर्दैन।'],
+ 'priv.4h':['Official online policy','आधिकारिक अनलाइन नीति'],
+ 'priv.4p':['View our live, web-hosted privacy policy anytime:','हाम्रो अनलाइन गोपनीयता नीति हेर्नुहोस्:'],
+ 'priv.open':['Open web policy ↗','अनलाइन नीति हेर्नुहोस् ↗'],
+ 'supp.title':['Support & help','सहयोग र सहायता'],'more.supp.sub':['FAQs and developer contact','प्रायः सोधिने प्रश्न र सम्पर्क'],
+ 'supp.sub':['Help and contact for Sundar Patro','सुन्दर पात्रो सहायता र सम्पर्क'],
+ 'supp.1h':['Contact us','हामीलाई सम्पर्क गर्नुहोस्'],
+ 'supp.1p':['Have a question, feedback, or found an issue? Email us directly at support@longestchariot.com. We usually reply within 2 business days.','कुनै जिज्ञासा, सुझाव वा समस्या छ? हामीलाई support@longestchariot.com मा इमेल गर्नुहोस्।'],
+ 'supp.mail':['Email Support ✉','इमेल गर्नुहोस् ✉'],
+ 'supp.2h':['Is internet required?','के इन्टरनेट चाहिन्छ?'],
+ 'supp.2p':['No. Sundar Patro is designed to be 100% offline. All Bikram Sambat conversion algorithms, tithis, and festival dates are built into the app.','पर्दैन। सुन्दर पात्रो पूर्णतः अफलाइन चल्छ। सबै वि.सं. मिति, तिथि र चाडपर्व एपभित्रै समावेश छन्।'],
+ 'supp.3h':['Switching language and theme','भाषा र थिम परिवर्तन'],
+ 'supp.3p':['Tap the "ने / EN" toggle in the header to change language, or use the Dark Mode switch in the More menu.','माथिको "ने / EN" बटन थिचेर भाषा र "थप" मेनुबाट डार्क मोड परिवर्तन गर्न सकिन्छ।'],
+ 'supp.4h':['Web support portal','अनलाइन सहायता पोर्टल'],
+ 'supp.4p':['Find detailed release notes and FAQs on our web portal:','हाम्रो वेबसाइटमा थप जानकारी हेर्नुहोस्:'],
+ 'supp.open':['Visit web support ↗','वेब सहायता पृष्ठ ↗'],
  footer:['© 2026 Longest Chariot LLC. All rights reserved.','© २०२६ Longest Chariot LLC. सर्वाधिकार सुरक्षित।'],
 };
 const t=k=>T[k][lang==='ne'?1:0];
@@ -817,7 +890,7 @@ function renderConvert(){ const ys=$('#c-bsy');
 }
 function showView(v,keepScroll){
   document.querySelectorAll('.view').forEach(sec=>sec.hidden=sec.id!=='view-'+v);
-  const navV=(v==='auspicious'||v==='convert'||v==='clocks'||v==='about')?'more':v;
+  const navV=(v==='auspicious'||v==='convert'||v==='clocks'||v==='about'||v==='privacy'||v==='support')?'more':v;
   document.querySelectorAll('.tab[data-view],.tb').forEach(tb=>{if(tb.dataset.view===navV)tb.setAttribute('aria-current','page');else tb.removeAttribute('aria-current');});
   if(v==='today'){renderToday();} else if(v==='month'){renderMonth();renderDay();} else if(v==='festivals'||v==='holidays'){if(!keepScroll)listM={y:todayBS.y,m:todayBS.m}; renderList(v);} else if(v==='auspicious'){renderAusp();} else if(v==='clocks'){renderClocks();} else if(v==='convert'){renderConvert();}
   if(location.hash!=='#'+v){try{history.replaceState(null,'','#'+v);}catch(e){}} if(!keepScroll)window.scrollTo({top:0});

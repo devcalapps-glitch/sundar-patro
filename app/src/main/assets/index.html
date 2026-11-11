@@ -12,7 +12,7 @@
   --primary:#111111; --primary-active:#242424; --on-primary:#ffffff;
   --accent:#3b82f6; --success:#10b981; --warning:#f59e0b; --error:#ef4444;
   --orange:#fb923c; --pink:#ec4899; --violet:#8b5cf6; --emerald:#34d399;
-  --holiday-bg:#fff1f2; --holiday-fg:#be123c; --sat-fg:#dc2626;
+  --holiday-bg:#fff1f2; --holiday-fg:#be123c; --fest-bg:#fef3c7; --fest-fg:#b45309; --sat-fg:#dc2626;
   --shadow-sm:0 1px 2px rgba(0,0,0,.05); --shadow-md:0 4px 12px rgba(0,0,0,.08); color-scheme:light;
   --tag-fav:#047857; --tag-neu:#92400e; --tag-avoid:#b91c1c; --tab-active:#ffffff; --switch-off:#cfd3d9; --switch-on:#111111;
   --font-ui:"Mukta",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
@@ -66,6 +66,11 @@ main{padding-block:32px 64px}
 .head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px}
 .head .sub{color:var(--muted);font-size:15px;margin-top:4px}
 .navrow{display:flex;align-items:center;gap:8px}
+.nav-ring{border:2px solid var(--accent);color:var(--accent);font-weight:700}
+.nav-ring:active{box-shadow:0 0 0 5px color-mix(in srgb,var(--accent) 25%,transparent)}
+.nav-ring:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media(prefers-reduced-motion:no-preference){.nav-ring{transition:box-shadow .15s}}
+.t-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
 
 .split{display:grid;gap:24px;grid-template-columns:1fr}
 @media(min-width:1024px){.split{grid-template-columns:7fr 5fr;align-items:start}.split.solo{grid-template-columns:1fr}}
@@ -150,6 +155,23 @@ main{padding-block:32px 64px}
 .more-row .dt svg{width:28px;height:28px;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
 .more-row .tg{font-size:20px;color:var(--muted)}
 .back{justify-self:start;width:max-content}
+/* festivals vs holidays: each list announces itself with its own icon and color */
+#view-festivals{--kind-fg:var(--fest-fg);--kind-bg:var(--fest-bg)}
+#view-holidays{--kind-fg:var(--holiday-fg);--kind-bg:var(--holiday-bg)}
+#view-festivals .nav-ring,#view-holidays .nav-ring{--accent:var(--kind-fg)}
+.kindhead{display:flex;gap:14px;align-items:flex-start}
+.kindicon{flex:none;width:48px;height:48px;border-radius:14px;background:var(--kind-bg);color:var(--kind-fg);display:grid;place-items:center;margin-top:4px}
+.kindicon svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.kindhead h1{color:var(--kind-fg)}
+.kmonth{font-size:20px;font-weight:600;color:var(--ink);margin-top:2px}
+#f-list .row.hol{background:var(--canvas);border-color:var(--hairline)}
+.ksum{margin:0;padding:10px 14px;border-radius:12px;background:var(--kind-bg);color:var(--kind-fg);font-weight:600;font-size:15px}
+.ksum:empty{display:none}
+.hrow{background:var(--holiday-bg);border-color:transparent}
+.hrow .dt{font-size:22px}
+.hrow .dt small{font-size:14px}
+.hrow .pill{background:var(--canvas)}
+.hrow .wd{display:block;font-family:var(--font-ui);font-size:14px;font-weight:700;color:var(--holiday-fg)}
 .monthhead{font-size:14px;font-weight:600;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin:16px 0 4px}
 .monthhead:first-child{margin-top:0}
 @media(max-width:480px){.row{grid-template-columns:92px 1fr}.row .tg{grid-column:1/-1;justify-content:flex-start}}
@@ -202,7 +224,7 @@ footer .mark .dot{width:10px;height:10px;border-radius:9999px;background:var(--i
   --hairline:#32322f; --hairline-soft:#262625;
   --ink:#f9f9f7; --body:#f0efea; --muted:#c4c2bb; --muted-soft:#93918a;
   --primary:#f9f9f7; --primary-active:#e4e3de; --on-primary:#151515;
-  --accent:#d97757; --holiday-bg:#2a1a19; --holiday-fg:#ff9a9a; --sat-fg:#ff8f87;
+  --accent:#d97757; --holiday-bg:#2a1a19; --holiday-fg:#ff9a9a; --fest-bg:#2a2214; --fest-fg:#fbbf24; --sat-fg:#ff8f87;
   --tag-fav:#4ade80; --tag-neu:#fbbf24; --tag-avoid:#ff8f87; --tab-active:#313131; --switch-off:#3d3d3b; --switch-on:#c6613f;
   --shadow-sm:0 1px 2px rgba(0,0,0,.4); --shadow-md:0 4px 12px rgba(0,0,0,.5); color-scheme:dark}
 /* Compact More view */
@@ -394,8 +416,8 @@ footer .mark .dot{width:10px;height:10px;border-radius:9999px;background:var(--i
         <div class="sub" id="m-sub">—</div>
       </div>
       <div class="navrow">
-        <button class="btn-icon" id="m-prev" data-al="al.prev">‹</button>
-        <button class="btn-icon" id="m-next" data-al="al.next">›</button>
+        <button class="btn-icon nav-ring" id="m-prev" data-al="al.prev">‹</button>
+        <button class="btn-icon nav-ring" id="m-next" data-al="al.next">›</button>
       </div>
     </div>
     <div class="split" id="m-split">
@@ -419,8 +441,8 @@ footer .mark .dot{width:10px;height:10px;border-radius:9999px;background:var(--i
   <!-- FESTIVALS -->
   <section class="view" id="view-festivals" hidden>
     <div class="head">
-      <div><div class="caption" id="f-eyebrow"></div><h1 class="display-lg ne" id="f-title" aria-live="polite"></h1><div class="sub" id="f-sub"></div></div>
-      <div class="navrow"><button class="btn-icon" id="f-prev" data-al="al.prev">‹</button><button class="btn-icon" id="f-next" data-al="al.next">›</button></div>
+      <div class="kindhead"><span class="kindicon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M12 3l2.6 5.4 5.9.8-4.3 4.1 1.1 5.9L12 16.4 6.7 19.2l1.1-5.9L3.5 9.2l5.9-.8z"/></svg></span><div><h1 class="display-lg" id="f-title"></h1><div class="kmonth ne" id="f-month" aria-live="polite"></div><div class="sub" id="f-sub"></div></div></div>
+      <div class="navrow"><button class="btn-icon nav-ring" id="f-prev" data-al="al.prev">‹</button><button class="btn-icon nav-ring" id="f-next" data-al="al.next">›</button></div>
     </div>
     <div class="list" id="f-list"></div>
   </section>
@@ -428,9 +450,10 @@ footer .mark .dot{width:10px;height:10px;border-radius:9999px;background:var(--i
   <!-- HOLIDAYS -->
   <section class="view" id="view-holidays" hidden>
     <div class="head">
-      <div><div class="caption" id="h-eyebrow"></div><h1 class="display-lg ne" id="h-title" aria-live="polite"></h1><div class="sub" id="h-sub"></div></div>
-      <div class="navrow"><button class="btn-icon" id="h-prev" data-al="al.prev">‹</button><button class="btn-icon" id="h-next" data-al="al.next">›</button></div>
+      <div class="kindhead"><span class="kindicon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M5 21V4M5 4h11l-2 4 2 4H5"/></svg></span><div><h1 class="display-lg" id="h-title"></h1><div class="kmonth ne" id="h-month" aria-live="polite"></div><div class="sub" id="h-sub"></div></div></div>
+      <div class="navrow"><button class="btn-icon nav-ring" id="h-prev" data-al="al.prev">‹</button><button class="btn-icon nav-ring" id="h-next" data-al="al.next">›</button></div>
     </div>
+    <p class="ksum" id="h-sum"></p>
     <div class="list" id="h-list"></div>
   </section>
 
@@ -705,7 +728,7 @@ const T={
  'about.4h':['Holidays and saait','बिदा र साइत'],
  'about.4p':['Holidays are the ones Nepal usually gazettes, tagged national, valley, women, community or Terai; the cabinet changes the list each year. Saait screening applies the conventions most panchangas share (Chaturmas, Kharmas, Adhik mas, Pitri paksha, Holashtak, rikta tithis, weekdays, nakshatras). It is a shortlist, not a muhurat: confirm the lagna with a jyotishi or the printed patro.','बिदाहरू नेपाल सरकारले सामान्यतया राजपत्रमा प्रकाशन गर्नेहरू हुन्: राष्ट्रिय, उपत्यका, महिला, समुदाय वा तराई; मन्त्रिपरिषद्ले सूची हरेक वर्ष बदल्छ। साइत छनोटमा अधिकांश पञ्चाङ्गका साझा नियम (चातुर्मास, खरमास, अधिक मास, पितृ पक्ष, होलाष्टक, रिक्ता तिथि, बार, नक्षत्र) लागू गरिएका छन्। यो छोटो सूची मात्र हो, मुहूर्त होइन: लग्न ज्योतिषी वा छापिएको पात्रोबाट पक्का गर्नुहोस्।'],
  'legend.hol':['Public holiday','सार्वजनिक बिदा'],'cat.festival':['Religious festival','धार्मिक चाड'],'cat.civic':['National / civic','राष्ट्रिय'],'cat.lunar':['Lunar observance','चान्द्र पर्व'],'cat.community':['Community','समुदाय'],
- 'f.title':['Festivals','चाडपर्व'],'h.title':['Public holidays','सार्वजनिक बिदा'],'to':['to','देखि'],'bs':['BS','वि.सं.'],'none':['No entries.','केही छैन।'],
+ 'f.title':['Festivals','चाडपर्व'],'h.title':['Public holidays','सार्वजनिक बिदा'],'h.onsat':['Falls on Saturday','शनिबार परेको'],'h.none':['No public holidays this month.','यो महिना सार्वजनिक बिदा छैन।'],'to':['to','देखि'],'bs':['BS','वि.सं.'],'none':['No entries.','केही छैन।'],
  'ausp.title':['Auspicious dates','शुभ साइत'],'ausp.sub':['Saait screening for ceremonies','संस्कार र शुभ कार्यका लागि साइत छनोट'],'ausp.ceremony':['Ceremony','कार्य'],'ausp.from':['From','देखि'],'ausp.span':['Months ahead','कति महिना'],
  'ausp.none':['No favourable days in this window. Try a longer span; Chaturmas (roughly July–November) and Kharmas (mid-December to mid-January, mid-March to mid-April) close the season for marriage, bratabandha and griha pravesh.','यस अवधिमा शुभ दिन छैन। लामो अवधि छान्नुहोस्; चातुर्मास (साउन–कात्तिक) र खरमास (पुस र चैत) मा विवाह, व्रतबन्ध र गृहप्रवेश हुँदैन।'],
  'conv.title':['Convert dates','मिति रूपान्तरण'],'conv.sub':['Bikram Sambat ⇄ Gregorian, BS 2000–2092 (AD 1943–2036)','विक्रम सम्वत् ⇄ ईस्वी सम्वत्, वि.सं. २०००–२०९२ (ई.सं. १९४३–२०३६)'],'conv.bs2ad':['BS → AD','वि.सं. → ई.सं.'],'conv.ad2bs':['AD → BS','ई.सं. → वि.सं.'],'conv.year':['Year','वर्ष'],'conv.month':['Month','महिना'],'conv.day':['Day','गते'],'conv.addate':['Gregorian date','ईस्वी मिति'],'conv.range':['Out of range','सीमाभन्दा बाहिर'],'conv.supported':['Supported: 14 April 1943 to 12 April 2036.','समर्थित: १४ अप्रिल १९४३ देखि १२ अप्रिल २०३६।'],
@@ -807,9 +830,10 @@ function renderDay(target,nSel){ target=target||'#daycard'; const n=nSel||selN;
     </dl>
     ${evs.length?`<div class="evlist">${evs.map(e=>`<div class="evitem"><i style="background:${dotCol(e)}"></i><div><div class="t">${EV(e)}${ne_?'':` <span class="ne muted" lang="ne" style="font-weight:500">${e.ne}</span>`}</div><div class="d">${DESC(e)}${e.hol?` · ${hol(e.hol)}`:''}</div></div></div>`).join('')}</div>`:`<div class="muted" style="font-size:15px;margin-top:16px">${t('day.noevent')}</div>`}
     <div class="verdicts">${groupVerdicts(sa).map(g=>`<div class="verdict"><span class="vtag v-${g.v==='favorable'?'fav':g.v==='neutral'?'neu':'avoid'}">${V_T[g.v][ne_?1:0]}</span><div><b>${g.tys.map(ty=>SAAIT_T[ty][ne_?1:0]).join(', ')}</b><div class="v-reasons">${g.why}</div></div></div>`).join('')}</div>
-    ${target==='#todaycard'?`<button type="button" class="btn btn-secondary" id="t-open" style="margin-top:16px">${t('today.open')}</button>`:''}`;
+    ${target==='#todaycard'?`<div class="t-actions"><button type="button" class="btn btn-secondary" id="t-open">${t('today.open')}</button><button type="button" class="btn btn-secondary" id="t-ausp">${t('ausp.title')}</button></div>`:''}`;
   if(target==='#todaycard')tickClocks();
   const op=$('#t-open'); if(op)op.addEventListener('click',()=>{selN=null;cur={y:todayBS.y,m:todayBS.m};showView('month');});
+  const au=$('#t-ausp'); if(au)au.addEventListener('click',()=>showView('auspicious'));
   const cl=$('#dc-close'); if(cl)cl.addEventListener('click',()=>{const was=selN;selN=null;renderMonth();renderDay();const c=$(`.cell[data-n="${was}"]`);if(c)c.focus();});
 }
 /* ============ World clocks: Nepal + up to 2 cities ============ */
@@ -860,13 +884,27 @@ function renderList(kind){ const {y,m}=listM, first=bs2dnum(y,m,1), days=bsDays(
   const ns=[...map.keys()].filter(n=>n>=first&&n<=last).sort((a,b)=>a-b);
   const el=$(kind==='festivals'?'#f-list':'#h-list'); el.innerHTML='';
   const g1=fromDnum(first), g2=fromDnum(last), pre=kind==='festivals'?'f':'h';
-  $('#'+pre+'-title').textContent=`${MON(m-1)} ${N(y)}`;
+  $('#'+pre+'-title').textContent=t(kind==='festivals'?'f.title':'h.title');
+  $('#'+pre+'-month').textContent=`${MON(m-1)} ${N(y)}`;
   const rng=lang==='ne'?`${ne(g1.d)} ${AD_MONTHS_NE[g1.m-1]} – ${ne(g2.d)} ${AD_MONTHS_NE[g2.m-1]} ${ne(g2.y)}`:`${AD_MONTHS[g1.m-1].slice(0,3)} ${g1.d} – ${AD_MONTHS[g2.m-1].slice(0,3)} ${g2.d}, ${g2.y}`;
-  $('#'+pre+'-eyebrow').textContent=t(kind==='festivals'?'f.title':'h.title'); $('#'+pre+'-sub').textContent=rng;
-  for(const n of ns){ const evs=map.get(n).filter(e=>kind==='festivals'?true:!!e.hol); if(!evs.length)continue;
-    for(const e of evs)el.appendChild(eventRow(n,e,DESC(e),(e.hol?`<span class="pill hol">${hol(e.hol)}</span>`:'')+catPill(e))); }
-  if(!el.children.length)el.innerHTML=`<p class="note">${t('none')}</p>`;
+  $('#'+pre+'-sub').textContent=rng;
+  if(kind==='festivals'){
+    for(const n of ns)for(const e of map.get(n))el.appendChild(eventRow(n,e,DESC(e),(e.hol?`<span class="pill hol">${hol(e.hol)}</span>`:'')+catPill(e)));
+  } else {
+    let sat=0;
+    for(const n of ns){ const evs=map.get(n).filter(e=>e.hol); if(!evs.length)continue; const r=holidayRow(n,evs); if(r.dataset.sat)sat++; el.appendChild(r); }
+    const cnt=el.children.length, ne_=lang==='ne';
+    $('#h-sum').textContent=!cnt?'':ne_?`यो महिना ${ne(cnt)} सार्वजनिक बिदा`+(sat?` · ${ne(sat)} शनिबार परेको`:'')
+      :`${cnt} public ${cnt===1?'holiday':'holidays'} this month`+(sat?` · ${sat} ${sat===1?'falls':'fall'} on a Saturday`:'');
+  }
+  if(!el.children.length)el.innerHTML=`<p class="note">${t(kind==='holidays'?'h.none':'none')}</p>`;
 }
+/* Holidays list: one row per day off, led by the weekday and who gets the day off. */
+function holidayRow(n,evs){ const i=dayInfo(n), ne_=lang==='ne', isSat=i.g.dow===6; const r=document.createElement('button'); r.type='button'; r.className='row hrow';
+  if(isSat)r.dataset.sat='1';
+  const scopes=[...new Set(evs.map(e=>e.hol))];
+  r.innerHTML=`<div class="dt">${N(i.bs.d)} ${MON(i.bs.m-1)}<span class="wd">${DOWN(i.g.dow)}</span></div><div class="nm">${evs.map(e=>EV(e)+(ne_?'':` <span class="ne" lang="ne" style="font-weight:400">${e.ne}</span>`)).join('<br>')}<small>${fmtAD(i.g)}</small></div><div class="tg">${scopes.map(h=>`<span class="pill hol">${hol(h)}</span>`).join('')}${isSat?`<span class="pill">${t('h.onsat')}</span>`:''}</div>`;
+  r.addEventListener('click',()=>{selN=n;cur={y:i.bs.y,m:i.bs.m};showView('month');}); return r; }
 function stepList(kind,d){ let {y,m}=listM; m+=d; if(m<1){if(y<=BS_START)return; y--; m=12;} else if(m>12){if(y>=BS_END)return; y++; m=1;} listM={y,m}; renderList(kind); }
 function renderAusp(){ const type=$('#a-type').value, from=$('#a-from').value, span=+$('#a-span').value; const el=$('#a-list'); el.innerHTML='';
   const [fy,fm,fd]=from.split('-').map(Number); let n=dnum(fy,fm,fd); const end=Math.min(n+Math.round(span*30.4),YEAR_START_DAYS[BS.length]-1); let count=0,lastM=-1;

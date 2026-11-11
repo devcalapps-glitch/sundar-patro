@@ -18,10 +18,12 @@ Use this checklist to track requirements for publishing **Sundar Patro** (`com.s
 ## 2. Store Graphic Assets
 
 - [x] **App Icon (512 × 512 px):** Present at `store-assets/play-icon-512.png` (32-bit PNG with alpha).
-- [ ] **Feature Graphic (1024 × 500 px):** JPG or 24-bit PNG (no transparency). Required by Google Play before store listing can be published.
-- [ ] **Phone Screenshots:** At least 2 phone screenshots (up to 8, 16:9 or 9:16 aspect ratio, min 320px, max 3840px).
-  - [ ] Screenshot 1: Month Calendar Grid View
-  - [ ] Screenshot 2: Today / Panchang & Event View
+- [x] **Feature Graphic (1024 × 500 px):** Generated at `store-assets/feature-graphic-1024x500.png` (24-bit PNG, no alpha, meets Google Play specs).
+- [x] **Phone Screenshots (4 Ready):** Sourced and verified in `store-assets/phone-screenshots/`:
+  - [x] `01-today-panchang-light.jpg`: Today / Panchang & Event View (Light Mode, 1004 × 1741 px)
+  - [x] `02-month-calendar-light.jpg`: Month Calendar Grid View (Light Mode, 1041 × 2048 px)
+  - [x] `03-today-panchang-dark.jpg`: Today / Panchang & Event View (Dark Mode, 914 × 1514 px)
+  - [x] `04-month-calendar-dark.jpg`: Month Calendar Grid View (Dark Mode, 960 × 1880 px — aspect ratio <= 2:1 compliant)
 
 ---
 

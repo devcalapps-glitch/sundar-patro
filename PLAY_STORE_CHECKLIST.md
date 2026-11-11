@@ -10,7 +10,7 @@ Use this checklist to track requirements for publishing **Sundar Patro** (`com.s
 - [x] **Zero Dangerous Permissions:** Fully offline architecture in `AndroidManifest.xml` with no background or sensitive permissions.
 - [x] **Version Code & Name:** Set to `versionCode = 1`, `versionName = "1.0.0"` in `app/build.gradle.kts`.
 - [x] **ProGuard / R8 Enabled:** Enabled in `release` build type (`isMinifyEnabled = true`, `isShrinkResources = true`).
-- [ ] **Release Keystore Generation:** Create `sundarpatro-release.jks` using `./generate-keystore.sh` or Android Studio.
+- [x] **Release Keystore Generation:** Created `sundarpatro-release.jks` (RSA 2048-bit, alias: `sundarpatro`, protected in `.gitignore`).
 - [ ] **Signed App Bundle (`.aab`):** Generate signed `.aab` (unsigned bundle built at `app/build/outputs/bundle/release/app-release.aab`).
 
 ---

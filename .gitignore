@@ -14,5 +14,10 @@
 *.jks
 *.keystore
 
+# Built binaries
+*.apk
+*.aab
+app/release/
+
 # Google Services
 # google-services.json

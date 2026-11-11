@@ -1,11 +1,15 @@
 package com.sundarpatro.app
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.res.Configuration
 import android.graphics.Color
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
+import android.webkit.JavascriptInterface
 import android.webkit.WebResourceRequest
 import android.webkit.WebResourceResponse
 import android.webkit.WebSettings
@@ -13,6 +17,7 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.ViewCompat
@@ -23,6 +28,46 @@ import androidx.webkit.WebViewAssetLoader
 class MainActivity : AppCompatActivity() {
 
     private lateinit var webView: WebView
+
+    /** Set when the user was sent to system settings to allow notifications; checked on return. */
+    private var enableOnReturn = false
+
+    private val notifPermission = registerForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
+        Reminders.markAsked(this)
+        setRemindersOn(granted && Reminders.canPost(this), blocked = !granted)
+    }
+
+    private fun setRemindersOn(on: Boolean, blocked: Boolean = false) {
+        Reminders.setEnabled(this, on)
+        webView.evaluateJavascript("window.onRemindersChanged&&onRemindersChanged($on,$blocked)", null)
+    }
+
+    private fun openNotificationSettings() {
+        enableOnReturn = true
+        val i = if (Build.VERSION.SDK_INT >= 26)
+            Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS).putExtra(Settings.EXTRA_APP_PACKAGE, packageName)
+        else Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.parse("package:$packageName"))
+        try { startActivity(i) } catch (_: Exception) { enableOnReturn = false }
+    }
+
+    /** Bridge for the bundled page only (the WebView never navigates off appassets). */
+    inner class ReminderBridge {
+        @JavascriptInterface fun remindersEnabled(): Boolean = Reminders.isEnabled(this@MainActivity)
+        @JavascriptInterface fun setReminders(json: String) {
+            try { Reminders.save(this@MainActivity, json) } catch (_: Exception) {}
+        }
+        @JavascriptInterface fun enableReminders() = runOnUiThread {
+            when {
+                Reminders.canPost(this@MainActivity) -> setRemindersOn(true)
+                Build.VERSION.SDK_INT >= 33 && !(Reminders.wasAsked(this@MainActivity) &&
+                    !shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS)) ->
+                    notifPermission.launch(Manifest.permission.POST_NOTIFICATIONS)
+                // Permission permanently denied, or notifications switched off for the app: only settings can fix it.
+                else -> openNotificationSettings()
+            }
+        }
+        @JavascriptInterface fun disableReminders() = runOnUiThread { setRemindersOn(false) }
+    }
 
     @SuppressLint("SetJavaScriptEnabled")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -103,6 +148,8 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        webView.addJavascriptInterface(ReminderBridge(), "SundarNative")
+
         // 7. Load local assets bundle via secure virtual HTTPS domain
         webView.loadUrl("https://appassets.androidplatform.net/assets/index.html")
 
@@ -140,6 +187,18 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         })
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (!::webView.isInitialized) return
+        if (enableOnReturn) {
+            enableOnReturn = false
+            setRemindersOn(Reminders.canPost(this), blocked = !Reminders.canPost(this))
+        } else if (Reminders.isEnabled(this) && !Reminders.canPost(this)) {
+            // Notifications were turned off in system settings: reflect that instead of failing silently.
+            setRemindersOn(false, blocked = true)
+        }
     }
 
     override fun onDestroy() {

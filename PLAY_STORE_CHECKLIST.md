@@ -7,8 +7,8 @@ Use this checklist to track requirements for publishing **Sundar Patro** (`com.s
 ## 1. Release Binary & Code Readiness
 
 - [x] **Target SDK 36 (Android 16):** Exceeds Google Play minimum target requirement (API 34+).
-- [x] **Zero Dangerous Permissions:** Fully offline architecture in `AndroidManifest.xml` with no background or sensitive permissions.
-- [x] **Version Code & Name:** Set to `versionCode = 1`, `versionName = "1.0.0"` in `app/build.gradle.kts`.
+- [x] **Minimal Permissions:** Fully offline (no INTERNET permission). Only `POST_NOTIFICATIONS` (asked when the user turns on Holiday reminders) and `RECEIVE_BOOT_COMPLETED` (re-arms reminders after restart). Data safety: still no data collected or shared.
+- [x] **Version Code & Name:** Set to `versionCode = 2`, `versionName = "1.1.0"` (1.1.0 adds holiday reminders) in `app/build.gradle.kts`.
 - [x] **ProGuard / R8 Enabled:** Enabled in `release` build type (`isMinifyEnabled = true`, `isShrinkResources = true`).
 - [x] **Release Keystore Generation:** Created `sundarpatro-release.jks` (RSA 2048-bit, alias: `sundarpatro`, protected in `.gitignore`).
 - [x] **Signed App Bundle (`.aab`):** Generated at `app/release/app-release.aab` (~2.7 MB, signed and shrink-optimized).

@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Sundar Patro</string>
     <string name="app_name_ne">सुन्दर पात्रो</string>
+    <string name="reminder_channel">Festival &amp; holiday reminders</string>
+    <string name="reminder_channel_desc">A note the evening before festivals and public holidays.</string>
 </resources>
 

@@ -251,6 +251,8 @@ footer .mark .dot{width:10px;height:10px;border-radius:9999px;background:var(--i
 :root[data-theme="dark"] .more-icon.ic-priv{background:rgba(14,165,233,.18);color:#38bdf8}
 :root[data-theme="dark"] .more-icon.ic-supp{background:rgba(225,29,72,.18);color:#fb7185}
 :root[data-theme="dark"] .more-icon.ic-theme{background:rgba(139,92,246,.18);color:#a78bfa}
+.more-icon.ic-remind{background:rgba(234,88,12,.12);color:#ea580c}
+:root[data-theme="dark"] .more-icon.ic-remind{background:rgba(234,88,12,.18);color:#fb923c}
 .more-icon.ic-clock{background:rgba(236,72,153,.12);color:#db2777}
 :root[data-theme="dark"] .more-icon.ic-clock{background:rgba(236,72,153,.18);color:#f472b6}
 .more-text{flex:1;min-width:0}
@@ -336,6 +338,11 @@ footer .mark .dot{width:10px;height:10px;border-radius:9999px;background:var(--i
       <button type="button" class="more-item theme-row" id="themeRow" role="switch" aria-checked="false">
         <div class="more-icon ic-theme"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path class="half" d="M12 3a9 9 0 0 0 0 18z"/></svg></div>
         <div class="more-text"><span class="title" data-t="more.theme"></span><small class="desc" data-t="more.theme.sub"></small></div>
+        <div class="tg"><span class="switch" aria-hidden="true"></span></div>
+      </button>
+      <button type="button" class="more-item theme-row" id="remindRow" role="switch" aria-checked="false" hidden>
+        <div class="more-icon ic-remind"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></div>
+        <div class="more-text"><span class="title" data-t="more.remind"></span><small class="desc" id="remindDesc" data-t="more.remind.sub"></small></div>
         <div class="tg"><span class="switch" aria-hidden="true"></span></div>
       </button>
     </div>
@@ -716,11 +723,11 @@ const T={
  'clk.city':['City','सहर'],'clk.add':['Add','थप्नुहोस्'],'clk.remove':['Remove','हटाउनुहोस्'],'clk.nepal':['Nepal','नेपाल'],'clk.always':['Always shown','सधैं देखिन्छ'],
  'clk.full':['You can show 2 extra clocks. Remove one to add a different city.','थप २ घडी मात्र राख्न मिल्छ। अर्को सहर थप्न एउटा हटाउनुहोस्।'],'clk.added':['added','थपियो'],'clk.removed':['removed','हटाइयो'],
  'al.views':['Main menu','मुख्य मेनु'],'al.lang':['Language','भाषा'],'al.prev':['Previous month','अघिल्लो महिना'],'al.next':['Next month','अर्को महिना'],'today.open':['Open in calendar','पात्रोमा हेर्नुहोस्'],'today.none':['Nothing in the next 45 days.','आगामी ४५ दिनमा केही छैन।'],'tomorrow':['Tomorrow','भोलि'],
- 'more.theme':['Dark mode','डार्क मोड'],'more.theme.sub':['Use a dark theme. Light is the default.','गाढा थिम प्रयोग गर्नुहोस्। पूर्वनिर्धारित उज्यालो हो।'],'more.sub':['Tools and reference','उपकरण र जानकारी'],'more.ausp.sub':['Screen days for marriage, bratabandha, griha pravesh and more','विवाह, व्रतबन्ध, गृहप्रवेश आदिका लागि शुभ दिन'],'more.conv.sub':['Bikram Sambat ⇄ Gregorian, 1943–2036','विक्रम सम्वत् ⇄ ईस्वी सम्वत्, १९४३–२०३६'],'more.about.sub':['How dates, tithis and festivals are worked out','मिति, तिथि र चाडपर्व कसरी गणना गरिन्छ'],
+ 'more.theme':['Dark mode','डार्क मोड'],'more.remind':['Holiday reminders','चाडपर्व र बिदा सम्झना'],'more.remind.sub':['A notification at 6 PM the evening before','अघिल्लो दिन बेलुका ६ बजे सूचना'],'more.remind.blocked':['Notifications are off. Tap to allow them in Settings.','सूचना बन्द छ। सेटिङमा अनुमति दिन थिच्नुहोस्।'],'remind.tom':['Tomorrow','भोलि'],'more.theme.sub':['Use a dark theme. Light is the default.','गाढा थिम प्रयोग गर्नुहोस्। पूर्वनिर्धारित उज्यालो हो।'],'more.sub':['Tools and reference','उपकरण र जानकारी'],'more.ausp.sub':['Screen days for marriage, bratabandha, griha pravesh and more','विवाह, व्रतबन्ध, गृहप्रवेश आदिका लागि शुभ दिन'],'more.conv.sub':['Bikram Sambat ⇄ Gregorian, 1943–2036','विक्रम सम्वत् ⇄ ईस्वी सम्वत्, १९४३–२०३६'],'more.about.sub':['How dates, tithis and festivals are worked out','मिति, तिथि र चाडपर्व कसरी गणना गरिन्छ'],
  back:['‹ More','‹ थप'],
- 'about.title':['About the data','विधि'],'about.sub':['What is exact, what is computed, and what to double-check','के निश्चित छ, के गणना गरिएको छ, के जाँच्नुपर्छ'],
+ 'about.title':['About the data','विधि'],'about.sub':['The sources and methods behind every date','हरेक मितिको स्रोत र विधि'],
  'about.1h':['Bikram Sambat ⇄ Gregorian','विक्रम सम्वत् ⇄ ईस्वी सम्वत्'],
- 'about.1p':['BS months have no formula; their lengths (29–32 days) are fixed by Nepal\'s calendar authority. Conversion uses the standard month-length table for BS 2000–2092, anchored at 1 Baisakh 2000 = 14 April 1943, and checked against the published New Year dates for 2070–2083. Treat this part as exact.','विक्रम सम्वत्का महिनाको कुनै सूत्र छैन; तिनको लम्बाइ (२९–३२ दिन) नेपालको पञ्चाङ्ग समितिले तोक्छ। रूपान्तरणका लागि वि.सं. २०००–२०९२ को मानक महिना-तालिका प्रयोग गरिएको छ (१ वैशाख २००० = १४ अप्रिल १९४३) र २०७०–२०८३ का नयाँ वर्षका मितिसँग जाँचिएको छ। यो भाग निश्चित मान्न सकिन्छ।'],
+ 'about.1p':['BS months have no formula; their lengths (29–32 days) are fixed by Nepal\'s calendar authority. Conversion uses the standard month-length table for BS 2000–2092, anchored at 1 Baisakh 2000 = 14 April 1943, and verified against the published New Year dates for 2070–2083. Every BS ⇄ Gregorian conversion is exact.','विक्रम सम्वत्का महिनाको कुनै सूत्र छैन; तिनको लम्बाइ (२९–३२ दिन) नेपालको पञ्चाङ्ग समितिले तोक्छ। रूपान्तरणका लागि वि.सं. २०००–२०९२ को मानक महिना-तालिका प्रयोग गरिएको छ (१ वैशाख २००० = १४ अप्रिल १९४३) र २०७०–२०८३ का प्रकाशित नयाँ वर्षका मितिसँग प्रमाणित गरिएको छ। हरेक वि.सं. ⇄ ई.सं. रूपान्तरण सही छ।'],
  'about.2h':['Tithis, nakshatras, lunar months','तिथि, नक्षत्र, चान्द्र मास'],
  'about.2p':['Sun and Moon longitudes come from the Meeus algorithms; a tithi is each 12° of Moon–Sun elongation. The day\'s tithi is the one at Kathmandu sunrise, with the time it ends. Lunar months are named purnimanta style with adhik mas detected from sankranti counts. Nakshatra and rashi use the Lahiri ayanamsa. Accurate to minutes; a tithi ending near sunrise can differ from a printed panchanga.','सूर्य र चन्द्रको स्थिति मीयस (Meeus) विधिबाट गणना गरिन्छ; चन्द्र–सूर्यको प्रत्येक १२° अन्तर एक तिथि हो। दिनको तिथि काठमाडौंको सूर्योदयको तिथि हो, समाप्त हुने समयसहित। चान्द्र मास पूर्णिमान्त पद्धतिमा नामकरण गरिन्छ र संक्रान्तिको गणनाबाट अधिक मास पत्ता लगाइन्छ। नक्षत्र र राशिमा लाहिरी अयनांश प्रयोग गरिएको छ। मिनेटसम्म सही; सूर्योदय नजिक सकिने तिथि छापिएको पञ्चाङ्गभन्दा फरक पर्न सक्छ।'],
  'about.3h':['Festivals','चाडपर्व'],
@@ -739,8 +746,8 @@ const T={
  'priv.1p':['Sundar Patro does not collect, store, or share any personal data. There are no user accounts, no sign-in, and no tracking.','सुन्दर पात्रोले कुनै पनि व्यक्तिगत डेटा संकलन, भण्डारण वा साझेदारी गर्दैन। कुनै खाता, साइन-इन वा ट्र्याकिङ छैन।'],
  'priv.2h':['100% offline operation','पूर्णतः अफलाइन सञ्चालन'],
  'priv.2p':['All calendar tables, panchang computations, and preferences are stored strictly on your device. The app makes no external network requests.','सबै पात्रो, पञ्चाङ्ग गणना र सेटिङहरू तपाईंको उपकरणमै सुरक्षित रहन्छन्। एपले कुनै बाह्य नेटवर्क कल गर्दैन।'],
- 'priv.3h':['Zero dangerous permissions','कुनै जोखिमपूर्ण अनुमति छैन'],
- 'priv.3p':['The app does not access your microphone, camera, location, contacts, storage, or device identifiers.','यस एपले क्यामेरा, माइक, स्थान, सम्पर्क, भण्डारण वा उपकरण पहिचानकर्ता पहुँच गर्दैन।'],
+ 'priv.3h':['Minimal permissions','न्यूनतम अनुमति'],
+ 'priv.3p':['The app does not access your microphone, camera, location, contacts, storage, or device identifiers. The only permission it can ask for is notifications, and only if you turn on Holiday reminders; those reminders are scheduled on your device.','यस एपले क्यामेरा, माइक, स्थान, सम्पर्क, भण्डारण वा उपकरण पहिचानकर्ता पहुँच गर्दैन। तपाईंले चाडपर्व र बिदा सम्झना खोल्नुभएमा मात्र सूचनाको अनुमति माग्छ; ती सम्झना तपाईंकै उपकरणमा तय हुन्छन्।'],
  'priv.4h':['Official online policy','आधिकारिक अनलाइन नीति'],
  'priv.4p':['View our live, web-hosted privacy policy anytime:','हाम्रो अनलाइन गोपनीयता नीति हेर्नुहोस्:'],
  'priv.open':['Open web policy ↗','अनलाइन नीति हेर्नुहोस् ↗'],
@@ -935,7 +942,7 @@ function showView(v,keepScroll){
 }
 document.querySelectorAll('.tab[data-view],.tb,.more-row,.back').forEach(b=>b.addEventListener('click',()=>showView(b.dataset.view)));
 function setLang(l){lang=l; try{localStorage.setItem('patro-lang',l);}catch(e){} document.querySelectorAll('.lang').forEach(b=>b.setAttribute('aria-pressed',b.dataset.lang===l?'true':'false')); document.documentElement.lang=l; document.body.classList.toggle('lang-ne',l==='ne');
-  applyStatic(); const v=[...document.querySelectorAll('.view')].find(x=>!x.hidden).id.replace('view-',''); showView(v,true);}
+  applyStatic(); const v=[...document.querySelectorAll('.view')].find(x=>!x.hidden).id.replace('view-',''); showView(v,true); pushReminders();}
 document.querySelectorAll('.lang').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
 document.querySelectorAll('.lang').forEach(b=>b.setAttribute('aria-pressed',b.dataset.lang===lang?'true':'false'));
 document.addEventListener('keydown',e=>{ if(e.key!=='Escape')return; const dc=$('#daycard'); if(dc&&!dc.hidden){const cl=$('#dc-close'); if(cl)cl.click();} });
@@ -961,6 +968,25 @@ const initV=location.hash.slice(1); showView(VIEWS.includes(initV)?initV:'today'
 const apply=d=>{if(d)root.setAttribute('data-theme','dark');else root.removeAttribute('data-theme');row.setAttribute('aria-checked',d?'true':'false');};
 apply(root.getAttribute('data-theme')==='dark');
 row.addEventListener('click',()=>{const d=root.getAttribute('data-theme')!=='dark';apply(d);try{localStorage.setItem('patro-theme',d?'dark':'light');}catch(e){}});})();
+
+/* ============ Holiday reminders (Android app only) ============
+   Festivals and public holidays in the next 90 days become one notification per day, at 6 PM local
+   time the evening before. The page builds the text; the app stores it and posts it on time. */
+const REMIND_DAYS=90, REMIND_HOUR=18;
+function pushReminders(){ const R=window.SundarNative; if(!R||!R.remindersEnabled())return;
+  const out=[], now=Date.now();
+  for(let n=todayN;n<=todayN+REMIND_DAYS;n++){ const evs=eventsFor(n).filter(e=>e.hol||e.cat==='festival'); if(!evs.length)continue;
+    const eve=fromDnum(n-1), at=new Date(eve.y,eve.m-1,eve.d,REMIND_HOUR,0,0).getTime(); if(at<=now)continue;
+    const i=dayInfo(n), scopes=[...new Set(evs.filter(e=>e.hol).map(e=>hol(e.hol)))];
+    out.push({at,title:`${t('remind.tom')}: ${evs.map(EV).join(' · ')}`,
+      body:[`${DOWN(i.g.dow)}, ${N(i.bs.d)} ${MON(i.bs.m-1)} ${N(i.bs.y)} · ${fmtAD(i.g)}`,...scopes].join(' · ')}); }
+  R.setReminders(JSON.stringify(out)); }
+(function(){ const R=window.SundarNative, row=$('#remindRow'); if(!R||!row)return; row.hidden=false;
+  const show=(on,blocked)=>{row.setAttribute('aria-checked',on?'true':'false'); const d=$('#remindDesc'); d.dataset.t=blocked?'more.remind.blocked':'more.remind.sub'; d.textContent=t(d.dataset.t);};
+  window.onRemindersChanged=(on,blocked)=>{show(on,blocked&&!on); if(on)pushReminders();};
+  show(R.remindersEnabled(),false);
+  row.addEventListener('click',()=>{ if(row.getAttribute('aria-checked')==='true')R.disableReminders(); else R.enableReminders(); });
+  pushReminders(); })();
 </script>
 
 </body></html>

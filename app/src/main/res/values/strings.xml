@@ -3,5 +3,9 @@
     <string name="app_name_ne">सुन्दर पात्रो</string>
     <string name="reminder_channel">Festival &amp; holiday reminders</string>
     <string name="reminder_channel_desc">A note the evening before festivals and public holidays.</string>
+
+    <!-- Google AdMob Configuration -->
+    <string name="admob_app_id">ca-app-pub-5004176186932044~3389006587</string>
+    <string name="admob_banner_ad_unit_id">ca-app-pub-5004176186932044/8683715814</string>
 </resources>
 

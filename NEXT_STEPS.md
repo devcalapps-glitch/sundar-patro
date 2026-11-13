@@ -30,15 +30,15 @@ Decided 2026-11-10: launch ad-free first, then add ads in a later release (owner
 - Develop with Google's test ad IDs; swap in the real **AdMob App ID** and **banner ad unit ID** (owner has the AdMob account) for the release build. These IDs are not secrets.
 
 **App changes**
-- [ ] Add the Google Mobile Ads SDK; add `INTERNET` permission (`AD_ID` comes from the SDK).
-- [ ] Add Google's UMP consent form (required for EEA / UK users) before ads load.
-- [ ] Hide the banner gracefully when offline; the calendar must keep working with no network.
+- [x] Add the Google Mobile Ads SDK; add `INTERNET` permission (`AD_ID` comes from the SDK).
+- [x] Add Google's UMP consent form (required for EEA / UK users) before ads load.
+- [x] Hide the banner gracefully when offline; the calendar must keep working with no network.
 
 **Claims to update in the same release** (they become false once ads ship)
-- [ ] Feature graphic: remove "100% OFFLINE • ZERO TRACKING • NO ADS" pills.
+- [x] Feature graphic: remove "100% OFFLINE • ZERO TRACKING • NO ADS" pills.
 - [ ] Store short and full descriptions ("No ads", "no tracking", "100% offline", "no internet permission").
-- [ ] In-app More footer ("100% Offline • Zero Tracking") and in-app privacy screen.
-- [ ] `docs/privacy/index.html`, `privacy-policy.html`, `docs/support/index.html`, `Sundar Patro.html` (run `git grep -il "no ads\|zero tracking\|100% offline"` to catch any others).
+- [x] In-app More footer ("100% Offline • Zero Tracking") and in-app privacy screen.
+- [x] `docs/privacy/index.html`, `privacy-policy.html`, `docs/support/index.html`, `Sundar Patro.html` (run `git grep -il "no ads\|zero tracking\|100% offline"` to catch any others).
 
 **Play Console when submitting**
 - [ ] App content → **Ads: Yes**; **Advertising ID: Yes** (purpose: advertising).

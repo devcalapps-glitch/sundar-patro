@@ -47,5 +47,6 @@ dependencies {
     implementation(libs.androidx.webkit)
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.androidx.activity.ktx)
+    implementation(libs.play.services.ads)
 }
 

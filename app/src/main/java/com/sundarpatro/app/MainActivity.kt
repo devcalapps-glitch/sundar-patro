@@ -24,10 +24,21 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.webkit.WebViewAssetLoader
+import com.google.android.gms.ads.AdListener
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdSize
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.MobileAds
+import com.google.android.ump.ConsentRequestParameters
+import com.google.android.ump.UserMessagingPlatform
+import java.util.concurrent.atomic.AtomicBoolean
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var webView: WebView
+    private var adView: AdView? = null
+    private val isMobileAdsInitialized = AtomicBoolean(false)
 
     /** Set when the user was sent to system settings to allow notifications; checked on return. */
     private var enableOnReturn = false
@@ -153,7 +164,10 @@ class MainActivity : AppCompatActivity() {
         // 7. Load local assets bundle via secure virtual HTTPS domain
         webView.loadUrl("https://appassets.androidplatform.net/assets/index.html")
 
-        // 8. Intuitive Back Gesture handling for sub-screens & cards
+        // 8. Initialize Mobile Ads with UMP consent
+        setupAds()
+
+        // 9. Intuitive Back Gesture handling for sub-screens & cards
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 webView.evaluateJavascript(
@@ -189,8 +203,94 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
+    private fun setupAds() {
+        val params = ConsentRequestParameters.Builder().build()
+        val consentInformation = UserMessagingPlatform.getConsentInformation(this)
+        consentInformation.requestConsentInfoUpdate(
+            this,
+            params,
+            {
+                UserMessagingPlatform.loadAndShowConsentFormIfRequired(this) { _ ->
+                    if (consentInformation.canRequestAds()) {
+                        initializeMobileAdsSdk()
+                    }
+                }
+            },
+            { _ ->
+                if (consentInformation.canRequestAds()) {
+                    initializeMobileAdsSdk()
+                }
+            }
+        )
+        if (consentInformation.canRequestAds()) {
+            initializeMobileAdsSdk()
+        }
+    }
+
+    private fun initializeMobileAdsSdk() {
+        if (isMobileAdsInitialized.getAndSet(true)) return
+        MobileAds.initialize(this) {
+            runOnUiThread {
+                loadAdaptiveBanner()
+            }
+        }
+    }
+
+    private fun getAdSize(): AdSize {
+        val displayMetrics = resources.displayMetrics
+        val adWidthPixels = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            val windowMetrics = windowManager.currentWindowMetrics
+            val insets = windowMetrics.windowInsets.getInsetsIgnoringVisibility(
+                android.view.WindowInsets.Type.systemBars()
+            )
+            windowMetrics.bounds.width() - insets.left - insets.right
+        } else {
+            @Suppress("DEPRECATION")
+            displayMetrics.widthPixels
+        }
+        val density = displayMetrics.density
+        val adWidth = (adWidthPixels / density).toInt()
+        return AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(this, adWidth)
+    }
+
+    private fun loadAdaptiveBanner() {
+        val adContainer = findViewById<android.widget.FrameLayout>(R.id.adContainer) ?: return
+        val isDebuggable = (applicationInfo.flags and android.content.pm.ApplicationInfo.FLAG_DEBUGGABLE) != 0
+        val ad = AdView(this).apply {
+            // Use Google's test ad unit in debug builds to prevent invalid traffic penalties on your AdMob account;
+            // production release builds will automatically use your real AdMob banner unit ID.
+            adUnitId = if (isDebuggable) {
+                "ca-app-pub-3940256099942544/9214589741"
+            } else {
+                getString(R.string.admob_banner_ad_unit_id)
+            }
+            setAdSize(getAdSize())
+            adListener = object : AdListener() {
+                override fun onAdLoaded() {
+                    super.onAdLoaded()
+                    adContainer.visibility = android.view.View.VISIBLE
+                }
+
+                override fun onAdFailedToLoad(error: LoadAdError) {
+                    super.onAdFailedToLoad(error)
+                    adContainer.visibility = android.view.View.GONE
+                }
+            }
+        }
+        adView = ad
+        adContainer.removeAllViews()
+        adContainer.addView(ad)
+        ad.loadAd(AdRequest.Builder().build())
+    }
+
+    override fun onPause() {
+        adView?.pause()
+        super.onPause()
+    }
+
     override fun onResume() {
         super.onResume()
+        adView?.resume()
         if (!::webView.isInitialized) return
         if (enableOnReturn) {
             enableOnReturn = false
@@ -202,6 +302,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onDestroy() {
+        adView?.destroy()
+        adView = null
         webView.destroy()
         super.onDestroy()
     }

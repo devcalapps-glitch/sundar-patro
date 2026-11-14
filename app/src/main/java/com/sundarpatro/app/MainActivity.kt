@@ -123,8 +123,8 @@ class MainActivity : AppCompatActivity() {
             allowFileAccess = false
             allowContentAccess = false
             displayZoomControls = false
-            builtInZoomControls = false
-            setSupportZoom(false)
+            builtInZoomControls = true
+            setSupportZoom(true)
             useWideViewPort = true
             loadWithOverviewMode = true
         }
@@ -204,35 +204,38 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupAds() {
-        val params = ConsentRequestParameters.Builder().build()
-        val consentInformation = UserMessagingPlatform.getConsentInformation(this)
-        consentInformation.requestConsentInfoUpdate(
-            this,
-            params,
-            {
-                UserMessagingPlatform.loadAndShowConsentFormIfRequired(this) { _ ->
-                    if (consentInformation.canRequestAds()) {
-                        initializeMobileAdsSdk()
+        // 1. Immediately initialize Mobile Ads and request banner
+        initializeMobileAdsSdk()
+
+        // 2. Request consent information in parallel (for EEA / UK users)
+        try {
+            val params = ConsentRequestParameters.Builder().build()
+            val consentInformation = UserMessagingPlatform.getConsentInformation(this)
+            consentInformation.requestConsentInfoUpdate(
+                this,
+                params,
+                {
+                    UserMessagingPlatform.loadAndShowConsentFormIfRequired(this) { _ ->
+                        // Consent form dismissed or not required
                     }
+                },
+                { error ->
+                    android.util.Log.d("SundarAdMob", "Consent update info: ${error.message}")
                 }
-            },
-            { _ ->
-                if (consentInformation.canRequestAds()) {
-                    initializeMobileAdsSdk()
-                }
-            }
-        )
-        if (consentInformation.canRequestAds()) {
-            initializeMobileAdsSdk()
+            )
+        } catch (e: Exception) {
+            android.util.Log.e("SundarAdMob", "Consent error", e)
         }
     }
 
     private fun initializeMobileAdsSdk() {
         if (isMobileAdsInitialized.getAndSet(true)) return
-        MobileAds.initialize(this) {
-            runOnUiThread {
-                loadAdaptiveBanner()
-            }
+        android.util.Log.d("SundarAdMob", "Initializing MobileAds SDK...")
+        MobileAds.initialize(this) { initStatus ->
+            android.util.Log.d("SundarAdMob", "MobileAds initialized: $initStatus")
+        }
+        runOnUiThread {
+            loadAdaptiveBanner()
         }
     }
 
@@ -249,30 +252,37 @@ class MainActivity : AppCompatActivity() {
             displayMetrics.widthPixels
         }
         val density = displayMetrics.density
-        val adWidth = (adWidthPixels / density).toInt()
+        var adWidth = (adWidthPixels / density).toInt()
+        if (adWidth <= 0) {
+            adWidth = (displayMetrics.widthPixels / density).toInt()
+        }
+        if (adWidth <= 0) adWidth = 320
         return AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(this, adWidth)
     }
 
     private fun loadAdaptiveBanner() {
         val adContainer = findViewById<android.widget.FrameLayout>(R.id.adContainer) ?: return
         val isDebuggable = (applicationInfo.flags and android.content.pm.ApplicationInfo.FLAG_DEBUGGABLE) != 0
+        val targetAdUnitId = if (isDebuggable) {
+            "ca-app-pub-3940256099942544/9214589741"
+        } else {
+            getString(R.string.admob_banner_ad_unit_id)
+        }
+        android.util.Log.d("SundarAdMob", "Loading adaptive banner with ID: $targetAdUnitId (debuggable=$isDebuggable)")
+
         val ad = AdView(this).apply {
-            // Use Google's test ad unit in debug builds to prevent invalid traffic penalties on your AdMob account;
-            // production release builds will automatically use your real AdMob banner unit ID.
-            adUnitId = if (isDebuggable) {
-                "ca-app-pub-3940256099942544/9214589741"
-            } else {
-                getString(R.string.admob_banner_ad_unit_id)
-            }
-            setAdSize(getAdSize())
+            adUnitId = targetAdUnitId
+            setAdSize(this@MainActivity.getAdSize())
             adListener = object : AdListener() {
                 override fun onAdLoaded() {
                     super.onAdLoaded()
+                    android.util.Log.d("SundarAdMob", "Banner Ad loaded successfully!")
                     adContainer.visibility = android.view.View.VISIBLE
                 }
 
                 override fun onAdFailedToLoad(error: LoadAdError) {
                     super.onAdFailedToLoad(error)
+                    android.util.Log.e("SundarAdMob", "Banner Ad failed to load: code ${error.code}, message: ${error.message}, responseInfo: ${error.responseInfo}")
                     adContainer.visibility = android.view.View.GONE
                 }
             }

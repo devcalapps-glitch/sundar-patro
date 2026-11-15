@@ -13,8 +13,11 @@ import android.webkit.JavascriptInterface
 import android.webkit.WebResourceRequest
 import android.webkit.WebResourceResponse
 import android.webkit.WebSettings
+import android.speech.tts.TextToSpeech
+import android.speech.tts.UtteranceProgressListener
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import java.util.Locale
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
@@ -37,6 +40,8 @@ import java.util.concurrent.atomic.AtomicBoolean
 class MainActivity : AppCompatActivity() {
 
     private lateinit var webView: WebView
+    private var tts: TextToSpeech? = null
+    private var ttsReady = false
     private var adView: AdView? = null
     private val isMobileAdsInitialized = AtomicBoolean(false)
 
@@ -78,6 +83,36 @@ class MainActivity : AppCompatActivity() {
             }
         }
         @JavascriptInterface fun disableReminders() = runOnUiThread { setRemindersOn(false) }
+        private fun speakSentences(text: String) {
+            tts?.speak(text, TextToSpeech.QUEUE_FLUSH, null, "sundar_today")
+        }
+        @JavascriptInterface fun speak(text: String) = runOnUiThread {
+            if (tts == null) {
+                tts = TextToSpeech(this@MainActivity) { status ->
+                    if (status == TextToSpeech.SUCCESS) {
+                        tts?.language = Locale("ne", "NP")
+                        tts?.setSpeechRate(0.95f)
+                        tts?.setOnUtteranceProgressListener(object : UtteranceProgressListener() {
+                            override fun onStart(utteranceId: String?) {}
+                            override fun onDone(utteranceId: String?) {
+                                if (utteranceId == "sundar_today") {
+                                    webView.post { webView.evaluateJavascript("window._onNarrationDone&&window._onNarrationDone()", null) }
+                                }
+                            }
+                            @Deprecated("Deprecated in Java")
+                            override fun onError(utteranceId: String?) {
+                                webView.post { webView.evaluateJavascript("window._onNarrationDone&&window._onNarrationDone()", null) }
+                            }
+                        })
+                        ttsReady = true
+                        speakSentences(text)
+                    }
+                }
+            } else if (ttsReady) {
+                speakSentences(text)
+            }
+        }
+        @JavascriptInterface fun stopSpeak() = runOnUiThread { tts?.stop() }
     }
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -312,6 +347,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onDestroy() {
+        tts?.stop()
+        tts?.shutdown()
+        tts = null
         adView?.destroy()
         adView = null
         webView.destroy()

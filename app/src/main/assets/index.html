@@ -122,6 +122,12 @@ main{padding-block:32px 64px}
 .card-white{background:var(--canvas);border:1px solid var(--hairline);border-radius:12px;padding:24px;box-shadow:var(--shadow-sm);min-width:0}
 .daycard .big{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
 .daycard .big .n{font-family:var(--font-ne);font-size:58px;font-weight:600;color:var(--ink);line-height:1.05}
+.play-btn{margin-left:auto;align-self:center;width:44px;height:44px;border-radius:50%;border:2px solid #fff;background:var(--accent, #d97706);color:#fff;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;box-shadow:0 0 0 4px color-mix(in srgb, var(--accent, #d97706) 28%, transparent),0 3px 10px rgba(0,0,0,.16);transition:transform .15s,box-shadow .15s}
+.play-btn:hover{transform:scale(1.05)}
+.play-btn:active{transform:scale(.94)}
+.play-btn.playing{animation:play-ring 1.6s ease-out infinite}
+@keyframes play-ring{0%{box-shadow:0 0 0 4px color-mix(in srgb, var(--accent, #d97706) 40%, transparent),0 3px 10px rgba(0,0,0,.18)}70%{box-shadow:0 0 0 10px color-mix(in srgb, var(--accent, #d97706) 0%, transparent),0 3px 10px rgba(0,0,0,.18)}100%{box-shadow:0 0 0 4px color-mix(in srgb, var(--accent, #d97706) 40%, transparent),0 3px 10px rgba(0,0,0,.18)}}
+.play-btn svg{width:18px;height:18px;fill:currentColor}
 .kv{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;font-size:15px;margin-top:16px}
 .kv dt{color:var(--muted);font-weight:500;margin:0}
 .kv dd{margin:0;color:var(--ink);min-width:0}
@@ -253,6 +259,13 @@ footer .mark .dot{width:10px;height:10px;border-radius:9999px;background:var(--i
 :root[data-theme="dark"] .more-icon.ic-theme{background:rgba(139,92,246,.18);color:#a78bfa}
 .more-icon.ic-remind{background:rgba(234,88,12,.12);color:#ea580c}
 :root[data-theme="dark"] .more-icon.ic-remind{background:rgba(234,88,12,.18);color:#fb923c}
+.remind-nudge{display:flex;flex-wrap:wrap;align-items:center;gap:12px 14px;background:var(--canvas);border:1px solid var(--hairline);border-radius:12px;padding:14px 16px;margin-top:12px;box-shadow:var(--shadow-sm)}
+.remind-nudge[hidden]{display:none}
+.remind-nudge .more-icon{flex:none;margin:0}
+.remind-nudge .rn-text{flex:1;min-width:0;line-height:1.3}
+.remind-nudge .rn-text b{display:block;font-size:16px;font-weight:600;color:var(--ink)}
+.remind-nudge .rn-text small{display:block;font-size:14px;color:var(--muted-soft);margin-top:2px}
+.remind-nudge .rn-actions{flex-basis:100%;display:flex;justify-content:flex-end;gap:8px}
 .more-icon.ic-clock{background:rgba(236,72,153,.12);color:#db2777}
 :root[data-theme="dark"] .more-icon.ic-clock{background:rgba(236,72,153,.18);color:#f472b6}
 .more-text{flex:1;min-width:0}
@@ -296,7 +309,14 @@ footer .mark .dot{width:10px;height:10px;border-radius:9999px;background:var(--i
   <section class="view" id="view-today">
     <h1 class="sr" data-t="nav.today"></h1>
     <div class="split">
-      <div class="card daycard" id="todaycard"></div>
+      <div>
+        <div class="card daycard" id="todaycard"></div>
+        <div class="remind-nudge" id="remindNudge" hidden>
+          <div class="more-icon ic-remind"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></div>
+          <div class="rn-text"><b data-t="nudge.title"></b><small data-t="more.remind.sub"></small></div>
+          <div class="rn-actions"><button type="button" class="btn btn-secondary" id="nudgeLater" data-t="nudge.later"></button><button type="button" class="btn btn-primary" id="nudgeOn" data-t="nudge.on"></button></div>
+        </div>
+      </div>
       <div><h2 class="title-md" style="margin-bottom:12px" data-t="today.upcoming"></h2><div class="list" id="t-upcoming"></div></div>
     </div>
   </section>
@@ -722,8 +742,8 @@ const T={
  'clk.sub':['Nepal time is always shown on the Today page. Add up to 2 more cities.','आज पृष्ठमा नेपाल समय सधैं देखिन्छ। थप २ सहर राख्न सक्नुहुन्छ।'],
  'clk.city':['City','सहर'],'clk.add':['Add','थप्नुहोस्'],'clk.remove':['Remove','हटाउनुहोस्'],'clk.nepal':['Nepal','नेपाल'],'clk.always':['Always shown','सधैं देखिन्छ'],
  'clk.full':['You can show 2 extra clocks. Remove one to add a different city.','थप २ घडी मात्र राख्न मिल्छ। अर्को सहर थप्न एउटा हटाउनुहोस्।'],'clk.added':['added','थपियो'],'clk.removed':['removed','हटाइयो'],
- 'al.views':['Main menu','मुख्य मेनु'],'al.lang':['Language','भाषा'],'al.prev':['Previous month','अघिल्लो महिना'],'al.next':['Next month','अर्को महिना'],'today.open':['Open in calendar','पात्रोमा हेर्नुहोस्'],'today.none':['Nothing in the next 45 days.','आगामी ४५ दिनमा केही छैन।'],'tomorrow':['Tomorrow','भोलि'],
- 'more.theme':['Dark mode','डार्क मोड'],'more.remind':['Holiday reminders','चाडपर्व र बिदा सम्झना'],'more.remind.sub':['A notification at 6 PM the evening before','अघिल्लो दिन बेलुका ६ बजे सूचना'],'more.remind.blocked':['Notifications are off. Tap to allow them in Settings.','सूचना बन्द छ। सेटिङमा अनुमति दिन थिच्नुहोस्।'],'remind.tom':['Tomorrow','भोलि'],'more.theme.sub':['Use a dark theme. Light is the default.','गाढा थिम प्रयोग गर्नुहोस्। पूर्वनिर्धारित उज्यालो हो।'],'more.sub':['Tools and reference','उपकरण र जानकारी'],'more.ausp.sub':['Screen days for marriage, bratabandha, griha pravesh and more','विवाह, व्रतबन्ध, गृहप्रवेश आदिका लागि शुभ दिन'],'more.conv.sub':['Bikram Sambat ⇄ Gregorian, 1943–2036','विक्रम सम्वत् ⇄ ईस्वी सम्वत्, १९४३–२०३६'],'more.about.sub':['How dates, tithis and festivals are worked out','मिति, तिथि र चाडपर्व कसरी गणना गरिन्छ'],
+ 'al.views':['Main menu','मुख्य मेनु'],'al.lang':['Language','भाषा'],'al.prev':['Previous month','अघिल्लो महिना'],'al.next':['Next month','अर्को महिना'],'today.open':['Open in calendar','पात्रोमा हेर्नुहोस्'],'today.listen':['Listen','सुन्नुहोस्'],'today.pause':['Pause','रोक्नुहोस्'],'today.none':['Nothing in the next 45 days.','आगामी ४५ दिनमा केही छैन।'],'tomorrow':['Tomorrow','भोलि'],
+ 'more.theme':['Dark mode','डार्क मोड'],'more.remind':['Holiday reminders','चाडपर्व र बिदा सम्झना'],'more.remind.sub':['A notification at 6 PM the evening before','अघिल्लो दिन बेलुका ६ बजे सूचना'],'more.remind.blocked':['Notifications are off. Tap to allow them in Settings.','सूचना बन्द छ। सेटिङमा अनुमति दिन थिच्नुहोस्।'],'remind.tom':['Tomorrow','भोलि'],'nudge.title':['Never miss a festival','चाडपर्व सम्झना पाउनुहोस्'],'nudge.on':['Turn on','सुरु गर्नुहोस्'],'nudge.later':['Not now','अहिले होइन'],'more.theme.sub':['Use a dark theme. Light is the default.','गाढा थिम प्रयोग गर्नुहोस्। पूर्वनिर्धारित उज्यालो हो।'],'more.sub':['Tools and reference','उपकरण र जानकारी'],'more.ausp.sub':['Screen days for marriage, bratabandha, griha pravesh and more','विवाह, व्रतबन्ध, गृहप्रवेश आदिका लागि शुभ दिन'],'more.conv.sub':['Bikram Sambat ⇄ Gregorian, 1943–2036','विक्रम सम्वत् ⇄ ईस्वी सम्वत्, १९४३–२०३६'],'more.about.sub':['How dates, tithis and festivals are worked out','मिति, तिथि र चाडपर्व कसरी गणना गरिन्छ'],
  back:['‹ More','‹ थप'],
  'about.title':['About the data','विधि'],'about.sub':['The sources and methods behind every date','हरेक मितिको स्रोत र विधि'],
  'about.1h':['Bikram Sambat ⇄ Gregorian','विक्रम सम्वत् ⇄ ईस्वी सम्वत्'],
@@ -825,7 +845,7 @@ function renderDay(target,nSel){ target=target||'#daycard'; const n=nSel||selN;
   const sa=['marriage','bratabandha','griha'].map(ty=>({ty,...saait(info,ty)}));
   $(target).innerHTML=`
     ${target==='#daycard'?`<button type="button" class="btn-icon close" id="dc-close" aria-label="${t('day.close')}">×</button>`:''}
-    ${target==='#todaycard'?`<div class="clocks"><div class="clock-row">${clockPill(NEPAL_TZ,t('npt'),'npt-time',true)}</div>${clocks.length?`<div class="clock-row extra">${clocks.map(z=>clockPill(z,cityName(z))).join('')}</div>`:''}</div>`:''}
+    ${target==='#todaycard'?`<div class="clocks"><div class="clock-row">${clockPill(NEPAL_TZ,t('npt'),'npt-time',true)}<button type="button" class="play-btn" id="t-narrate" aria-label="${t('today.listen')}"></button></div>${clocks.length?`<div class="clock-row extra">${clocks.map(z=>clockPill(z,cityName(z))).join('')}</div>`:''}</div>`:''}
     <div class="caption">${DOWN(info.g.dow)}${ne_?'':` · <span lang="ne">${DOW_NE[info.g.dow]}</span>`}${n===todayN?' · '+t('nav.today'):''}</div>
     <div class="big"><span class="n">${N(bs.d)}</span><div><div class="title-md ne">${MON(bs.m-1)} ${N(bs.y)}</div><div class="muted" style="font-size:15px">${fmtAD(info.g)}</div></div></div>
     <dl class="kv">
@@ -841,6 +861,45 @@ function renderDay(target,nSel){ target=target||'#daycard'; const n=nSel||selN;
   if(target==='#todaycard')tickClocks();
   const op=$('#t-open'); if(op)op.addEventListener('click',()=>{selN=null;cur={y:todayBS.y,m:todayBS.m};showView('month');});
   const au=$('#t-ausp'); if(au)au.addEventListener('click',()=>showView('auspicious'));
+  const na=$('#t-narrate'); if(na){
+    const TTS_URL='https://sundar-patro-tts.<your-subdomain>.workers.dev';
+    const hasCloud=!TTS_URL.includes('<your-subdomain>');
+    const hasNative=!!(window.SundarNative&&window.SundarNative.speak);
+    if(!window._narrationAudio){window._narrationAudio=new Audio('sundar_patro_today_narration_ne.mp3');}
+    const aud=window._narrationAudio;
+    const buildText=()=>{
+      const tNe=tithiName(info.raw).ne, pakNe=info.paksha==='shukla'?'शुक्ल':'कृष्ण';
+      const evNe=evs.length?evs.map(e=>e.ne+(e.dne?', '+e.dne:'')).join(', '):'कुनै विशेष चाडपर्व वा बिदा छैन';
+      return `नमस्कार, आज ${DOW_NE[info.g.dow]}, ${BS_MONTHS_NE[bs.m-1]} ${ne(bs.d)} गते ${ne(bs.y)} साल हो, आज ${pakNe} पक्षको ${tNe} तिथि, ${NAK_NE[info.nak]} नक्षत्र र ${RASHI_NE[info.rashi]} राशि रहेको छ, आज ${evNe}`;
+    };
+    const notes=[392.00,440.00,523.25,587.33,523.25,440.00,392.00,329.63];
+    const isPlaying=()=>hasNative?!!window._nativeSpeaking:!aud.paused;
+    const playNote=()=>{try{const ctx=window._bgCtx;if(!ctx||!isPlaying())return;const t0=ctx.currentTime,f=notes[(window._bgStep=(window._bgStep||0)+1)%notes.length];const o=ctx.createOscillator(),vib=ctx.createOscillator(),vg=ctx.createGain(),flt=ctx.createBiquadFilter(),g=ctx.createGain();o.type='sine';o.frequency.value=f;vib.frequency.value=4.8;vg.gain.value=3.2;vib.connect(vg);vg.connect(o.frequency);flt.type='lowpass';flt.frequency.value=900;g.gain.setValueAtTime(0.0001,t0);g.gain.linearRampToValueAtTime(0.03,t0+0.35);g.gain.exponentialRampToValueAtTime(0.0001,t0+2.1);o.connect(flt);flt.connect(g);g.connect(ctx.destination);o.start(t0);vib.start(t0);o.stop(t0+2.15);vib.stop(t0+2.15);}catch(e){}};
+    const startBg=()=>{try{const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;if(!window._bgCtx)window._bgCtx=new AC();if(window._bgCtx.state==='suspended')window._bgCtx.resume();if(!window._bgTimer){playNote();window._bgTimer=setInterval(playNote,1450);}}catch(e){}};
+    const stopBg=()=>{if(window._bgTimer){clearInterval(window._bgTimer);window._bgTimer=null;}};
+    const PLAY_SVG='<svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="7,4 20,12 7,20"/></svg>';
+    const PAUSE_SVG='<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>';
+    const syncNa=()=>{const p=!isPlaying();na.innerHTML=p?PLAY_SVG:PAUSE_SVG;na.classList.toggle('playing',!p);na.setAttribute('aria-label',p?t('today.listen'):t('today.pause'));if(p)stopBg();};
+    window._onNarrationDone=()=>{window._nativeSpeaking=false;syncNa();};
+    syncNa();aud.onended=syncNa;
+    na.addEventListener('click',()=>{
+      if(isPlaying()){
+        if(window._nativeSpeaking){window._nativeSpeaking=false;window.SundarNative.stopSpeak();}
+        if(!aud.paused)aud.pause();
+        syncNa();
+      }else if(hasCloud){
+        aud.src=TTS_URL+'/?text='+encodeURIComponent(buildText());
+        aud.play().then(()=>{startBg();syncNa();}).catch(()=>{
+          if(hasNative){window._nativeSpeaking=true;startBg();syncNa();window.SundarNative.speak(buildText());}
+          else{stopBg();}
+        });
+      }else if(hasNative){
+        window._nativeSpeaking=true;startBg();syncNa();window.SundarNative.speak(buildText());
+      }else{
+        aud.play().then(()=>{startBg();syncNa();}).catch(()=>{stopBg();});
+      }
+    });
+  }
   const cl=$('#dc-close'); if(cl)cl.addEventListener('click',()=>{const was=selN;selN=null;renderMonth();renderDay();const c=$(`.cell[data-n="${was}"]`);if(c)c.focus();});
 }
 /* ============ World clocks: Nepal + up to 2 cities ============ */
@@ -983,9 +1042,18 @@ function pushReminders(){ const R=window.SundarNative; if(!R||!R.remindersEnable
   R.setReminders(JSON.stringify(out)); }
 (function(){ const R=window.SundarNative, row=$('#remindRow'); if(!R||!row)return; row.hidden=false;
   const show=(on,blocked)=>{row.setAttribute('aria-checked',on?'true':'false'); const d=$('#remindDesc'); d.dataset.t=blocked?'more.remind.blocked':'more.remind.sub'; d.textContent=t(d.dataset.t);};
-  window.onRemindersChanged=(on,blocked)=>{show(on,blocked&&!on); if(on)pushReminders();};
-  show(R.remindersEnabled(),false);
-  row.addEventListener('click',()=>{ if(row.getAttribute('aria-checked')==='true')R.disableReminders(); else R.enableReminders(); });
+  /* One-time prompt under the Today card. Hidden while reminders are on or while snoozed. */
+  const nudge=$('#remindNudge'), DAY=864e5, SNOOZE='patro-remind-snooze';
+  const snoozeFor=days=>{try{localStorage.setItem(SNOOZE,String(Date.now()+days*DAY));}catch(e){}};
+  const snoozed=()=>{try{return Date.now()<Number(localStorage.getItem(SNOOZE)||0);}catch(e){return false;}};
+  const syncNudge=on=>{nudge.hidden=on||snoozed();};
+  $('#nudgeLater').addEventListener('click',()=>{snoozeFor(7);syncNudge(false);});
+  // Snooze before asking, so a denied permission prompt does not bring the banner straight back.
+  $('#nudgeOn').addEventListener('click',()=>{snoozeFor(30);R.enableReminders();});
+  window.onRemindersChanged=(on,blocked)=>{show(on,blocked&&!on); syncNudge(on); if(on)pushReminders();};
+  show(R.remindersEnabled(),false); syncNudge(R.remindersEnabled());
+  // Turning reminders off in More is a deliberate choice: keep the prompt away.
+  row.addEventListener('click',()=>{ if(row.getAttribute('aria-checked')==='true'){snoozeFor(365);R.disableReminders();} else R.enableReminders(); });
   pushReminders(); })();
 </script>
 

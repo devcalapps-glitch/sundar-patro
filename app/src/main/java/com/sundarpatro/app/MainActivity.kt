@@ -22,6 +22,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -43,6 +44,9 @@ class MainActivity : AppCompatActivity() {
     private var tts: TextToSpeech? = null
     private var ttsReady = false
     private var adView: AdView? = null
+    private var isAdLoaded = false
+    private var isAdSlotVisible = false
+    private var adSlotTopPx = 0
     private val isMobileAdsInitialized = AtomicBoolean(false)
 
     /** Set when the user was sent to system settings to allow notifications; checked on return. */
@@ -113,10 +117,41 @@ class MainActivity : AppCompatActivity() {
             }
         }
         @JavascriptInterface fun stopSpeak() = runOnUiThread { tts?.stop() }
+        @JavascriptInterface fun syncAdSlot(visible: Boolean, topCssPx: Int) = runOnUiThread {
+            isAdSlotVisible = visible
+            val density = resources.displayMetrics.density
+            adSlotTopPx = (topCssPx * density).toInt()
+            updateAdVisibility()
+        }
+        @JavascriptInterface fun setThemeMode(dark: Boolean) = runOnUiThread {
+            applySystemBarTheme(dark)
+        }
+    }
+
+    private fun applySystemBarTheme(isDark: Boolean) {
+        val bg = if (isDark) Color.parseColor("#121212") else Color.WHITE
+        findViewById<android.view.View>(R.id.rootContainer)?.setBackgroundColor(bg)
+        if (::webView.isInitialized) webView.setBackgroundColor(bg)
+        val windowInsetsController = WindowInsetsControllerCompat(window, window.decorView)
+        windowInsetsController.isAppearanceLightStatusBars = !isDark
+        windowInsetsController.isAppearanceLightNavigationBars = !isDark
+    }
+
+    private fun updateAdVisibility() {
+        val adContainer = findViewById<android.widget.FrameLayout>(R.id.adContainer) ?: return
+        if (isAdLoaded && isAdSlotVisible) {
+            adContainer.translationY = adSlotTopPx.toFloat()
+            adContainer.visibility = android.view.View.VISIBLE
+        } else {
+            adContainer.visibility = android.view.View.GONE
+        }
     }
 
     @SuppressLint("SetJavaScriptEnabled")
     override fun onCreate(savedInstanceState: Bundle?) {
+        // Override system dark mode: always run in Light Mode by default unless toggled inside the app
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+
         // 1. Install Splash Screen before super.onCreate()
         installSplashScreen()
 
@@ -137,11 +172,8 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        // Configure system bar contrast based on current night mode
-        val isNight = (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES
-        val windowInsetsController = WindowInsetsControllerCompat(window, window.decorView)
-        windowInsetsController.isAppearanceLightStatusBars = !isNight
-        windowInsetsController.isAppearanceLightNavigationBars = !isNight
+        // Default to Light Mode system bars (overriding phone's dark mode setting)
+        applySystemBarTheme(isDark = false)
 
         // 4. Secure WebViewAssetLoader configuration
         val assetLoader = WebViewAssetLoader.Builder()
@@ -164,8 +196,11 @@ class MainActivity : AppCompatActivity() {
             loadWithOverviewMode = true
         }
         webView.clearCache(true)
-
-        webView.setBackgroundColor(if (isNight) Color.parseColor("#151515") else Color.WHITE)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            @Suppress("DEPRECATION")
+            webView.settings.forceDark = WebSettings.FORCE_DARK_OFF
+        }
+        webView.setBackgroundColor(Color.WHITE)
 
         // 6. Custom WebViewClient for internal asset routing & external link interception
         webView.webViewClient = object : WebViewClient() {
@@ -174,6 +209,14 @@ class MainActivity : AppCompatActivity() {
                 request: WebResourceRequest
             ): WebResourceResponse? {
                 return assetLoader.shouldInterceptRequest(request.url)
+            }
+
+            override fun onPageFinished(view: WebView?, url: String?) {
+                super.onPageFinished(view, url)
+                val h = adView?.adSize?.height ?: 0
+                if (isAdLoaded && h > 0) {
+                    webView.evaluateJavascript("window.onAdLoaded&&window.onAdLoaded(true,$h)", null)
+                }
             }
 
             override fun shouldOverrideUrlLoading(
@@ -214,13 +257,13 @@ class MainActivity : AppCompatActivity() {
                             document.getElementById('dc-close').click();
                             return true;
                         }
-                        // 2. Return from sub-views (Auspicious, Date Converter, Clocks, About, Privacy, Support) back to 'More'
+                        // 2. Return from sub-views (Holidays, Auspicious, Date Converter, About, Privacy, Support) back to 'More'
                         var activeView = document.querySelector('.view:not([hidden])');
-                        if (activeView && (activeView.id === 'view-about' || activeView.id === 'view-convert' || activeView.id === 'view-auspicious' || activeView.id === 'view-clocks' || activeView.id === 'view-privacy' || activeView.id === 'view-support')) {
+                        if (activeView && (activeView.id === 'view-holidays' || activeView.id === 'view-about' || activeView.id === 'view-convert' || activeView.id === 'view-auspicious' || activeView.id === 'view-privacy' || activeView.id === 'view-support')) {
                             var backBtn = activeView.querySelector('.back') || document.querySelector('.tb[data-view="more"]');
                             if (backBtn) { backBtn.click(); return true; }
                         }
-                        // 3. Return to 'Today' home screen if on Month/Festivals/Holidays/More
+                        // 3. Return to 'Today' home screen if on Month/Festivals/Clocks/More
                         if (activeView && activeView.id !== 'view-today') {
                             var todayBtn = document.querySelector('.tb[data-view="today"]');
                             if (todayBtn) { todayBtn.click(); return true; }
@@ -305,20 +348,25 @@ class MainActivity : AppCompatActivity() {
         }
         android.util.Log.d("SundarAdMob", "Loading adaptive banner with ID: $targetAdUnitId (debuggable=$isDebuggable)")
 
+        val adSize = this@MainActivity.getAdSize()
         val ad = AdView(this).apply {
             adUnitId = targetAdUnitId
-            setAdSize(this@MainActivity.getAdSize())
+            setAdSize(adSize)
             adListener = object : AdListener() {
                 override fun onAdLoaded() {
                     super.onAdLoaded()
                     android.util.Log.d("SundarAdMob", "Banner Ad loaded successfully!")
-                    adContainer.visibility = android.view.View.VISIBLE
+                    isAdLoaded = true
+                    updateAdVisibility()
+                    webView.evaluateJavascript("window.onAdLoaded&&window.onAdLoaded(true,${adSize.height})", null)
                 }
 
                 override fun onAdFailedToLoad(error: LoadAdError) {
                     super.onAdFailedToLoad(error)
                     android.util.Log.e("SundarAdMob", "Banner Ad failed to load: code ${error.code}, message: ${error.message}, responseInfo: ${error.responseInfo}")
-                    adContainer.visibility = android.view.View.GONE
+                    isAdLoaded = false
+                    updateAdVisibility()
+                    webView.evaluateJavascript("window.onAdLoaded&&window.onAdLoaded(false,0)", null)
                 }
             }
         }

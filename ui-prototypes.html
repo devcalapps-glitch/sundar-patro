@@ -1,0 +1,1426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sundar Patro — Sharp Architectural Bento Prototypes</title>
+  <link rel="stylesheet" href="app/src/main/assets/fonts/mukta.css">
+  <style>
+    :root {
+      --bg: #efefec;
+      --bar-bg: #ffffff;
+      --bar-border: #dcdcd6;
+      --ink: #111111;
+      --muted: #666660;
+      --font-ui: "Mukta", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--font-ui);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* TOP SWITCHER BAR */
+    .switcher-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bar-bg);
+      border-bottom: 1px solid var(--bar-border);
+      padding: 10px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .switcher-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .switcher-title span.sub {
+      color: var(--muted);
+      font-weight: 400;
+      font-size: 13px;
+    }
+
+    .switcher-controls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .seg {
+      display: inline-flex;
+      background: #f2f2ee;
+      border: 1px solid #dcdcd6;
+      border-radius: 0px;
+      padding: 2px;
+      gap: 2px;
+    }
+    .seg-btn {
+      appearance: none;
+      border: 0;
+      background: transparent;
+      color: #555550;
+      font: 500 12.5px/1.3 var(--font-ui);
+      padding: 5px 11px;
+      border-radius: 0px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .seg-btn:hover { color: #111; }
+    .seg-btn.active {
+      background: #111111;
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    /* STAGE */
+    .stage {
+      flex: 1;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 32px;
+      padding: 28px 20px 48px;
+      max-width: 1440px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .device-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    .device-meta {
+      text-align: center;
+      max-width: 392px;
+    }
+    .device-meta .d-title {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #111;
+      letter-spacing: -0.01em;
+    }
+    .device-meta .d-note {
+      font-size: 12px;
+      color: #666660;
+      line-height: 1.4;
+    }
+
+    /* HARDWARE FRAME */
+    .device {
+      width: 392px;
+      height: 832px;
+      border-radius: 36px;
+      border: 8px solid #18181a;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.14), 0 0 0 1px rgba(0,0,0,0.08);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      background: var(--canvas);
+      color: var(--body);
+    }
+
+    /* ============================================================================
+       TOKENS FOR SHARP BENTO SYSTEM (0px - 2px CORNERS, 1px HAIRLINE GRID)
+       ============================================================================ */
+    .device {
+      --canvas: #ffffff;
+      --grid-bg: #e2e2de;      /* 1px gap color between Bento cells */
+      --cell-bg: #ffffff;
+      --cell-soft: #f8f8f6;
+      --cell-active: #111111;
+      --cell-active-fg: #ffffff;
+      --ink: #111111;
+      --body: #18181b;
+      --muted: #52525b;
+      --muted-soft: #71717a;
+      --sat-fg: #c81e1e;
+      --dot-hol: #d97706;
+      --dot-fest: #d97706;
+      --dot-lunar: #059669;
+      /* Slight warm orangish tint for holidays & festivals */
+      --fest-tint-bg: #fff7ed;
+      --fest-tint-fg: #9a3412;
+      --fest-tint-border: #fed7aa;
+      /* Slight green when Saait is Favorable / Not Avoid */
+      --saait-good-bg: #f0fdf4;
+      --saait-good-fg: #166534;
+      --saait-good-badge: #dcfce7;
+      /* Slight red when Saait is Avoid */
+      --saait-avoid-bg: #fef2f2;
+      --saait-avoid-fg: #991b1b;
+      --saait-avoid-badge: #fee2e2;
+      --fav-fg: #166534;
+      --fav-bg: #f0fdf4;
+    }
+
+    .device[data-theme="dark"] {
+      --canvas: #121212;
+      --grid-bg: #2a2a28;
+      --cell-bg: #161615;
+      --cell-soft: #1c1c1a;
+      --cell-active: #f5f5f3;
+      --cell-active-fg: #121212;
+      --ink: #f5f5f3;
+      --body: #e4e4e0;
+      --muted: #a1a19a;
+      --muted-soft: #71716a;
+      --sat-fg: #f87171;
+      --dot-hol: #fb923c;
+      --dot-fest: #fbbf24;
+      --dot-lunar: #34d399;
+      /* Slight warm orangish tint for holidays & festivals in dark mode */
+      --fest-tint-bg: #231a12;
+      --fest-tint-fg: #fdba74;
+      --fest-tint-border: #432c18;
+      /* Slight green when Saait is Favorable / Not Avoid in dark mode */
+      --saait-good-bg: #112218;
+      --saait-good-fg: #86efac;
+      --saait-good-badge: #163322;
+      /* Slight red when Saait is Avoid in dark mode */
+      --saait-avoid-bg: #251416;
+      --saait-avoid-fg: #fca5a5;
+      --saait-avoid-badge: #3b191d;
+      --fav-fg: #86efac;
+      --fav-bg: #112218;
+    }
+
+    /* Variant C: Warm Archival Paper Bento */
+    .device.bento-paper:not([data-theme="dark"]) {
+      --canvas: #f9f7f2;
+      --grid-bg: #dcd7cc;
+      --cell-bg: #fcfbf8;
+      --cell-soft: #f3EFE6;
+      --ink: #181715;
+      --body: #262421;
+      --muted: #5c5852;
+      --muted-soft: #858078;
+    }
+
+    /* Status bar */
+    .d-status {
+      height: 28px;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--ink);
+      background: var(--cell-bg);
+      flex-shrink: 0;
+      font-variant-numeric: tabular-nums;
+    }
+    .d-status-right {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .d-status-right svg {
+      width: 13px;
+      height: 13px;
+      fill: currentColor;
+    }
+
+    /* Top Header — Sharp Bento Style */
+    .d-header {
+      height: 46px;
+      padding: 0 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--grid-bg);
+      border-bottom: 1px solid var(--grid-bg);
+      background: var(--cell-bg);
+      flex-shrink: 0;
+    }
+    .d-wordmark {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+    }
+    .d-lang-sharp {
+      display: inline-flex;
+      border: 1px solid var(--grid-bg);
+      background: var(--cell-soft);
+    }
+    .d-lang-sharp button {
+      appearance: none;
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      font: 600 11.5px/1 var(--font-ui);
+      padding: 6px 10px;
+      cursor: pointer;
+    }
+    .d-lang-sharp button.active {
+      background: var(--ink);
+      color: var(--cell-bg);
+    }
+
+    /* Main Scroll Area */
+    .d-scroll {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding: 12px 12px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      background: var(--canvas);
+      scrollbar-width: none;
+    }
+    .d-scroll::-webkit-scrollbar { display: none; }
+
+    /* Sharp Bottom Tab Bar */
+    .d-tabbar {
+      height: 58px;
+      background: var(--cell-bg);
+      border-top: 1px solid var(--grid-bg);
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      flex-shrink: 0;
+    }
+    .d-tb {
+      appearance: none;
+      border: 0;
+      border-right: 1px solid var(--grid-bg);
+      background: transparent;
+      color: var(--muted);
+      font: 600 11px/1.15 var(--font-ui);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      cursor: pointer;
+      position: relative;
+    }
+    .d-tb:last-child { border-right: 0; }
+    .d-tb svg {
+      width: 19px;
+      height: 19px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.75;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .d-tb.active {
+      color: var(--ink);
+      background: var(--cell-soft);
+    }
+    .d-tb.active::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--ink);
+    }
+
+    /* ============================================================================
+       SHARP ARCHITECTURAL BENTO GRID SYSTEM (0px CORNERS, 1px EXPOSED SEAMS)
+       ============================================================================ */
+    .bento-board {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 1px;
+      background: var(--grid-bg);
+      border: 1px solid var(--grid-bg);
+    }
+
+    .b-cell {
+      background: var(--cell-bg);
+      padding: 11px 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-width: 0;
+      position: relative;
+    }
+    .b-cell.soft {
+      background: var(--cell-soft);
+    }
+    .b-cell.tint-fest {
+      background: var(--fest-tint-bg);
+    }
+    .b-cell.tint-saait-avoid {
+      background: var(--saait-avoid-bg);
+    }
+    .b-cell.tint-saait-good {
+      background: var(--saait-good-bg);
+    }
+    .b-cell.inverted {
+      background: var(--cell-active);
+      color: var(--cell-active-fg);
+    }
+    .b-cell.clickable {
+      cursor: pointer;
+    }
+    .b-cell.clickable:hover {
+      background: var(--cell-soft);
+    }
+
+    .span-12 { grid-column: span 12; }
+    .span-8  { grid-column: span 8; }
+    .span-7  { grid-column: span 7; }
+    .span-6  { grid-column: span 6; }
+    .span-5  { grid-column: span 5; }
+    .span-4  { grid-column: span 4; }
+    .span-3  { grid-column: span 3; }
+
+    /* Bento Micro Labels (Swiss Technical Uppercase) */
+    .b-label {
+      font-size: 10.5px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted-soft);
+      line-height: 1.2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 4px;
+    }
+    .b-cell.inverted .b-label {
+      color: rgba(255,255,255,0.65);
+    }
+    .device[data-theme="dark"] .b-cell.inverted .b-label {
+      color: rgba(0,0,0,0.65);
+    }
+
+    .b-val-lg {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.25;
+      margin-top: 4px;
+      font-variant-numeric: tabular-nums;
+    }
+    .b-val-md {
+      font-size: 14.5px;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.25;
+      margin-top: 3px;
+      font-variant-numeric: tabular-nums;
+    }
+    .b-sub {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.3;
+      margin-top: 2px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* World Clocks Bento Row (3 Equal Sharp Cells: Nepal + City 1 + City 2) */
+    .b-clock-time {
+      font-size: 14.5px;
+      font-weight: 600;
+      color: var(--ink);
+      font-variant-numeric: tabular-nums;
+      line-height: 1.2;
+      margin-top: 3px;
+      white-space: nowrap;
+    }
+    .b-clock-dow {
+      font-size: 11px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    /* Big Date Hero Cell inside Bento */
+    .b-hero-num {
+      font-size: 56px;
+      font-weight: 700;
+      line-height: 0.92;
+      letter-spacing: -0.04em;
+      color: var(--ink);
+      font-variant-numeric: tabular-nums;
+      margin: 6px 0 4px;
+    }
+    .b-cell.inverted .b-hero-num {
+      color: var(--cell-active-fg);
+    }
+
+    /* Sharp Audio Listen Button */
+    .btn-sharp {
+      appearance: none;
+      border: 1px solid var(--grid-bg);
+      background: var(--cell-bg);
+      color: var(--ink);
+      font: 600 12px/1 var(--font-ui);
+      height: 30px;
+      padding: 0 10px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      cursor: pointer;
+      border-radius: 0px;
+      white-space: nowrap;
+    }
+    .btn-sharp:hover {
+      background: var(--cell-soft);
+    }
+    .btn-sharp.solid {
+      background: var(--ink);
+      color: var(--cell-bg);
+      border-color: var(--ink);
+    }
+    .btn-sharp svg {
+      width: 11px;
+      height: 11px;
+      fill: currentColor;
+    }
+
+    /* Sharp Indicator Tag */
+    .tag-sharp {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 10.5px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 2px 7px;
+      border: 1px solid var(--grid-bg);
+      background: var(--cell-soft);
+      color: var(--ink);
+      white-space: nowrap;
+    }
+    .tag-sharp i {
+      width: 6px;
+      height: 6px;
+      display: inline-block;
+    }
+
+    /* ============================================================================
+       SHARP BENTO CALENDAR GRID (0px CORNERS, 1px HAIRLINES)
+       ============================================================================ */
+    .bento-cal-header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1px;
+      background: var(--grid-bg);
+      border: 1px solid var(--grid-bg);
+      border-bottom: 0;
+    }
+    .bento-cal-nav {
+      display: grid;
+      grid-template-columns: auto 38px 38px;
+      gap: 1px;
+      background: var(--grid-bg);
+    }
+    .bento-nav-btn {
+      appearance: none;
+      border: 0;
+      background: var(--cell-bg);
+      color: var(--ink);
+      font: 600 13px/1 var(--font-ui);
+      padding: 0 12px;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+    }
+    .bento-nav-btn:hover {
+      background: var(--cell-soft);
+    }
+
+    .bento-cal-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 1px;
+      background: var(--grid-bg);
+      border: 1px solid var(--grid-bg);
+    }
+    .bento-dow-cell {
+      background: var(--cell-soft);
+      padding: 7px 2px;
+      text-align: center;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+    }
+    .bento-dow-cell.sat { color: var(--sat-fg); }
+
+    .bento-day-cell {
+      appearance: none;
+      border: 0;
+      background: var(--cell-bg);
+      min-height: 58px;
+      padding: 5px 5px 4px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+      font-family: var(--font-ui);
+      position: relative;
+      text-align: left;
+    }
+    .bento-day-cell.blank {
+      background: var(--cell-soft);
+      cursor: default;
+    }
+    .bento-day-cell.fest-cell {
+      background: var(--fest-tint-bg);
+    }
+    .bento-day-top {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      width: 100%;
+    }
+    .bento-day-cell .bs-n {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+    }
+    .bento-day-cell.sat .bs-n {
+      color: var(--sat-fg);
+    }
+    .bento-day-cell .ad-n {
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--muted-soft);
+      font-variant-numeric: tabular-nums;
+    }
+    .bento-day-cell .ti-n {
+      font-size: 9.5px;
+      font-weight: 500;
+      color: var(--muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 100%;
+    }
+    .bento-day-cell .sq-dot {
+      width: 5px;
+      height: 5px;
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
+    }
+
+    /* Sharp High-Contrast Today Cell */
+    .bento-day-cell.today {
+      background: var(--cell-active);
+    }
+    .bento-day-cell.today .bs-n,
+    .bento-day-cell.today .ad-n,
+    .bento-day-cell.today .ti-n {
+      color: var(--cell-active-fg);
+    }
+
+    /* Sharp Selected Cell Outline */
+    .bento-day-cell.selected {
+      box-shadow: inset 0 0 0 2px var(--ink);
+      z-index: 1;
+    }
+
+    /* Sharp List Table (Upcoming, Festivals, Saait) */
+    .bento-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1px;
+      background: var(--grid-bg);
+      border: 1px solid var(--grid-bg);
+    }
+    .bento-row {
+      appearance: none;
+      border: 0;
+      background: var(--cell-bg);
+      padding: 10px 12px;
+      display: grid;
+      grid-template-columns: 74px 1fr auto;
+      align-items: center;
+      gap: 10px;
+      text-align: left;
+      font-family: var(--font-ui);
+      cursor: pointer;
+    }
+    .bento-row:hover {
+      background: var(--cell-soft);
+    }
+    .bento-row.fest-row {
+      background: var(--fest-tint-bg);
+    }
+    .bento-row.saait-good-row {
+      background: var(--saait-good-bg);
+    }
+    .bento-row.saait-avoid-row {
+      background: var(--saait-avoid-bg);
+    }
+    .bento-row .r-dt {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.2;
+      font-variant-numeric: tabular-nums;
+      border-right: 1px solid var(--grid-bg);
+      padding-right: 8px;
+    }
+    .bento-row .r-dt small {
+      display: block;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--muted);
+    }
+    .bento-row .r-nm {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.25;
+      min-width: 0;
+    }
+    .bento-row .r-nm small {
+      display: block;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--muted);
+      margin-top: 1px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP SWITCHER BAR -->
+  <header class="switcher-bar">
+    <div class="switcher-title">
+      <span>Sundar Patro — Sharp Bento Box Mockups</span>
+      <span class="sub">0px sharp corners · 1px architectural grid seams · No redundant "Clocks 2/2" button</span>
+    </div>
+
+    <div class="switcher-controls">
+      <div class="seg" role="group" aria-label="Bento Variant">
+        <button class="seg-btn active" data-proto="bento-b" onclick="setProto('bento-b')">★ Inverted Date Block (Selected)</button>
+        <button class="seg-btn" data-proto="bento-a" onclick="setProto('bento-a')">Bento A: Light Date Block</button>
+        <button class="seg-btn" data-proto="bento-c" onclick="setProto('bento-c')">Bento C: Unified Calendar + Bento</button>
+        <button class="seg-btn" data-proto="compare" onclick="setProto('compare')">Side-by-Side (Avoid vs. Favorable Saait)</button>
+      </div>
+
+      <div class="seg" role="group" aria-label="Screen">
+        <button class="seg-btn active" data-screen="today" onclick="setScreen('today')">Today</button>
+        <button class="seg-btn" data-screen="month" onclick="setScreen('month')">Calendar</button>
+        <button class="seg-btn" data-screen="clocks" onclick="setScreen('clocks')">World Clocks</button>
+        <button class="seg-btn" data-screen="festivals" onclick="setScreen('festivals')">Festivals</button>
+        <button class="seg-btn" data-screen="auspicious" onclick="setScreen('auspicious')">Saait &amp; Convert</button>
+      </div>
+
+      <div class="seg">
+        <button class="seg-btn" id="themeToggle" onclick="toggleTheme()">Dark Mode</button>
+        <button class="seg-btn" id="langToggle" onclick="toggleLang()">नेपाली / EN</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN STAGE -->
+  <main class="stage" id="stage"></main>
+
+  <script>
+    // ============================================================================
+    // AUTHENTIC WORLD CLOCKS ENGINE FROM index.html
+    // ============================================================================
+    const NEPAL_TZ = 'Asia/Kathmandu', MAX_CLOCKS = 2;
+    const CITIES = [
+      ['America/Los_Angeles','Los Angeles','लस एन्जलस'],
+      ['America/Phoenix','Phoenix','फिनिक्स'],
+      ['America/Denver','Denver','डेन्भर'],
+      ['America/Chicago','Chicago','शिकागो'],
+      ['America/New_York','New York','न्युयोर्क'],
+      ['America/Toronto','Toronto','टोरन्टो'],
+      ['Europe/London','London','लन्डन'],
+      ['Europe/Lisbon','Lisbon','लिस्बन'],
+      ['Europe/Paris','Paris','पेरिस'],
+      ['Europe/Berlin','Berlin','बर्लिन'],
+      ['Asia/Riyadh','Riyadh','रियाद'],
+      ['Asia/Kuwait','Kuwait','कुवेत'],
+      ['Asia/Qatar','Doha','दोहा'],
+      ['Asia/Dubai','Dubai','दुबई'],
+      ['Asia/Kolkata','New Delhi','नयाँ दिल्ली'],
+      ['Asia/Kuala_Lumpur','Kuala Lumpur','क्वालालम्पुर'],
+      ['Asia/Hong_Kong','Hong Kong','हङकङ'],
+      ['Australia/Perth','Perth','पर्थ'],
+      ['Asia/Seoul','Seoul','सोल'],
+      ['Asia/Tokyo','Tokyo','टोकियो'],
+      ['Australia/Sydney','Sydney','सिड्नी'],
+      ['Pacific/Auckland','Auckland','अकल्यान्ड']
+    ];
+    const CITY = Object.fromEntries(CITIES.map(([z, en, ne]) => [z, { en, ne }]));
+    const DOW_SHORT_NE = ['आइत','सोम','मंगल','बुध','बिही','शुक्र','शनि'];
+    const DOW_SHORT_EN = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    const DOW_NE = ['आइतबार','सोमबार','मंगलबार','बुधबार','बिहीबार','शुक्रबार','शनिबार'];
+    const DOW_EN = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    const NE_DIGITS = '०१२३४५६७८९';
+    const toNe = n => String(n).replace(/\d/g, d => NE_DIGITS[d]);
+
+    let clocks = ['America/New_York', 'Europe/London', 'Australia/Sydney', 'Asia/Tokyo'];
+    try {
+      const s = JSON.parse(localStorage.getItem('patro-clocks') || 'null');
+      if (Array.isArray(s) && s.length > 0) {
+        clocks = [...new Set(s)].filter(z => CITY[z]);
+      }
+    } catch (e) {}
+
+    function saveClocks() {
+      try { localStorage.setItem('patro-clocks', JSON.stringify(clocks)); } catch (e) {}
+    }
+
+    function getClockParts(tz, isNe) {
+      try {
+        const fmt = new Intl.DateTimeFormat('en-US', {
+          timeZone: tz,
+          hourCycle: 'h23',
+          weekday: 'short',
+          hour: 'numeric',
+          minute: 'numeric'
+        });
+        const p = {};
+        for (const x of fmt.formatToParts(new Date())) p[x.type] = x.value;
+        const h = +p.hour % 24, m = +p.minute;
+        const dowIdx = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].indexOf(p.weekday);
+        const dow = (isNe ? DOW_SHORT_NE : DOW_SHORT_EN)[dowIdx >= 0 ? dowIdx : 3];
+        const h12 = h % 12 || 12, mm = String(m).padStart(2, '0');
+        if (isNe) {
+          const per = h < 4 ? 'राति' : h < 12 ? 'बिहान' : h < 16 ? 'दिउँसो' : h < 20 ? 'बेलुका' : 'राति';
+          return { time: `${toNe(h12)}:${toNe(mm)}`, sub: `${dow} · ${per}`, full: `${dow} ${per} ${toNe(h12)}:${toNe(mm)}` };
+        }
+        return { time: `${h12}:${mm} ${h < 12 ? 'AM' : 'PM'}`, sub: dow, full: `${dow} ${h12}:${mm} ${h < 12 ? 'AM' : 'PM'}` };
+      } catch (e) {
+        return { time: '8:35 AM', sub: 'Wed', full: 'Wed 8:35 AM' };
+      }
+    }
+
+    // ============================================================================
+    // AUTHENTIC KARTIK 2083 DATA
+    // ============================================================================
+    const KARTIK_DAYS = [
+      {d:1, ad:17, adM:"Oct", ne:"षष्ठी", en:"Shashthi", pak:"Shukla"},
+      {d:2, ad:18, ne:"सप्तमी", en:"Saptami", pak:"Shukla", hol:true, evNe:"फूलपाती", evEn:"Fulpati", cat:"festival", descNe:"दशैंको सातौं दिन; फूलपाती भित्र्याइन्छ।", descEn:"Seventh day of Dashain; Fulpati procession."},
+      {d:3, ad:19, ne:"अष्टमी", en:"Ashtami", pak:"Shukla", hol:true, evNe:"महाअष्टमी", evEn:"Maha Ashtami", cat:"festival", descNe:"कालरात्रि; दुर्गा बलि।", descEn:"Kalratri; Durga sacrifices."},
+      {d:4, ad:20, ne:"नवमी", en:"Navami", pak:"Shukla", hol:true, evNe:"महानवमी", evEn:"Maha Navami", cat:"festival", descNe:"सवारी र औजारको पूजा; तलेजु खुल्छ।", descEn:"Vehicles and tools blessed; Taleju open."},
+      {d:5, ad:21, ne:"दशमी", en:"Dashami", pak:"Shukla", hol:true, evNe:"विजया दशमी", evEn:"Vijaya Dashami", cat:"festival", descNe:"मान्यजनबाट टीका र जमरा; दशैंको मुख्य दिन।", descEn:"Tika and jamara from elders; main day of Dashain."},
+      {d:6, ad:22, ne:"एकादशी", en:"Ekadashi", pak:"Shukla", hol:true, evNe:"एकादशी", evEn:"Ekadashi (Dashain)", cat:"festival", descNe:"टीका जारी; दशैं बिदा।", descEn:"Tika continues; Dashain holiday."},
+      {d:7, ad:23, ne:"द्वादशी", en:"Dwadashi", pak:"Shukla"},
+      {d:8, ad:24, ne:"त्रयोदशी", en:"Trayodashi", pak:"Shukla"},
+      {d:9, ad:25, ne:"चतुर्दशी", en:"Chaturdashi", pak:"Shukla", hol:true, evNe:"कोजाग्रत पूर्णिमा", evEn:"Kojagrat Purnima", cat:"festival", descNe:"दशैंको अन्तिम दिन; लक्ष्मी जाग्राम।", descEn:"Last day of Dashain; Laxmi stays awake."},
+      {d:10, ad:26, ne:"पूर्णिमा", en:"Purnima", pak:"Shukla"},
+      {d:11, ad:27, ne:"प्रतिपदा", en:"Pratipada", pak:"Krishna"},
+      {d:12, ad:28, ne:"तृतीया", en:"Tritiya", pak:"Krishna"},
+      {d:13, ad:29, ne:"चतुर्थी", en:"Chaturthi", pak:"Krishna"},
+      {d:14, ad:30, ne:"पञ्चमी", en:"Panchami", pak:"Krishna"},
+      {d:15, ad:31, ne:"षष्ठी", en:"Shashthi", pak:"Krishna"},
+      {d:16, ad:1, adM:"Nov", ne:"सप्तमी", en:"Saptami", pak:"Krishna"},
+      {d:17, ad:2, ne:"अष्टमी", en:"Ashtami", pak:"Krishna"},
+      {d:18, ad:3, ne:"नवमी", en:"Navami", pak:"Krishna"},
+      {d:19, ad:4, ne:"दशमी", en:"Dashami", pak:"Krishna"},
+      {d:20, ad:5, ne:"एकादशी", en:"Ekadashi", pak:"Krishna"},
+      {d:21, ad:6, ne:"द्वादशी", en:"Dwadashi", pak:"Krishna"},
+      {d:22, ad:7, ne:"त्रयोदशी", en:"Trayodashi", pak:"Krishna", evNe:"काग तिहार", evEn:"Kaag Tihar", cat:"festival", descNe:"तिहार सुरु; कागलाई भोग।", descEn:"Tihar begins; offerings to crows."},
+      {d:23, ad:8, ne:"चतुर्दशी", en:"Chaturdashi", pak:"Krishna", hol:true, evNe:"कुकुर तिहार · लक्ष्मी पूजा", evEn:"Kukur Tihar · Laxmi Puja", cat:"festival", descNe:"लक्ष्मीका लागि दीप; बिहान गाई पूजा; भैलो।", descEn:"Lamps lit for Laxmi; cows worshipped in the morning; bhailo."},
+      {d:24, ad:9, ne:"औंसी", en:"Amavasya", pak:"Krishna"},
+      {d:25, ad:10, ne:"प्रतिपदा", en:"Pratipada", pak:"Shukla", today:true, hol:true, evNe:"गोवर्धन पूजा · म्ह पूजा", evEn:"Govardhan Puja · Mha Puja", cat:"festival", descNe:"गोरु पूजा; नेवार म्ह पूजा र नेपाल सम्वत् नयाँ वर्ष; देउसी।", descEn:"Ox worship; Newar self-worship and Nepal Sambat New Year; deusi."},
+      {d:26, ad:11, ne:"द्वितीया", en:"Dwitiya", pak:"Shukla", hol:true, evNe:"भाइटीका", evEn:"Bhai Tika", cat:"festival", descNe:"दिदीबहिनीले दाजुभाइलाई सप्तरंगी टीका; तिहारको अन्तिम दिन।", descEn:"Sisters apply saptarangi tika to brothers; last day of Tihar."},
+      {d:27, ad:12, ne:"तृतीया", en:"Tritiya", pak:"Shukla"},
+      {d:28, ad:13, ne:"चतुर्थी", en:"Chaturthi", pak:"Shukla"},
+      {d:29, ad:14, ne:"पञ्चमी", en:"Panchami", pak:"Shukla"},
+      {d:30, ad:15, ne:"षष्ठी", en:"Shashthi", pak:"Shukla", hol:true, evNe:"छठ", evEn:"Chhath", cat:"festival", descNe:"नदी र पोखरीमा सूर्य पूजा; सन्ध्या र उषा अर्घ्य।", descEn:"Sun worship at rivers and ponds, Sandhya and Usha arghya."}
+    ];
+
+    let state = {
+      proto: 'bento-b', // 'bento-b' | 'bento-a' | 'bento-c' | 'compare'
+      screen: 'today',  // 'today' | 'month' | 'clocks' | 'festivals' | 'auspicious'
+      theme: 'light',   // 'light' | 'dark'
+      lang: 'en',       // 'en' | 'ne'
+      selDay: 25,
+      saaitCeremony: 'marriage',
+      previewGoodSaait: false // Toggle to preview both Slight Red (Avoid) and Slight Green (Not Avoid) on Today
+    };
+
+    const SVG_BRAND = `<svg width="19" height="19" viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect x="4" y="6" width="24" height="22" stroke="currentColor" stroke-width="2.2"/><rect x="9" y="3" width="3" height="5" fill="currentColor"/><rect x="20" y="3" width="3" height="5" fill="currentColor"/><rect x="9" y="11" width="2.4" height="2.4" fill="var(--muted-soft)"/><rect x="14.8" y="11" width="2.4" height="2.4" fill="var(--muted-soft)"/><rect x="20.6" y="11" width="2.4" height="2.4" fill="var(--muted-soft)"/><rect x="9" y="16" width="2.4" height="2.4" fill="var(--muted-soft)"/><rect x="13.5" y="14.7" width="5" height="5" stroke="#E11D48" stroke-width="1.6" fill="none"/><rect x="15" y="16.2" width="2" height="2" fill="#F59E0B"/><rect x="20.6" y="16" width="2.4" height="2.4" fill="var(--muted-soft)"/><rect x="9" y="21" width="2.4" height="2.4" fill="var(--muted-soft)"/><rect x="14.8" y="21" width="2.4" height="2.4" fill="var(--muted-soft)"/><rect x="20.6" y="21" width="2.4" height="2.4" fill="var(--muted-soft)"/></svg>`;
+    const SVG_PLAY = `<svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="7,4 20,12 7,20"/></svg>`;
+    const SVG_CLOCK = `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>`;
+
+    function getDay(d) {
+      return KARTIK_DAYS.find(x => x.d === d) || KARTIK_DAYS[24];
+    }
+    function getDow(d) {
+      return (6 + d - 1) % 7; // 1 Kartik 2083 = Saturday (6)
+    }
+
+    // ============================================================================
+    // WORLD CLOCKS BENTO ROW (NO "CLOCKS 2/2" BUTTON — JUST THE CLEAN CLOCK CARDS)
+    // Tapping any clock cell jumps to World Clocks if the user wants to edit
+    // ============================================================================
+    function buildClocksBentoRow() {
+      const ne = state.lang === 'ne';
+      const npt = getClockParts(NEPAL_TZ, ne);
+      const topTwo = clocks.slice(0, 2);
+      const colSpan = topTwo.length === 2 ? 'span-4' : topTwo.length === 1 ? 'span-6' : 'span-12';
+
+      return `
+        <div class="b-cell soft ${colSpan} clickable" onclick="setScreen('clocks')">
+          <div class="b-label"><span>${ne ? 'नेपाल समय' : 'Nepal Time'}</span><span>NPT</span></div>
+          <div class="b-clock-time">${npt.time}</div>
+          <div class="b-clock-dow">${npt.sub}</div>
+        </div>
+        ${topTwo.map(tz => {
+          const c = getClockParts(tz, ne);
+          const name = ne ? CITY[tz].ne : CITY[tz].en;
+          return `
+            <div class="b-cell ${colSpan} clickable" onclick="setScreen('clocks')">
+              <div class="b-label"><span>${name}</span></div>
+              <div class="b-clock-time">${c.time}</div>
+              <div class="b-clock-dow">${c.sub}</div>
+            </div>
+          `;
+        }).join('')}
+      `;
+    }
+
+    // ============================================================================
+    // BENTO A: MODULAR ARCHITECTURAL BENTO GRID (DAYLIGHT & OBSIDIAN)
+    // ============================================================================
+    function buildBentoADevice(invertedHero = true, forceGoodSaait = null) {
+      const ne = state.lang === 'ne';
+      const today = getDay(25);
+      const isGoodSaait = forceGoodSaait !== null ? forceGoodSaait : state.previewGoodSaait;
+
+      let content = '';
+      if (state.screen === 'today') {
+        content = `
+          <!-- MAIN 12-COLUMN SHARP BENTO BOARD -->
+          <div class="bento-board">
+
+            <!-- ROW 1: WORLD CLOCKS (3 EQUAL SHARP CELLS: NEPAL + 2 CITIES, NO 2/2 BUTTON) -->
+            ${buildClocksBentoRow()}
+
+            <!-- ROW 2: HERO DATE CELL (7 COLS) + TITHI / AUDIO CELL (5 COLS) -->
+            <div class="b-cell ${invertedHero ? 'inverted' : ''} span-7">
+              <div class="b-label">
+                <span>${ne ? 'मंगलबार · आज' : 'TUESDAY · TODAY'}</span>
+                <span>${ne ? 'वि.सं.' : 'BS'}</span>
+              </div>
+              <div class="b-hero-num">${ne ? '२५' : '25'}</div>
+              <div>
+                <div style="font-size:18px;font-weight:600;line-height:1.2">${ne ? 'कात्तिक २०८३' : 'Kartik 2083'}</div>
+                <div style="font-size:12.5px;opacity:0.75;margin-top:1px">${ne ? '१० नोभेम्बर २०२६' : '10 November 2026'}</div>
+              </div>
+            </div>
+
+            <div class="b-cell span-5" style="justify-content:space-between;gap:8px">
+              <div>
+                <div class="b-label"><span>${ne ? 'तिथि' : 'TITHI'}</span><span>${ne ? 'शुक्ल' : 'SHUKLA'}</span></div>
+                <div class="b-val-lg">${ne ? 'प्रतिपदा' : 'Pratipada'}</div>
+                <div class="b-sub">${ne ? 'दिउँसो २:१६ सम्म' : 'Until 2:16 PM'}</div>
+              </div>
+              <button class="btn-sharp ${invertedHero ? '' : 'solid'}" style="width:100%" onclick="this.classList.toggle('on');this.querySelector('span').textContent=this.classList.contains('on')?(state.lang==='ne'?'रोक्नुहोस्':'Pause'):(state.lang==='ne'?'सुन्नुहोस्':'Listen')">
+                ${SVG_PLAY}
+                <span>${ne ? 'सुन्नुहोस्' : 'Listen'}</span>
+              </button>
+            </div>
+
+            <!-- ROW 3: TODAY'S FESTIVAL / HOLIDAY BENTO CELL (SLIGHT ORANGISH BACKGROUND) -->
+            <div class="b-cell tint-fest span-12">
+              <div class="b-label">
+                <span style="color:var(--fest-tint-fg)">${ne ? 'आजको चाडपर्व र बिदा' : 'TODAY’S FESTIVAL & HOLIDAY'}</span>
+                <span class="tag-sharp" style="background:var(--cell-bg);color:var(--fest-tint-fg);border-color:var(--fest-tint-border)"><i style="background:var(--dot-hol)"></i>${ne ? 'राष्ट्रिय बिदा' : 'NATIONAL HOLIDAY'}</span>
+              </div>
+              <div class="b-val-lg" style="margin-top:6px;color:var(--ink)">${ne ? today.evNe : today.evEn + ' · ' + today.evNe}</div>
+              <div class="b-sub" style="font-size:12.5px;margin-top:3px">${ne ? today.descNe : today.descEn}</div>
+            </div>
+
+            <!-- ROW 4: PANCHANG QUADRANTS (4 + 4 + 4 COLS) -->
+            <div class="b-cell soft span-4">
+              <div class="b-label">${ne ? 'चान्द्र मास' : 'LUNAR MONTH'}</div>
+              <div class="b-val-md">${ne ? 'कार्तिक' : 'Kartik'}</div>
+              <div class="b-sub">${ne ? 'ने.सं. ११४७' : 'NS 1147'}</div>
+            </div>
+
+            <div class="b-cell soft span-4">
+              <div class="b-label">${ne ? 'नक्षत्र / राशि' : 'NAKSHATRA'}</div>
+              <div class="b-val-md">${ne ? 'विशाखा' : 'Vishakha'}</div>
+              <div class="b-sub">${ne ? 'तुला राशि' : 'Tula Rashi'}</div>
+            </div>
+
+            <div class="b-cell soft span-4">
+              <div class="b-label">${ne ? 'सूर्योदय / अस्त' : 'SUN (NPT)'}</div>
+              <div class="b-val-md">↑ ${ne ? '६:२०' : '6:20 AM'}</div>
+              <div class="b-sub">↓ ${ne ? '५:१४ बेलुका' : '5:14 PM'}</div>
+            </div>
+
+            <!-- ROW 5: SAAIT VERDICT CELL (SLIGHT RED WHEN AVOID / SLIGHT GREEN WHEN NOT AVOID) -->
+            ${!isGoodSaait ? `
+              <div class="b-cell tint-saait-avoid span-12 clickable" onclick="state.previewGoodSaait=!state.previewGoodSaait;render()" title="Tap to preview Favorable (Green) Saait state" style="flex-direction:row;align-items:center;justify-content:space-between;gap:10px">
+                <div>
+                  <div class="b-label" style="color:var(--saait-avoid-fg)">${ne ? 'शुभ साइत · विवाह, व्रतबन्ध, गृहप्रवेश' : 'SAAIT · MARRIAGE, BRATABANDHA, GRIHA'}</div>
+                  <div class="b-sub" style="color:var(--ink);font-weight:500;margin-top:3px">${ne ? 'चातुर्मास (हरिशयनीदेखि हरिबोधिनी एकादशीसम्म)' : 'Chaturmas (Harishayani to Haribodhini Ekadashi)'}</div>
+                </div>
+                <span class="tag-sharp" style="background:var(--saait-avoid-badge);color:var(--saait-avoid-fg);border-color:transparent">${ne ? 'वर्जित' : 'AVOID'}</span>
+              </div>
+              <div class="b-cell tint-saait-good span-12 clickable" onclick="setScreen('auspicious')" style="flex-direction:row;align-items:center;justify-content:space-between;gap:10px">
+                <div>
+                  <div class="b-label" style="color:var(--saait-good-fg)">${ne ? 'शुभ साइत · पास्नी र शुभ कार्य' : 'SAAIT · PASNI & NEW VENTURE'}</div>
+                  <div class="b-sub" style="color:var(--ink);font-weight:500;margin-top:3px">${ne ? 'प्रतिपदा तिथि · विशाखा नक्षत्र सामान्य/शुभ' : 'Pratipada tithi · Vishakha nakshatra'}</div>
+                </div>
+                <span class="tag-sharp" style="background:var(--saait-good-badge);color:var(--saait-good-fg);border-color:transparent">${ne ? 'शुभ / सामान्य' : 'FAVORABLE'}</span>
+              </div>
+            ` : `
+              <div class="b-cell tint-saait-good span-12 clickable" onclick="state.previewGoodSaait=!state.previewGoodSaait;render()" style="flex-direction:row;align-items:center;justify-content:space-between;gap:10px">
+                <div>
+                  <div class="b-label" style="color:var(--saait-good-fg)">${ne ? 'शुभ साइत · विवाह, व्रतबन्ध, गृहप्रवेश' : 'SAAIT · MARRIAGE, BRATABANDHA, GRIHA'}</div>
+                  <div class="b-sub" style="color:var(--ink);font-weight:500;margin-top:3px">${ne ? 'मार्गशीर्ष मास शुभ · दशमी तिथि शुभ · उत्तरभाद्रपद नक्षत्र' : 'Margashirsha month favorable · Dashami tithi favorable'}</div>
+                </div>
+                <span class="tag-sharp" style="background:var(--saait-good-badge);color:var(--saait-good-fg);border-color:transparent">${ne ? 'शुभ' : 'FAVORABLE'}</span>
+              </div>
+            `}
+
+          </div>
+
+          <!-- UPCOMING EVENTS SHARP TABLE (SLIGHT ORANGISH TINT ON FESTIVALS & HOLIDAYS) -->
+          <div class="b-label" style="padding:2px 2px 0">
+            <span>${ne ? 'आउँदै गरेका चाडपर्व र बिदा' : 'COMING UP · FESTIVALS & HOLIDAYS'}</span>
+            <button onclick="setScreen('festivals')" style="border:0;background:transparent;color:var(--ink);font:600 11px var(--font-ui);cursor:pointer;text-transform:uppercase;letter-spacing:0.05em">${ne ? 'सबै हेर्नुहोस् →' : 'ALL →'}</button>
+          </div>
+          <div class="bento-list">
+            <button class="bento-row fest-row" onclick="selectDay(26);setScreen('month')">
+              <div class="r-dt">${ne ? '२६ कात्तिक' : '26 Kartik'}<small>${ne ? '११ नोभे, बुध' : 'Nov 11, Wed'}</small></div>
+              <div class="r-nm">${ne ? 'भाइटीका' : 'Bhai Tika · भाइटीका'}<small>${ne ? 'भोलि · राष्ट्रिय बिदा' : 'Tomorrow · National holiday'}</small></div>
+              <span class="tag-sharp" style="background:var(--cell-bg);color:var(--fest-tint-fg);border-color:var(--fest-tint-border)"><i style="background:var(--dot-hol)"></i>${ne ? 'बिदा' : 'HOLIDAY'}</span>
+            </button>
+            <button class="bento-row fest-row" onclick="selectDay(30);setScreen('month')">
+              <div class="r-dt">${ne ? '३० कात्तिक' : '30 Kartik'}<small>${ne ? '१५ नोभे, आइत' : 'Nov 15, Sun'}</small></div>
+              <div class="r-nm">${ne ? 'छठ' : 'Chhath · छठ'}<small>${ne ? '५ दिनमा · राष्ट्रिय बिदा' : 'In 5 days · National holiday'}</small></div>
+              <span class="tag-sharp" style="background:var(--cell-bg);color:var(--fest-tint-fg);border-color:var(--fest-tint-border)"><i style="background:var(--dot-hol)"></i>${ne ? 'बिदा' : 'HOLIDAY'}</span>
+            </button>
+          </div>
+        `;
+      } else if (state.screen === 'month') {
+        content = buildSharpCalendarGrid();
+      } else {
+        content = buildSharpSecondaryScreens();
+      }
+
+      const title = forceGoodSaait === true
+        ? 'Inverted Date Block — Favorable Saait Day (Slight Green)'
+        : invertedHero
+          ? '★ Selected: Inverted Date Block + Semantic Bento Tints'
+          : 'Bento A: Light Date Block + Semantic Bento Tints';
+      const note = 'Warm orangish tint (#FFF7ED) on holidays & festivals · Slight red (#FEF2F2) when Saait is Avoid · Slight green (#F0FDF4) when Saait is Favorable.';
+      return wrapDevice('', title, note, content);
+    }
+
+    // ============================================================================
+    // BENTO C: UNIFIED CALENDAR + BENTO INSPECTOR (SINGLE SCREEN)
+    // ============================================================================
+    function buildBentoCDevice() {
+      const ne = state.lang === 'ne';
+      let content = '';
+      if (state.screen === 'today' || state.screen === 'month') {
+        content = `
+          <!-- World Clocks 3-Col Sharp Bento Row right at top -->
+          <div class="bento-board">
+            ${buildClocksBentoRow()}
+          </div>
+          ${buildSharpCalendarGrid(true)}
+        `;
+      } else {
+        content = buildSharpSecondaryScreens();
+      }
+
+      return wrapDevice(
+        'bento-paper',
+        'Bento C: Unified Clocks + Calendar + Bento Sheet',
+        'Warm archival paper (#F9F7F2) with the 3-column World Clock Bento row, sharp 7-column calendar grid, and docked Day Bento Sheet.',
+        content
+      );
+    }
+
+    // ============================================================================
+    // SHARP 7-COLUMN CALENDAR GRID + DOCKED BENTO DAY SHEET
+    // ============================================================================
+    function buildSharpCalendarGrid(compact = false) {
+      const ne = state.lang === 'ne';
+      const sel = getDay(state.selDay);
+      const selDow = getDow(sel.d);
+      const dows = ne ? DOW_SHORT_NE : DOW_SHORT_EN;
+      const minH = compact ? 'min-height:48px' : 'min-height:58px';
+
+      const blanks = Array(6).fill(`<div class="bento-day-cell blank" style="${minH}"></div>`).join('');
+      const cells = KARTIK_DAYS.map(item => {
+        const dow = getDow(item.d);
+        const hasFestOrHol = !!(item.hol || item.evNe);
+        const cls = ['bento-day-cell', dow===6?'sat':'', (hasFestOrHol && !item.today)?'fest-cell':'', item.today?'today':'', item.d===state.selDay?'selected':''].filter(Boolean).join(' ');
+        return `<button class="${cls}" style="${minH}" onclick="selectDay(${item.d})">
+          <div class="bento-day-top">
+            <span class="bs-n" style="${(hasFestOrHol && !item.today && dow!==6)?'color:var(--fest-tint-fg)':''}">${ne ? toNe(item.d) : item.d}</span>
+            <span class="ad-n">${ne ? toNe(item.ad) : item.ad}</span>
+          </div>
+          <span class="ti-n">${ne ? item.ne : item.en}</span>
+          ${item.evNe ? `<i class="sq-dot" style="background:${item.today ? 'var(--dot-fest)' : 'var(--dot-hol)'}"></i>` : ''}
+        </button>`;
+      }).join('');
+
+      // Determine Saait status for selected day (days 10, 12, 14, 27 shown as favorable for Pasni/General, others Chaturmas avoid)
+      const selSaaitGood = [10, 12, 14, 27].includes(sel.d);
+
+      return `
+        <div>
+          <!-- Sharp Bento Calendar Header -->
+          <div class="bento-cal-header">
+            <div class="b-cell" style="padding:9px 12px">
+              <div style="font-size:19px;font-weight:700;color:var(--ink);line-height:1.15">${ne ? 'कात्तिक २०८३' : 'Kartik 2083'}</div>
+              <div style="font-size:11.5px;color:var(--muted)">${ne ? '१७ अक्टोबर – १५ नोभेम्बर २०२६' : 'Oct 17 – Nov 15, 2026'}</div>
+            </div>
+            <div class="bento-cal-nav">
+              <button class="bento-nav-btn" onclick="selectDay(25)">${ne ? 'आज' : 'Today'}</button>
+              <button class="bento-nav-btn" aria-label="Previous">‹</button>
+              <button class="bento-nav-btn" aria-label="Next">›</button>
+            </div>
+          </div>
+
+          <!-- Sharp 7x6 Calendar Matrix -->
+          <div class="bento-cal-grid">
+            ${dows.map((d,i)=>`<div class="bento-dow-cell ${i===6?'sat':''}">${d}</div>`).join('')}
+            ${blanks}${cells}
+          </div>
+        </div>
+
+        <!-- Docked Bento Day Inspector Sheet (Updates in-place on cell tap) -->
+        <div class="bento-board">
+          <div class="b-cell inverted span-8">
+            <div class="b-label">
+              <span>${ne ? DOW_NE[selDow] : DOW_EN[selDow]}</span>
+              <span>${sel.ad} ${sel.ad >= 17 ? 'OCT' : 'NOV'} 2026</span>
+            </div>
+            <div class="b-val-lg" style="font-size:18px;color:var(--cell-active-fg)">${ne ? toNe(sel.d) + ' कात्तिक २०८३' : sel.d + ' Kartik 2083'}</div>
+            <div class="b-sub" style="color:var(--cell-active-fg);opacity:0.8">${ne ? sel.ne + ' · ' + (sel.pak==='Shukla'?'शुक्ल पक्ष':'कृष्ण पक्ष') : sel.en + ' · ' + sel.pak + ' paksha'}</div>
+          </div>
+
+          <div class="b-cell soft span-4">
+            <div class="b-label">${ne ? 'सूर्य (NPT)' : 'SUN (NPT)'}</div>
+            <div class="b-val-md">↑ ${ne ? '६:२०' : '6:20 AM'}</div>
+            <div class="b-sub">↓ ${ne ? '५:१४' : '5:14 PM'}</div>
+          </div>
+
+          ${sel.evNe ? `
+            <div class="b-cell tint-fest span-12">
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+                <span style="font-size:14px;font-weight:600;color:var(--ink)">${ne ? sel.evNe : sel.evEn + ' · ' + sel.evNe}</span>
+                ${sel.hol ? `<span class="tag-sharp" style="background:var(--cell-bg);color:var(--fest-tint-fg);border-color:var(--fest-tint-border)"><i style="background:var(--dot-hol)"></i>${ne ? 'बिदा' : 'HOLIDAY'}</span>` : ''}
+              </div>
+              <div class="b-sub" style="margin-top:3px">${ne ? sel.descNe : sel.descEn}</div>
+            </div>
+          ` : ''}
+
+          <div class="b-cell ${selSaaitGood ? 'tint-saait-good' : 'tint-saait-avoid'} span-12" style="flex-direction:row;align-items:center;justify-content:space-between;gap:8px">
+            <div>
+              <div class="b-label" style="color:${selSaaitGood ? 'var(--saait-good-fg)' : 'var(--saait-avoid-fg)'}">${ne ? 'शुभ साइत' : 'SAAIT STATUS'}</div>
+              <div class="b-sub" style="color:var(--ink);font-weight:500;margin-top:2px">${selSaaitGood ? (ne ? 'पास्नी र शुभ कार्यका लागि अनुकूल' : 'Favorable for Pasni & New Venture') : (ne ? 'विवाह, व्रतबन्ध, गृहप्रवेश वर्जित (चातुर्मास)' : 'Marriage, Bratabandha, Griha Avoid (Chaturmas)')}</div>
+            </div>
+            <span class="tag-sharp" style="background:${selSaaitGood ? 'var(--saait-good-badge)' : 'var(--saait-avoid-badge)'};color:${selSaaitGood ? 'var(--saait-good-fg)' : 'var(--saait-avoid-fg)'};border-color:transparent">${selSaaitGood ? (ne ? 'शुभ' : 'FAVORABLE') : (ne ? 'वर्जित' : 'AVOID')}</span>
+          </div>
+        </div>
+      `;
+    }
+
+    // ============================================================================
+    // SHARP SECONDARY SCREENS (WORLD CLOCKS, FESTIVALS, SAAIT & CONVERTER)
+    // ============================================================================
+    function buildSharpSecondaryScreens() {
+      const ne = state.lang === 'ne';
+
+      if (state.screen === 'clocks') {
+        const available = CITIES.filter(([z]) => !clocks.includes(z));
+        const npt = getClockParts(NEPAL_TZ, ne);
+        return `
+          <div class="bento-board">
+            <div class="b-cell inverted span-12">
+              <div class="b-label">
+                <span>${ne ? 'विश्व घडी' : 'WORLD CLOCKS'}</span>
+                <span>${ne ? `${toNe(clocks.length + 1)} सहर` : `${clocks.length + 1} CITIES`}</span>
+              </div>
+              <div class="b-val-lg" style="font-size:20px;color:var(--cell-active-fg)">${ne ? 'समय क्षेत्र र क्रम' : 'Time Zones & Order'}</div>
+              <div class="b-sub" style="color:var(--cell-active-fg);opacity:0.8">${ne ? 'सहरहरू तल-माथि सार्नुहोस्। शीर्ष २ सहर आज पृष्ठमा देखिन्छन्, बाँकी यहाँ मात्र।' : 'Move cities up or down. The top 2 appear on Today; all others appear here.'}</div>
+            </div>
+
+            <!-- Pinned Nepal Time -->
+            <div class="b-cell soft span-12" style="flex-direction:row;align-items:center;justify-content:space-between;gap:10px">
+              <div>
+                <div class="b-label"><span>NPT · UTC+05:45</span></div>
+                <div class="b-val-lg">${ne ? 'नेपाल (काठमाडौं)' : 'Nepal (Kathmandu)'}</div>
+                <div class="b-sub">${npt.full}</div>
+              </div>
+              <span class="tag-sharp" style="background:var(--saait-good-badge);color:var(--saait-good-fg);border-color:transparent">${ne ? 'आज पृष्ठमा सधैं' : 'PINNED ON TODAY'}</span>
+            </div>
+
+            <!-- Add Any Clock Section -->
+            ${available.length > 0 ? `
+              <div class="b-cell span-12" style="gap:8px">
+                <div class="b-label">${ne ? 'जुनसुकै सहर थप्नुहोस्' : 'ADD ANY CITY CLOCK'}</div>
+                <div style="display:grid;grid-template-columns:1fr auto;gap:8px">
+                  <select id="clockPicker" style="height:36px;padding:0 10px;border-radius:0;border:1px solid var(--grid-bg);background:var(--cell-bg);color:var(--ink);font:500 13.5px var(--font-ui)">
+                    ${available.map(([z, en, neN]) => `<option value="${z}">${ne ? neN + ' (' + en + ')' : en}</option>`).join('')}
+                  </select>
+                  <button class="btn-sharp solid" style="height:36px;padding:0 16px" onclick="addClock(document.getElementById('clockPicker').value)">
+                    + ${ne ? 'थप्नुहोस्' : 'Add'}
+                  </button>
+                </div>
+              </div>
+            ` : ''}
+
+            <!-- Section Divider: Top 2 Shown on Today -->
+            <div class="b-cell soft span-12" style="padding:6px 12px">
+              <div class="b-label" style="color:var(--ink)">
+                <span>${ne ? 'शीर्ष २ घडी — आज पृष्ठमा देखिने' : 'TOP 2 CLOCKS — SHOWN ON TODAY PAGE'}</span>
+                <span>1–2</span>
+              </div>
+            </div>
+
+            ${clocks.map((tz, idx) => {
+              const c = getClockParts(tz, ne);
+              const isTopTwo = idx < 2;
+              const dividerBeforeOther = idx === 2 ? `
+                <div class="b-cell soft span-12" style="padding:6px 12px">
+                  <div class="b-label">
+                    <span>${ne ? 'अन्य घडीहरू — घडी पृष्ठमा मात्र देखिने' : 'OTHER CLOCKS — SHOWN ON CLOCKS TAB ONLY'}</span>
+                    <span>3+</span>
+                  </div>
+                </div>
+              ` : '';
+              return `
+                ${dividerBeforeOther}
+                <div class="b-cell ${isTopTwo ? 'tint-saait-good' : ''} span-12" style="flex-direction:row;align-items:center;justify-content:space-between;gap:8px">
+                  <div style="min-width:0;flex:1">
+                    <div class="b-label">
+                      <span style="color:${isTopTwo ? 'var(--saait-good-fg)' : 'var(--muted-soft)'}">
+                        #${ne ? toNe(idx + 1) : idx + 1} · ${isTopTwo ? (ne ? 'आज पृष्ठमा देखिने' : 'ON TODAY PAGE') : (ne ? 'घडी पृष्ठमा मात्र' : 'CLOCKS TAB ONLY')}
+                      </span>
+                    </div>
+                    <div class="b-val-lg" style="margin-top:2px">${ne ? CITY[tz].ne : CITY[tz].en}</div>
+                    <div class="b-sub" style="color:var(--ink);font-weight:600">${c.full}</div>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:4px;flex-shrink:0">
+                    <button class="btn-sharp" style="width:30px;padding:0" ${idx === 0 ? 'disabled style="width:30px;padding:0;opacity:0.35;cursor:default"' : ''} onclick="moveClock(${idx}, -1)" title="${ne ? 'माथि सार्नुहोस्' : 'Move Up'}">↑</button>
+                    <button class="btn-sharp" style="width:30px;padding:0" ${idx === clocks.length - 1 ? 'disabled style="width:30px;padding:0;opacity:0.35;cursor:default"' : ''} onclick="moveClock(${idx}, 1)" title="${ne ? 'तल सार्नुहोस्' : 'Move Down'}">↓</button>
+                    <button class="btn-sharp" style="width:30px;padding:0;color:var(--saait-avoid-fg)" onclick="removeClock('${tz}')" title="${ne ? 'हटाउनुहोस्' : 'Remove'}">✕</button>
+                  </div>
+                </div>
+              `;
+            }).join('')}
+          </div>
+        `;
+      }
+
+      if (state.screen === 'festivals') {
+        const evs = KARTIK_DAYS.filter(x => x.evNe);
+        return `
+          <div class="bento-cal-header">
+            <div class="b-cell">
+              <div class="b-label">${ne ? 'कात्तिक २०८३' : 'KARTIK 2083'}</div>
+              <div class="b-val-lg" style="font-size:19px">${ne ? 'चाडपर्व र बिदा' : 'Festivals & Holidays'}</div>
+            </div>
+            <div class="bento-cal-nav" style="grid-template-columns:38px 38px">
+              <button class="bento-nav-btn">‹</button>
+              <button class="bento-nav-btn">›</button>
+            </div>
+          </div>
+
+          <div class="bento-list">
+            ${evs.map(e => `
+              <button class="bento-row fest-row" onclick="selectDay(${e.d});setScreen('month')">
+                <div class="r-dt">${ne ? toNe(e.d) + ' कात्तिक' : e.d + ' Kartik'}<small>${e.ad} ${e.ad>=17?'Oct':'Nov'}</small></div>
+                <div class="r-nm">${ne ? e.evNe : e.evEn}<small>${ne ? e.descNe : e.descEn}</small></div>
+                <span class="tag-sharp" style="background:var(--cell-bg);color:var(--fest-tint-fg);border-color:var(--fest-tint-border)"><i style="background:var(--dot-hol)"></i>${e.hol ? (ne ? 'बिदा' : 'HOLIDAY') : (ne ? 'चाड' : 'FESTIVAL')}</span>
+              </button>
+            `).join('')}
+          </div>
+        `;
+      }
+
+      // Saait & Converter
+      return `
+        <div class="bento-board">
+          <div class="b-cell span-12">
+            <div class="b-label">${ne ? 'साइत र रूपान्तरण' : 'SAAIT & CONVERTER'}</div>
+            <div class="b-val-lg" style="font-size:19px">${ne ? 'शुभ साइत' : 'Auspicious Dates'}</div>
+          </div>
+          ${[
+            ['marriage', ne ? 'विवाह' : 'Marriage'],
+            ['bratabandha', ne ? 'व्रतबन्ध' : 'Bratabandha'],
+            ['griha', ne ? 'गृहप्रवेश' : 'Griha'],
+            ['pasni', ne ? 'पास्नी' : 'Pasni']
+          ].map(([k, lbl]) => `
+            <button class="b-cell span-3 clickable ${state.saaitCeremony===k ? 'inverted' : 'soft'}" style="padding:8px 4px;align-items:center;border:0;font-family:var(--font-ui)" onclick="state.saaitCeremony='${k}';render()">
+              <span style="font-size:12px;font-weight:600">${lbl}</span>
+            </button>
+          `).join('')}
+        </div>
+
+        <div class="bento-list">
+          <div class="bento-row saait-good-row">
+            <div class="r-dt">${ne ? '४ मंसिर' : '4 Mangsir'}<small>${ne ? '२० नोभे, शुक्र' : 'Nov 20, Fri'}</small></div>
+            <div class="r-nm">${ne ? 'दशमी, शुक्ल · उत्तरभाद्रपद' : 'Dashami, Shukla · Uttara Bhadrapada'}<small>${ne ? 'मार्गशीर्ष मास शुभ' : 'Margashirsha month favorable'}</small></div>
+            <span class="tag-sharp" style="background:var(--saait-good-badge);color:var(--saait-good-fg);border-color:transparent">${ne ? 'शुभ' : 'FAVORABLE'}</span>
+          </div>
+          <div class="bento-row saait-good-row">
+            <div class="r-dt">${ne ? '५ मंसिर' : '5 Mangsir'}<small>${ne ? '२१ नोभे, शनि' : 'Nov 21, Sat'}</small></div>
+            <div class="r-nm">${ne ? 'एकादशी, शुक्ल · रेवती' : 'Ekadashi, Shukla · Revati'}<small>${ne ? 'हरिबोधिनी पछि लगन खुल्ने' : 'Marriage season reopens'}</small></div>
+            <span class="tag-sharp" style="background:var(--saait-good-badge);color:var(--saait-good-fg);border-color:transparent">${ne ? 'शुभ' : 'FAVORABLE'}</span>
+          </div>
+        </div>
+
+        <!-- Sharp Bento Date Converter -->
+        <div class="bento-board">
+          <div class="b-cell span-12">
+            <div class="b-label">${ne ? 'मिति रूपान्तरण (वि.सं. ⇄ ई.सं.)' : 'DATE CONVERTER (BS ⇄ AD)'}</div>
+          </div>
+          <div class="b-cell soft span-6">
+            <div class="b-label">${ne ? 'विक्रम सम्वत्' : 'BIKRAM SAMBAT'}</div>
+            <div class="b-val-lg">${ne ? '२५ कात्तिक २०८३' : '25 Kartik 2083'}</div>
+          </div>
+          <div class="b-cell soft span-6">
+            <div class="b-label">${ne ? 'ईस्वी सम्वत्' : 'GREGORIAN AD'}</div>
+            <div class="b-val-lg">${ne ? '१० नोभेम्बर २०२६' : '10 Nov 2026'}</div>
+          </div>
+        </div>
+      `;
+    }
+
+    function wrapDevice(extraClass, title, note, innerHTML) {
+      const ne = state.lang === 'ne';
+      return `
+        <div class="device-col">
+          <div class="device-meta">
+            <div class="d-title">${title}</div>
+            <div class="d-note">${note}</div>
+          </div>
+          <div class="device ${extraClass}" data-theme="${state.theme}">
+            <div class="d-status">
+              <span>8:35</span>
+              <div class="d-status-right">
+                <svg viewBox="0 0 24 24"><path d="M2 20h20V4z"/></svg>
+                <svg viewBox="0 0 24 24"><rect x="6" y="4" width="12" height="18"/></svg>
+              </div>
+            </div>
+
+            <header class="d-header">
+              <div class="d-wordmark">
+                ${SVG_BRAND}
+                <span>${ne ? 'सुन्दर पात्रो' : 'Sundar Patro'}</span>
+              </div>
+              <div class="d-lang-sharp">
+                <button class="${ne ? 'active' : ''}" onclick="setLang('ne')">ने</button>
+                <button class="${!ne ? 'active' : ''}" onclick="setLang('en')">EN</button>
+              </div>
+            </header>
+
+            <div class="d-scroll">${innerHTML}</div>
+
+            <nav class="d-tabbar">
+              <button class="d-tb ${state.screen==='today'?'active':''}" onclick="setScreen('today')">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+                <span>${ne ? 'आज' : 'Today'}</span>
+              </button>
+              <button class="d-tb ${state.screen==='month'?'active':''}" onclick="setScreen('month')">
+                <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+                <span>${ne ? 'पात्रो' : 'Calendar'}</span>
+              </button>
+              <button class="d-tb ${state.screen==='festivals'?'active':''}" onclick="setScreen('festivals')">
+                <svg viewBox="0 0 24 24"><path d="M12 3l2.6 5.4 5.9.8-4.3 4.1 1.1 5.9L12 16.4 6.7 19.2l1.1-5.9L3.5 9.2l5.9-.8z"/></svg>
+                <span>${ne ? 'चाडपर्व' : 'Festivals'}</span>
+              </button>
+              <button class="d-tb ${state.screen==='clocks'?'active':''}" onclick="setScreen('clocks')">
+                ${SVG_CLOCK}
+                <span>${ne ? 'विश्व घडी' : 'Clocks'}</span>
+              </button>
+              <button class="d-tb ${state.screen==='auspicious'?'active':''}" onclick="setScreen('auspicious')">
+                <svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></svg>
+                <span>${ne ? 'थप' : 'More'}</span>
+              </button>
+            </nav>
+          </div>
+        </div>
+      `;
+    }
+
+    function render() {
+      const stage = document.getElementById('stage');
+      if (state.proto === 'compare') {
+        stage.innerHTML = buildBentoADevice(true, false) + buildBentoADevice(true, true);
+      } else if (state.proto === 'bento-a') {
+        stage.innerHTML = buildBentoADevice(false);
+      } else if (state.proto === 'bento-b') {
+        stage.innerHTML = buildBentoADevice(true);
+      } else if (state.proto === 'bento-c') {
+        stage.innerHTML = buildBentoCDevice();
+      }
+
+      document.querySelectorAll('[data-proto]').forEach(b => b.classList.toggle('active', b.dataset.proto === state.proto));
+      document.querySelectorAll('[data-screen]').forEach(b => b.classList.toggle('active', b.dataset.screen === state.screen));
+      document.getElementById('themeToggle').classList.toggle('active', state.theme === 'dark');
+    }
+
+    window.setProto = p => { state.proto = p; render(); };
+    window.setScreen = s => { state.screen = s; render(); };
+    window.setLang = l => { state.lang = l; render(); };
+    window.toggleLang = () => { state.lang = state.lang === 'ne' ? 'en' : 'ne'; render(); };
+    window.toggleTheme = () => { state.theme = state.theme === 'dark' ? 'light' : 'dark'; render(); };
+    window.selectDay = d => { state.selDay = d; render(); };
+    window.addClock = tz => {
+      if (tz && CITY[tz] && !clocks.includes(tz)) {
+        clocks.push(tz);
+        saveClocks();
+        render();
+      }
+    };
+    window.moveClock = (idx, dir) => {
+      const target = idx + dir;
+      if (target < 0 || target >= clocks.length) return;
+      const tmp = clocks[idx];
+      clocks[idx] = clocks[target];
+      clocks[target] = tmp;
+      saveClocks();
+      render();
+    };
+    window.removeClock = tz => {
+      clocks = clocks.filter(x => x !== tz);
+      saveClocks();
+      render();
+    };
+
+    render();
+  </script>
+</body>
+</html>

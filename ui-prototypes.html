@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sundar Patro — Sharp Architectural Bento Prototypes</title>
+  <title>Sundar Patro, sharp bento prototypes</title>
   <link rel="stylesheet" href="app/src/main/assets/fonts/mukta.css">
   <style>
     :root {
@@ -243,7 +243,7 @@
       fill: currentColor;
     }
 
-    /* Top Header — Sharp Bento Style */
+    /* Top Header, Sharp Bento Style */
     .d-header {
       height: 46px;
       padding: 0 14px;
@@ -718,16 +718,16 @@
   <!-- TOP SWITCHER BAR -->
   <header class="switcher-bar">
     <div class="switcher-title">
-      <span>Sundar Patro — Sharp Bento Box Mockups</span>
-      <span class="sub">0px sharp corners · 1px architectural grid seams · No redundant "Clocks 2/2" button</span>
+      <span>Sundar Patro, sharp bento mockups</span>
+      <span class="sub">0px corners · 1px grid seams · Direct tap on clock cells</span>
     </div>
 
     <div class="switcher-controls">
       <div class="seg" role="group" aria-label="Bento Variant">
-        <button class="seg-btn active" data-proto="bento-b" onclick="setProto('bento-b')">★ Inverted Date Block (Selected)</button>
-        <button class="seg-btn" data-proto="bento-a" onclick="setProto('bento-a')">Bento A: Light Date Block</button>
-        <button class="seg-btn" data-proto="bento-c" onclick="setProto('bento-c')">Bento C: Unified Calendar + Bento</button>
-        <button class="seg-btn" data-proto="compare" onclick="setProto('compare')">Side-by-Side (Avoid vs. Favorable Saait)</button>
+        <button class="seg-btn active" data-proto="bento-b" onclick="setProto('bento-b')">Inverted date block, selected</button>
+        <button class="seg-btn" data-proto="bento-a" onclick="setProto('bento-a')">Bento A: Light date block</button>
+        <button class="seg-btn" data-proto="bento-c" onclick="setProto('bento-c')">Bento C: Unified calendar and bento</button>
+        <button class="seg-btn" data-proto="compare" onclick="setProto('compare')">Side-by-side: Avoid and Favorable saait</button>
       </div>
 
       <div class="seg" role="group" aria-label="Screen">
@@ -880,7 +880,7 @@
     }
 
     // ============================================================================
-    // WORLD CLOCKS BENTO ROW (NO "CLOCKS 2/2" BUTTON — JUST THE CLEAN CLOCK CARDS)
+    // WORLD CLOCKS BENTO ROW: CLEAN CLOCK CARDS WITHOUT CLOCKS 2/2 BUTTON
     // Tapping any clock cell jumps to World Clocks if the user wants to edit
     // ============================================================================
     function buildClocksBentoRow() {
@@ -951,17 +951,17 @@
               </button>
             </div>
 
-            <!-- ROW 3: TODAY'S FESTIVAL / HOLIDAY BENTO CELL (SLIGHT ORANGISH BACKGROUND) -->
+            <!-- ROW 3: TODAY'S FESTIVAL / HOLIDAY BENTO CELL -->
             <div class="b-cell tint-fest span-12">
               <div class="b-label">
-                <span style="color:var(--fest-tint-fg)">${ne ? 'आजको चाडपर्व र बिदा' : 'TODAY’S FESTIVAL & HOLIDAY'}</span>
+                <span style="color:var(--fest-tint-fg)">${ne ? 'आजको चाडपर्व र बिदा' : 'TODAY\'S FESTIVAL AND HOLIDAY'}</span>
                 <span class="tag-sharp" style="background:var(--cell-bg);color:var(--fest-tint-fg);border-color:var(--fest-tint-border)"><i style="background:var(--dot-hol)"></i>${ne ? 'राष्ट्रिय बिदा' : 'NATIONAL HOLIDAY'}</span>
               </div>
               <div class="b-val-lg" style="margin-top:6px;color:var(--ink)">${ne ? today.evNe : today.evEn + ' · ' + today.evNe}</div>
               <div class="b-sub" style="font-size:12.5px;margin-top:3px">${ne ? today.descNe : today.descEn}</div>
             </div>
 
-            <!-- ROW 4: PANCHANG QUADRANTS (4 + 4 + 4 COLS) -->
+            <!-- ROW 4: PANCHANG QUADRANTS -->
             <div class="b-cell soft span-4">
               <div class="b-label">${ne ? 'चान्द्र मास' : 'LUNAR MONTH'}</div>
               <div class="b-val-md">${ne ? 'कार्तिक' : 'Kartik'}</div>
@@ -975,24 +975,24 @@
             </div>
 
             <div class="b-cell soft span-4">
-              <div class="b-label">${ne ? 'सूर्योदय / अस्त' : 'SUN (NPT)'}</div>
-              <div class="b-val-md">↑ ${ne ? '६:२०' : '6:20 AM'}</div>
-              <div class="b-sub">↓ ${ne ? '५:१४ बेलुका' : '5:14 PM'}</div>
+              <div class="b-label">${ne ? 'सूर्योदय / अस्त' : 'SUN, NPT'}</div>
+              <div class="b-val-md">${ne ? '६:२० बिहान' : '6:20 AM'}</div>
+              <div class="b-sub">${ne ? '५:१४ बेलुका' : '5:14 PM'}</div>
             </div>
 
-            <!-- ROW 5: SAAIT VERDICT CELL (SLIGHT RED WHEN AVOID / SLIGHT GREEN WHEN NOT AVOID) -->
+            <!-- ROW 5: SAAIT VERDICT CELL -->
             ${!isGoodSaait ? `
-              <div class="b-cell tint-saait-avoid span-12 clickable" onclick="state.previewGoodSaait=!state.previewGoodSaait;render()" title="Tap to preview Favorable (Green) Saait state" style="flex-direction:row;align-items:center;justify-content:space-between;gap:10px">
+              <div class="b-cell tint-saait-avoid span-12 clickable" onclick="state.previewGoodSaait=!state.previewGoodSaait;render()" title="Tap to preview Favorable Saait state" style="flex-direction:row;align-items:center;justify-content:space-between;gap:10px">
                 <div>
                   <div class="b-label" style="color:var(--saait-avoid-fg)">${ne ? 'शुभ साइत · विवाह, व्रतबन्ध, गृहप्रवेश' : 'SAAIT · MARRIAGE, BRATABANDHA, GRIHA'}</div>
-                  <div class="b-sub" style="color:var(--ink);font-weight:500;margin-top:3px">${ne ? 'चातुर्मास (हरिशयनीदेखि हरिबोधिनी एकादशीसम्म)' : 'Chaturmas (Harishayani to Haribodhini Ekadashi)'}</div>
+                  <div class="b-sub" style="color:var(--ink);font-weight:500;margin-top:3px">${ne ? 'चातुर्मास, हरिशयनीदेखि हरिबोधिनी एकादशीसम्म' : 'Chaturmas, Harishayani to Haribodhini Ekadashi'}</div>
                 </div>
                 <span class="tag-sharp" style="background:var(--saait-avoid-badge);color:var(--saait-avoid-fg);border-color:transparent">${ne ? 'वर्जित' : 'AVOID'}</span>
               </div>
               <div class="b-cell tint-saait-good span-12 clickable" onclick="setScreen('auspicious')" style="flex-direction:row;align-items:center;justify-content:space-between;gap:10px">
                 <div>
-                  <div class="b-label" style="color:var(--saait-good-fg)">${ne ? 'शुभ साइत · पास्नी र शुभ कार्य' : 'SAAIT · PASNI & NEW VENTURE'}</div>
-                  <div class="b-sub" style="color:var(--ink);font-weight:500;margin-top:3px">${ne ? 'प्रतिपदा तिथि · विशाखा नक्षत्र सामान्य/शुभ' : 'Pratipada tithi · Vishakha nakshatra'}</div>
+                  <div class="b-label" style="color:var(--saait-good-fg)">${ne ? 'शुभ साइत · पास्नी र शुभ कार्य' : 'SAAIT · PASNI AND NEW VENTURE'}</div>
+                  <div class="b-sub" style="color:var(--ink);font-weight:500;margin-top:3px">${ne ? 'प्रतिपदा तिथि · विशाखा नक्षत्र सामान्य वा शुभ' : 'Pratipada tithi · Vishakha nakshatra'}</div>
                 </div>
                 <span class="tag-sharp" style="background:var(--saait-good-badge);color:var(--saait-good-fg);border-color:transparent">${ne ? 'शुभ / सामान्य' : 'FAVORABLE'}</span>
               </div>
@@ -1008,10 +1008,10 @@
 
           </div>
 
-          <!-- UPCOMING EVENTS SHARP TABLE (SLIGHT ORANGISH TINT ON FESTIVALS & HOLIDAYS) -->
+          <!-- UPCOMING EVENTS SHARP TABLE -->
           <div class="b-label" style="padding:2px 2px 0">
-            <span>${ne ? 'आउँदै गरेका चाडपर्व र बिदा' : 'COMING UP · FESTIVALS & HOLIDAYS'}</span>
-            <button onclick="setScreen('festivals')" style="border:0;background:transparent;color:var(--ink);font:600 11px var(--font-ui);cursor:pointer;text-transform:uppercase;letter-spacing:0.05em">${ne ? 'सबै हेर्नुहोस् →' : 'ALL →'}</button>
+            <span>${ne ? 'आउँदै गरेका चाडपर्व र बिदा' : 'COMING UP · FESTIVALS AND HOLIDAYS'}</span>
+            <button onclick="setScreen('festivals')" style="border:0;background:transparent;color:var(--ink);font:600 11px var(--font-ui);cursor:pointer;text-transform:uppercase;letter-spacing:0.05em">${ne ? 'सबै हेर्नुहोस्' : 'VIEW ALL'}</button>
           </div>
           <div class="bento-list">
             <button class="bento-row fest-row" onclick="selectDay(26);setScreen('month')">
@@ -1033,16 +1033,16 @@
       }
 
       const title = forceGoodSaait === true
-        ? 'Inverted Date Block — Favorable Saait Day (Slight Green)'
+        ? 'Inverted date block, favorable saait day'
         : invertedHero
-          ? '★ Selected: Inverted Date Block + Semantic Bento Tints'
-          : 'Bento A: Light Date Block + Semantic Bento Tints';
-      const note = 'Warm orangish tint (#FFF7ED) on holidays & festivals · Slight red (#FEF2F2) when Saait is Avoid · Slight green (#F0FDF4) when Saait is Favorable.';
+          ? 'Selected: Inverted date block with semantic bento tints'
+          : 'Bento A: Light date block with semantic bento tints';
+      const note = 'Warm orange tint #FFF7ED on holidays and festivals · Red tint #FEF2F2 when saait is Avoid · Green tint #F0FDF4 when saait is Favorable.';
       return wrapDevice('', title, note, content);
     }
 
     // ============================================================================
-    // BENTO C: UNIFIED CALENDAR + BENTO INSPECTOR (SINGLE SCREEN)
+    // BENTO C: UNIFIED CALENDAR + BENTO INSPECTOR
     // ============================================================================
     function buildBentoCDevice() {
       const ne = state.lang === 'ne';
@@ -1061,8 +1061,8 @@
 
       return wrapDevice(
         'bento-paper',
-        'Bento C: Unified Clocks + Calendar + Bento Sheet',
-        'Warm archival paper (#F9F7F2) with the 3-column World Clock Bento row, sharp 7-column calendar grid, and docked Day Bento Sheet.',
+        'Bento C: Unified clocks, calendar, and bento sheet',
+        'Warm paper #F9F7F2 with the 3-column world clock bento row, 7-column calendar grid, and docked day bento sheet.',
         content
       );
     }
@@ -1101,7 +1101,7 @@
           <div class="bento-cal-header">
             <div class="b-cell" style="padding:9px 12px">
               <div style="font-size:19px;font-weight:700;color:var(--ink);line-height:1.15">${ne ? 'कात्तिक २०८३' : 'Kartik 2083'}</div>
-              <div style="font-size:11.5px;color:var(--muted)">${ne ? '१७ अक्टोबर – १५ नोभेम्बर २०२६' : 'Oct 17 – Nov 15, 2026'}</div>
+              <div style="font-size:11.5px;color:var(--muted)">${ne ? '१७ अक्टोबर देखि १५ नोभेम्बर २०२६' : 'Oct 17 to Nov 15, 2026'}</div>
             </div>
             <div class="bento-cal-nav">
               <button class="bento-nav-btn" onclick="selectDay(25)">${ne ? 'आज' : 'Today'}</button>
@@ -1117,7 +1117,7 @@
           </div>
         </div>
 
-        <!-- Docked Bento Day Inspector Sheet (Updates in-place on cell tap) -->
+        <!-- Docked Bento Day Inspector Sheet -->
         <div class="bento-board">
           <div class="b-cell inverted span-8">
             <div class="b-label">
@@ -1129,9 +1129,9 @@
           </div>
 
           <div class="b-cell soft span-4">
-            <div class="b-label">${ne ? 'सूर्य (NPT)' : 'SUN (NPT)'}</div>
-            <div class="b-val-md">↑ ${ne ? '६:२०' : '6:20 AM'}</div>
-            <div class="b-sub">↓ ${ne ? '५:१४' : '5:14 PM'}</div>
+            <div class="b-label">${ne ? 'सूर्य, NPT' : 'SUN, NPT'}</div>
+            <div class="b-val-md">${ne ? '६:२० बिहान' : '6:20 AM'}</div>
+            <div class="b-sub">${ne ? '५:१४ बेलुका' : '5:14 PM'}</div>
           </div>
 
           ${sel.evNe ? `
@@ -1147,7 +1147,7 @@
           <div class="b-cell ${selSaaitGood ? 'tint-saait-good' : 'tint-saait-avoid'} span-12" style="flex-direction:row;align-items:center;justify-content:space-between;gap:8px">
             <div>
               <div class="b-label" style="color:${selSaaitGood ? 'var(--saait-good-fg)' : 'var(--saait-avoid-fg)'}">${ne ? 'शुभ साइत' : 'SAAIT STATUS'}</div>
-              <div class="b-sub" style="color:var(--ink);font-weight:500;margin-top:2px">${selSaaitGood ? (ne ? 'पास्नी र शुभ कार्यका लागि अनुकूल' : 'Favorable for Pasni & New Venture') : (ne ? 'विवाह, व्रतबन्ध, गृहप्रवेश वर्जित (चातुर्मास)' : 'Marriage, Bratabandha, Griha Avoid (Chaturmas)')}</div>
+              <div class="b-sub" style="color:var(--ink);font-weight:500;margin-top:2px">${selSaaitGood ? (ne ? 'पास्नी र शुभ कार्यका लागि अनुकूल' : 'Favorable for Pasni and New Venture') : (ne ? 'विवाह, व्रतबन्ध, गृहप्रवेश वर्जित, चातुर्मास' : 'Marriage, Bratabandha, Griha Avoid, Chaturmas')}</div>
             </div>
             <span class="tag-sharp" style="background:${selSaaitGood ? 'var(--saait-good-badge)' : 'var(--saait-avoid-badge)'};color:${selSaaitGood ? 'var(--saait-good-fg)' : 'var(--saait-avoid-fg)'};border-color:transparent">${selSaaitGood ? (ne ? 'शुभ' : 'FAVORABLE') : (ne ? 'वर्जित' : 'AVOID')}</span>
           </div>
@@ -1179,7 +1179,7 @@
             <div class="b-cell soft span-12" style="flex-direction:row;align-items:center;justify-content:space-between;gap:10px">
               <div>
                 <div class="b-label"><span>NPT · UTC+05:45</span></div>
-                <div class="b-val-lg">${ne ? 'नेपाल (काठमाडौं)' : 'Nepal (Kathmandu)'}</div>
+                <div class="b-val-lg">${ne ? 'नेपाल, काठमाडौं' : 'Nepal, Kathmandu'}</div>
                 <div class="b-sub">${npt.full}</div>
               </div>
               <span class="tag-sharp" style="background:var(--saait-good-badge);color:var(--saait-good-fg);border-color:transparent">${ne ? 'आज पृष्ठमा सधैं' : 'PINNED ON TODAY'}</span>
@@ -1191,7 +1191,7 @@
                 <div class="b-label">${ne ? 'जुनसुकै सहर थप्नुहोस्' : 'ADD ANY CITY CLOCK'}</div>
                 <div style="display:grid;grid-template-columns:1fr auto;gap:8px">
                   <select id="clockPicker" style="height:36px;padding:0 10px;border-radius:0;border:1px solid var(--grid-bg);background:var(--cell-bg);color:var(--ink);font:500 13.5px var(--font-ui)">
-                    ${available.map(([z, en, neN]) => `<option value="${z}">${ne ? neN + ' (' + en + ')' : en}</option>`).join('')}
+                    ${available.map(([z, en, neN]) => `<option value="${z}">${ne ? neN + ', ' + en : en}</option>`).join('')}
                   </select>
                   <button class="btn-sharp solid" style="height:36px;padding:0 16px" onclick="addClock(document.getElementById('clockPicker').value)">
                     + ${ne ? 'थप्नुहोस्' : 'Add'}
@@ -1203,8 +1203,8 @@
             <!-- Section Divider: Top 2 Shown on Today -->
             <div class="b-cell soft span-12" style="padding:6px 12px">
               <div class="b-label" style="color:var(--ink)">
-                <span>${ne ? 'शीर्ष २ घडी — आज पृष्ठमा देखिने' : 'TOP 2 CLOCKS — SHOWN ON TODAY PAGE'}</span>
-                <span>1–2</span>
+                <span>${ne ? 'शीर्ष २ घडी, आज पृष्ठमा देखिने' : 'TOP 2 CLOCKS, SHOWN ON TODAY PAGE'}</span>
+                <span>1 to 2</span>
               </div>
             </div>
 
@@ -1214,7 +1214,7 @@
               const dividerBeforeOther = idx === 2 ? `
                 <div class="b-cell soft span-12" style="padding:6px 12px">
                   <div class="b-label">
-                    <span>${ne ? 'अन्य घडीहरू — घडी पृष्ठमा मात्र देखिने' : 'OTHER CLOCKS — SHOWN ON CLOCKS TAB ONLY'}</span>
+                    <span>${ne ? 'अन्य घडीहरू, घडी पृष्ठमा मात्र देखिने' : 'OTHER CLOCKS, SHOWN ON CLOCKS TAB ONLY'}</span>
                     <span>3+</span>
                   </div>
                 </div>
@@ -1304,7 +1304,7 @@
         <!-- Sharp Bento Date Converter -->
         <div class="bento-board">
           <div class="b-cell span-12">
-            <div class="b-label">${ne ? 'मिति रूपान्तरण (वि.सं. ⇄ ई.सं.)' : 'DATE CONVERTER (BS ⇄ AD)'}</div>
+            <div class="b-label">${ne ? 'मिति रूपान्तरण, वि.सं. र ई.सं.' : 'DATE CONVERTER, BS AND AD'}</div>
           </div>
           <div class="b-cell soft span-6">
             <div class="b-label">${ne ? 'विक्रम सम्वत्' : 'BIKRAM SAMBAT'}</div>

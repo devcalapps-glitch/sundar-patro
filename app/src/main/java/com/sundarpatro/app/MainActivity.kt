@@ -46,7 +46,9 @@ class MainActivity : AppCompatActivity() {
     private var adView: AdView? = null
     private var isAdLoaded = false
     private var isAdSlotVisible = false
-    private var adSlotTopPx = 0
+    private var adSlotTopPx = 0f
+    private var adSlotOffsetXPx = 0f
+    private var lastAdWidthDp = 0
     private val isMobileAdsInitialized = AtomicBoolean(false)
 
     /** Set when the user was sent to system settings to allow notifications; checked on return. */
@@ -117,10 +119,11 @@ class MainActivity : AppCompatActivity() {
             }
         }
         @JavascriptInterface fun stopSpeak() = runOnUiThread { tts?.stop() }
-        @JavascriptInterface fun syncAdSlot(visible: Boolean, topCssPx: Int) = runOnUiThread {
+        @JavascriptInterface fun syncAdSlot(visible: Boolean, topCssPx: Int, offsetXCssPx: Int) = runOnUiThread {
             isAdSlotVisible = visible
             val density = resources.displayMetrics.density
-            adSlotTopPx = (topCssPx * density).toInt()
+            adSlotTopPx = topCssPx * density
+            adSlotOffsetXPx = offsetXCssPx * density
             updateAdVisibility()
         }
         @JavascriptInterface fun setThemeMode(dark: Boolean) = runOnUiThread {
@@ -129,7 +132,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun applySystemBarTheme(isDark: Boolean) {
-        val bg = if (isDark) Color.parseColor("#121212") else Color.WHITE
+        val bg = if (isDark) Color.parseColor("#111110") else Color.WHITE
         findViewById<android.view.View>(R.id.rootContainer)?.setBackgroundColor(bg)
         if (::webView.isInitialized) webView.setBackgroundColor(bg)
         val windowInsetsController = WindowInsetsControllerCompat(window, window.decorView)
@@ -140,11 +143,31 @@ class MainActivity : AppCompatActivity() {
     private fun updateAdVisibility() {
         val adContainer = findViewById<android.widget.FrameLayout>(R.id.adContainer) ?: return
         if (isAdLoaded && isAdSlotVisible) {
-            adContainer.translationY = adSlotTopPx.toFloat()
+            adContainer.translationX = adSlotOffsetXPx
+            adContainer.translationY = adSlotTopPx
             adContainer.visibility = android.view.View.VISIBLE
         } else {
             adContainer.visibility = android.view.View.GONE
         }
+    }
+
+    private fun currentWindowWidthDp(): Int {
+        val displayMetrics = resources.displayMetrics
+        val adWidthPixels = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            val windowMetrics = windowManager.currentWindowMetrics
+            val insets = windowMetrics.windowInsets.getInsetsIgnoringVisibility(
+                android.view.WindowInsets.Type.systemBars() or android.view.WindowInsets.Type.displayCutout()
+            )
+            windowMetrics.bounds.width() - insets.left - insets.right
+        } else {
+            @Suppress("DEPRECATION")
+            displayMetrics.widthPixels
+        }
+        val density = displayMetrics.density
+        var widthDp = (adWidthPixels / density).toInt()
+        if (widthDp <= 0) widthDp = (displayMetrics.widthPixels / density).toInt()
+        if (widthDp <= 0) widthDp = 320
+        return widthDp
     }
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -164,12 +187,16 @@ class MainActivity : AppCompatActivity() {
         val rootContainer = findViewById<android.view.View>(R.id.rootContainer)
         webView = findViewById(R.id.webView)
 
-        // 3. Handle System Bar Insets (Status bar & Navigation bar)
+        // 3. Handle System Bar & Display Cutout Insets (all 4 edges for tablets, foldables & landscape)
         ViewCompat.setOnApplyWindowInsetsListener(rootContainer) { _, insets ->
-            val statusBars = insets.getInsets(WindowInsetsCompat.Type.statusBars())
-            val navBars = insets.getInsets(WindowInsetsCompat.Type.navigationBars())
-            rootContainer.setPadding(0, statusBars.top, 0, navBars.bottom)
-            insets
+            val bars = insets.getInsets(
+                WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.displayCutout()
+            )
+            rootContainer.setPadding(bars.left, bars.top, bars.right, bars.bottom)
+            WindowInsetsCompat.Builder(insets)
+                .setInsets(WindowInsetsCompat.Type.systemBars(), androidx.core.graphics.Insets.NONE)
+                .setInsets(WindowInsetsCompat.Type.displayCutout(), androidx.core.graphics.Insets.NONE)
+                .build()
         }
 
         // Default to Light Mode system bars (overriding phone's dark mode setting)
@@ -318,24 +345,34 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getAdSize(): AdSize {
-        val displayMetrics = resources.displayMetrics
-        val adWidthPixels = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            val windowMetrics = windowManager.currentWindowMetrics
-            val insets = windowMetrics.windowInsets.getInsetsIgnoringVisibility(
-                android.view.WindowInsets.Type.systemBars()
-            )
-            windowMetrics.bounds.width() - insets.left - insets.right
-        } else {
-            @Suppress("DEPRECATION")
-            displayMetrics.widthPixels
-        }
-        val density = displayMetrics.density
-        var adWidth = (adWidthPixels / density).toInt()
-        if (adWidth <= 0) {
-            adWidth = (displayMetrics.widthPixels / density).toInt()
-        }
-        if (adWidth <= 0) adWidth = 320
+        val widthDp = currentWindowWidthDp()
+        // Account for 92dp left rail on wide tablets and cap at 728dp leaderboard width
+        val availableDp = if (widthDp >= 960) widthDp - 124 else widthDp - 28
+        val adWidth = minOf(maxOf(availableDp, 320), 728)
+        lastAdWidthDp = adWidth
         return AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(this, adWidth)
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        isAdSlotVisible = false
+        updateAdVisibility()
+        if (isMobileAdsInitialized.get()) {
+            val widthDp = currentWindowWidthDp()
+            val availableDp = if (widthDp >= 960) widthDp - 124 else widthDp - 28
+            val newAdWidth = minOf(maxOf(availableDp, 320), 728)
+            if (kotlin.math.abs(newAdWidth - lastAdWidthDp) >= 24) {
+                adView?.destroy()
+                adView = null
+                isAdLoaded = false
+                loadAdaptiveBanner()
+            }
+        }
+        if (::webView.isInitialized) {
+            webView.postDelayed({
+                webView.evaluateJavascript("window._checkBottomAd&&window._checkBottomAd()", null)
+            }, 220)
+        }
     }
 
     private fun loadAdaptiveBanner() {
@@ -372,7 +409,12 @@ class MainActivity : AppCompatActivity() {
         }
         adView = ad
         adContainer.removeAllViews()
-        adContainer.addView(ad)
+        val lp = android.widget.FrameLayout.LayoutParams(
+            android.widget.FrameLayout.LayoutParams.WRAP_CONTENT,
+            android.widget.FrameLayout.LayoutParams.WRAP_CONTENT,
+            android.view.Gravity.CENTER_HORIZONTAL
+        )
+        adContainer.addView(ad, lp)
         ad.loadAd(AdRequest.Builder().build())
     }
 

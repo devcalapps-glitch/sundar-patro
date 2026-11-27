@@ -1,40 +1,40 @@
-# Google Play Store Release Checklist — Sundar Patro
+# Google Play Store release checklist for Sundar Patro
 
-Record of the first Play Store submission of **Sundar Patro** (`com.sundarpatro.app`).
-**Status (2026-11-10): version 1.1.0 (versionCode 2) submitted to Production, in Google review.**
-Upcoming work lives in [NEXT_STEPS.md](NEXT_STEPS.md).
+Record of the first Play Store submission of Sundar Patro, `com.sundarpatro.app`.
+**Status on 2026-11-10.** Version 1.1.0, `versionCode 2`, is submitted to Production and in Google review.
+Upcoming work is in [NEXT_STEPS.md](NEXT_STEPS.md).
 
 ---
 
-## 1. Release Binary & Code Readiness
+## 1. Release binary and code readiness
 
-- [x] **Target SDK 36 (Android 16)**, minSdk 24.
-- [x] **Minimal Permissions:** no INTERNET permission. Only `POST_NOTIFICATIONS` (asked when the user turns on Holiday reminders) and `RECEIVE_BOOT_COMPLETED` (re-arms reminders after restart). No advertising ID.
-- [x] **Version:** `versionCode = 2`, `versionName = "1.1.0"` in `app/build.gradle.kts`.
-- [x] **R8 / resource shrinking** enabled for `release`.
-- [x] **Release keystore:** `sundarpatro-release.jks` (alias `sundarpatro`, git-ignored; keep a backup off this machine).
-- [x] **Signed App Bundle:** `app/release/app-release.aab` (1.1.0, built 2026-11-10 21:28).
+- [x] **Target SDK 36 for Android 16**, `minSdk 24`.
+- [x] **Minimal permissions.** No `INTERNET` permission in 1.1.0. Uses only `POST_NOTIFICATIONS`, requested when the user turns on Holiday reminders, and `RECEIVE_BOOT_COMPLETED`, which re-arms reminders after a restart. No advertising ID.
+- [x] **Version.** `versionCode = 2` and `versionName = "1.1.0"` in `app/build.gradle.kts`.
+- [x] **R8 and resource shrinking.** Enabled for the `release` build.
+- [x] **Release keystore.** `sundarpatro-release.jks` with alias `sundarpatro`, ignored by git. Keep a backup off this machine.
+- [x] **Signed App Bundle.** `app/release/app-release.aab`, version 1.1.0, built on 2026-11-10 at 21:28.
 
-## 2. Store Graphic Assets
+## 2. Store graphic assets
 
-- [x] **App icon 512 × 512:** `store-assets/play-icon-512.png`
-- [x] **Feature graphic 1024 × 500:** `store-assets/feature-graphic-1024x500.png` (refreshed 2026-11-10)
-- [x] **Phone screenshots (4):** `store-assets/phone-screenshots/` (Today and Month, light and dark)
+- [x] **App icon, 512 × 512.** `store-assets/play-icon-512.png`.
+- [x] **Feature graphic, 1024 × 500.** `store-assets/feature-graphic-1024x500.png`, updated on 2026-11-10.
+- [x] **Phone screenshots.** Four screenshots in `store-assets/phone-screenshots/` covering Today and Month views in light and dark themes.
 
-## 3. Privacy Policy & Hosting
+## 3. Privacy policy and hosting
 
-- [x] **Privacy policy:** `https://devcalapps-glitch.github.io/sundar-patro/privacy/` (covers the optional notification reminders)
-- [x] **Support page:** `https://devcalapps-glitch.github.io/sundar-patro/support/`
+- [x] **Privacy policy.** `https://devcalapps-glitch.github.io/sundar-patro/privacy/`, which covers the optional notification reminders.
+- [x] **Support page.** `https://devcalapps-glitch.github.io/sundar-patro/support/`.
 
-## 4. Google Play Console Declarations
+## 4. Google Play Console declarations
 
-- [x] **App created:** name `Sundar Patro`, package `com.sundarpatro.app`, App, Free, default language en-US.
-- [x] **Store listing:** short and full descriptions (states "No ads, no tracking, no data collected"), icon, feature graphic, screenshots.
-- [x] **App content:** privacy policy URL, Ads = **No**, Advertising ID = **No**, App access = all features without sign-in, Data safety = no data collected or shared, content rating, target audience, government / financial features = No.
+- [x] **App record.** Name `Sundar Patro`, package `com.sundarpatro.app`, App, Free, default language `en-US`.
+- [x] **Store listing.** Short and full descriptions, icon, feature graphic, and screenshots.
+- [x] **App content.** Privacy policy URL, Ads set to No, Advertising ID set to No, App access set to all features without sign-in, Data safety set to no data collected or shared, content rating, target audience, and government and financial features set to No.
 
 ## 5. Release
 
-- [x] **Account type:** organization account, so no closed-testing requirement.
-- [x] **Internal testing:** release 2 (1.1.0) uploaded (no testers added; not needed).
-- [x] **Production:** release 2 (1.1.0) added from library, full rollout, 178 countries / regions including Nepal plus rest of world.
-- [x] **Submitted for review** 2026-11-10; quick checks passed. Managed publishing is off, so it publishes automatically on approval.
+- [x] **Account type.** Organization account, which has no closed-testing requirement.
+- [x] **Internal testing.** Release 2, version 1.1.0, uploaded with no testers required.
+- [x] **Production.** Release 2, version 1.1.0, added from library for a full rollout across 178 countries and regions including Nepal.
+- [x] **Submitted for review.** Submitted on 2026-11-10 and passed initial checks. Managed publishing is off, so the app publishes automatically on approval.

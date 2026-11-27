@@ -1,564 +1,556 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box}html{scroll-padding-top:0}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
-<title>Sundar Patro</title>
-<meta name="claude:viewport-fit-sides" content="cover">
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+<meta charset="utf-8">
+<meta name="color-scheme" content="light">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>सुन्दर पात्रो</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700&display=swap">
-</head><body>
 <style>
-/* Layout: white canvas, 7/5 split (grid left, day card right) on desktop, stacked on phones; light footer closes the page. Tokens follow the Cal.com system. */
 :root{
-  --canvas:#ffffff; --surface-soft:#f8f8f6; --surface-card:#f5f5f3; --surface-strong:#e2e2de;
-  --hairline:#e2e2de; --hairline-soft:#ecece8;
-  --ink:#111111; --body:#18181b; --muted:#52525b; --muted-soft:#71717a;
-  --primary:#111111; --primary-active:#242424; --on-primary:#ffffff;
-  --accent:#111111; --success:#10b981; --warning:#f59e0b; --error:#ef4444;
-  --orange:#d97706; --pink:#ec4899; --violet:#8b5cf6; --emerald:#059669;
-  --holiday-bg:#fff7ed; --holiday-fg:#9a3412; --fest-bg:#fff7ed; --fest-fg:#9a3412; --sat-fg:#c81e1e;
-  --fest-tint-bg:#fff7ed; --fest-tint-fg:#9a3412; --fest-tint-border:#fed7aa;
-  --saait-good-bg:#f0fdf4; --saait-good-fg:#166534; --saait-good-badge:#dcfce7;
-  --saait-avoid-bg:#fef2f2; --saait-avoid-fg:#991b1b; --saait-avoid-badge:#fee2e2;
-  --shadow-sm:none; --shadow-md:none; color-scheme:light;
-  --tag-fav:#166534; --tag-neu:#166534; --tag-avoid:#991b1b; --tab-active:#111111; --switch-off:#cfd3d9; --switch-on:#111111;
-  --font-ui:"Mukta",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
-  --font-ne:"Mukta","Noto Sans Devanagari",sans-serif;
+  --bg:#ffffff;--paper:#ffffff;--under:#f2f2f0;--ink:#111111;--mut:#52525b;
+  --line:#111111;--line-soft:#d4d4d0;
+  --bar-bg:#f4f4f2;--bar-fg:#111111;--bar-mut:#52525b;
+  --btn-bg:#c82319;--btn-fg:#ffffff;
+  --saait-good-bg:#f0fdf4;--saait-avoid-bg:#fef2f2;
+  --tz0-bg:#fef2f2;--tz0-bd:#c82319;
+  --tz1-bg:#eff6ff;--tz1-bd:#2563eb;
+  --tz2-bg:#ecfdf5;--tz2-bd:#059669;
+  --tz3-bg:#f5f3ff;--tz3-bd:#7c3aed;
+  --tz4-bg:#fff7ed;--tz4-bd:#ea580c;
+  --tz5-bg:#ecfeff;--tz5-bd:#0891b2;
+  --red:#c82319;--on-red:#ffffff;--stamp-red:#b91c1c;--jade:#156b40;--plum:#7c2a6a;
+  --orange:#d97706;--violet:#7c3aed;--emerald:#059669;--pink:#db2777;--holiday-fg:#b91c1c;--fest-cell-bg:#fff7ed;
+  color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);
 }
-
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-button,.tab,.tb,.cell,.row{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
-body.lang-ne{font-family:var(--font-ne)}
-body.lang-ne .btn,body.lang-ne .tab,body.lang-ne .tb,body.lang-ne select,body.lang-ne input{font-family:var(--font-ne)}
-body{margin:0;background:var(--canvas);color:var(--body);font-family:var(--font-ui);font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased;font-weight:500}
-.ne{font-family:var(--font-ne)}
-h1,h2,h3{color:var(--ink);font-weight:600;margin:0;text-wrap:balance}
-.display-lg{font-size:clamp(26px,4.5vw,42px);line-height:1.15;letter-spacing:-.02em}
-.display-md{font-size:clamp(22px,3.8vw,34px);line-height:1.2;letter-spacing:-.015em}
-.display-sm{font-size:26px;line-height:1.25;letter-spacing:-.01em}
-.title-md{font-size:18px;font-weight:600;color:var(--ink);line-height:1.35}
-.title-sm{font-size:16px;font-weight:600;color:var(--ink)}
-.caption{font-size:14px;font-weight:500;line-height:1.4;color:var(--muted)}
-.muted{color:var(--muted)}
-.wrap{max-width:1200px;margin:0 auto;padding-left:max(14px,env(safe-area-inset-left,0px));padding-right:max(14px,env(safe-area-inset-right,0px))}
-
-/* top nav — sharp architectural bar */
-body::before{display:none}
-.topnav{position:sticky;top:0;z-index:9;background:var(--canvas);border-bottom:1px solid var(--hairline)}
-.topnav .wrap{height:48px;display:flex;align-items:center;justify-content:space-between;gap:12px}
-.lang{padding:5px 10px;min-width:34px;font-size:12.5px;line-height:1.2;text-align:center}
-
-.wordmark{display:flex;align-items:center;gap:9px;color:var(--ink);font-weight:600;font-size:16.5px;letter-spacing:-.02em;white-space:nowrap}
-.wordmark .brand-icon{width:20px;height:20px;display:block;flex-shrink:0;color:var(--ink)}
-.pillgroup{display:inline-flex;gap:1px;background:var(--hairline);border:1px solid var(--hairline);border-radius:0;padding:0;overflow-x:auto;max-width:100%;scrollbar-width:none}
-.pillgroup::-webkit-scrollbar{display:none}
-.tab{appearance:none;border:0;background:var(--surface-soft);color:var(--muted);font:600 13px/1.3 var(--font-ui);padding:6px 12px;border-radius:0;cursor:pointer;white-space:nowrap}
-.tab[aria-current="page"],.tab[aria-pressed="true"]{background:var(--ink);color:var(--on-primary)}
-.sr{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-.tab:focus-visible,.btn:focus-visible,.cell:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--ink);outline-offset:-2px}
-
-/* buttons & inputs — sharp 0px corners */
-.btn{appearance:none;border:1px solid var(--hairline);border-radius:0;height:38px;padding:0 16px;font:600 14.5px/1 var(--font-ui);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px;white-space:nowrap;background:var(--canvas);color:var(--ink)}
-.btn-primary{background:var(--primary);color:var(--on-primary);border-color:var(--primary)}
-.btn-primary:active{background:var(--primary-active)}
-.btn-secondary{background:var(--canvas);color:var(--ink);border-color:var(--hairline)}
-.btn-secondary:hover,.btn-icon:hover{background:var(--surface-soft)}
-.btn-icon{width:36px;height:36px;padding:0;border-radius:0;display:inline-grid;place-items:center;background:var(--canvas);color:var(--ink);border:1px solid var(--hairline);font-size:18px;cursor:pointer}
-select,input[type="number"],input[type="date"]{appearance:none;-webkit-appearance:none;background:var(--canvas);color:var(--ink);border:1px solid var(--hairline);border-radius:0;height:38px;padding:0 12px;font:500 15px var(--font-ui);width:100%;min-width:0}
-select{background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),linear-gradient(135deg,var(--muted) 50%,transparent 50%);background-position:calc(100% - 16px) 16px,calc(100% - 11px) 16px;background-size:5px 5px;background-repeat:no-repeat;padding-right:32px}
-label.f{display:grid;gap:5px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);min-width:0}
-
-/* sections */
-main{padding-block:20px 64px}
-.view{display:grid;gap:16px}
-.head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px}
-.head .sub{color:var(--muted);font-size:13.5px;margin-top:2px}
-.navrow{display:inline-flex;align-items:center;gap:1px;background:var(--hairline);border:1px solid var(--hairline)}
-.navrow .btn-icon,.navrow .btn-today{border:0}
-.btn-today{appearance:none;height:36px;padding:0 12px;background:var(--canvas);color:var(--ink);font:600 13px/1 var(--font-ui);cursor:pointer}
-.btn-today:hover{background:var(--surface-soft)}
-.nav-ring{font-weight:700}
-.t-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
-
-.split{display:grid;gap:16px;grid-template-columns:1fr}
-@media(min-width:1024px){.split{grid-template-columns:7fr 5fr;align-items:start}.split.solo{grid-template-columns:1fr}}
-#daycard{scroll-margin-top:62px}
-
-/* ============ SHARP ARCHITECTURAL BENTO SYSTEM (0px CORNERS, 1px EXPOSED GRID SEAMS) ============ */
-.bento-board{display:grid;grid-template-columns:repeat(12,1fr);gap:1px;background:var(--hairline);border:1px solid var(--hairline);min-width:0}
-.b-cell{background:var(--canvas);padding:14px 15px;display:flex;flex-direction:column;justify-content:space-between;min-width:0;position:relative;text-align:left;color:var(--body);font-family:var(--font-ui)}
-.b-cell.soft{background:var(--surface-soft)}
-.b-cell.inverted{background:var(--primary);color:var(--on-primary)}
-.b-cell.tint-fest{background:var(--fest-tint-bg)}
-.b-cell.tint-saait-good{background:var(--saait-good-bg)}
-.b-cell.tint-saait-avoid{background:var(--saait-avoid-bg)}
-.b-cell.clickable{cursor:pointer}
-.b-cell.clickable:hover{background:var(--surface-soft)}
-.b-cell.tint-saait-good.clickable:hover{filter:brightness(.98)}
-.b-cell.tint-saait-avoid.clickable:hover{filter:brightness(.98)}
-.span-12{grid-column:span 12}
-.span-8{grid-column:span 8}
-.span-7{grid-column:span 7}
-.span-6{grid-column:span 6}
-.span-5{grid-column:span 5}
-.span-4{grid-column:span 4}
-.span-3{grid-column:span 3}
-@media(max-width:420px){
-  .span-7{grid-column:span 7}
-  .span-5{grid-column:span 5}
-}
-.b-label{font-size:14.5px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;color:var(--muted);line-height:1.25;display:flex;align-items:center;justify-content:space-between;gap:6px}
-.b-cell.inverted .b-label{color:rgba(255,255,255,.82)}
-:root[data-theme="dark"] .b-cell.inverted .b-label{color:rgba(0,0,0,.78)}
-.b-hero-num{font-family:var(--font-ne);font-size:66px;font-weight:700;line-height:.92;letter-spacing:-.04em;color:var(--ink);font-variant-numeric:tabular-nums;margin:6px 0 4px}
-.b-cell.inverted .b-hero-num,.b-cell.inverted .b-val-lg,.b-cell.inverted .b-sub{color:var(--on-primary)}
-.b-val-lg{font-size:21px;font-weight:600;color:var(--ink);line-height:1.25;margin-top:4px;font-variant-numeric:tabular-nums}
-.b-val-md{font-size:19px;font-weight:600;color:var(--ink);line-height:1.25;margin-top:4px;font-variant-numeric:tabular-nums}
-.b-sub{font-size:16.5px;color:var(--muted);line-height:1.38;margin-top:3px;font-variant-numeric:tabular-nums}
-.b-clock-time{font-size:20px;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums;line-height:1.2;margin-top:4px;white-space:nowrap}
-
-.tag-sharp{display:inline-flex;align-items:center;gap:5px;font-size:13.5px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;padding:4px 10px;border:1px solid var(--hairline);background:var(--surface-soft);color:var(--ink);white-space:nowrap;border-radius:0}
-.tag-sharp i{width:6px;height:6px;display:inline-block}
-.tag-sharp.fest{background:var(--canvas);color:var(--fest-tint-fg);border-color:var(--fest-tint-border)}
-.tag-sharp.good{background:var(--saait-good-badge);color:var(--saait-good-fg);border-color:transparent}
-.tag-sharp.avoid{background:var(--saait-avoid-badge);color:var(--saait-avoid-fg);border-color:transparent}
-
-.btn-listen{appearance:none;border:1px solid var(--hairline);background:var(--canvas);color:var(--ink);font:600 16px/1 var(--font-ui);height:40px;padding:0 12px;display:inline-flex;align-items:center;justify-content:center;gap:6px;cursor:pointer;border-radius:0;width:100%;margin-top:10px}
-.btn-listen:hover{background:var(--surface-soft)}
-.btn-listen.playing{background:var(--primary);color:var(--on-primary);border-color:var(--primary)}
-.btn-listen svg{width:14px;height:14px;fill:currentColor}
-
-/* World Clocks list & reorder buttons */
-.w-ctrl{display:inline-flex;align-items:center;gap:6px;flex-shrink:0}
-.btn-sq{appearance:none;width:36px;height:36px;padding:0;border:1px solid var(--hairline);background:var(--canvas);color:var(--ink);font:600 16px/1 var(--font-ui);display:inline-grid;place-items:center;cursor:pointer;border-radius:0}
-.btn-sq:hover:not(:disabled){background:var(--surface-soft)}
-.btn-sq:disabled{opacity:.35;cursor:default}
-.btn-sq.rm{color:var(--saait-avoid-fg)}
-.form.wform{grid-template-columns:1fr auto;align-items:end}
-
-/* sharp calendar grid */
-.cal{background:var(--hairline);border:1px solid var(--hairline);border-radius:0;overflow:hidden;min-width:0}
-.dow{display:grid;grid-template-columns:repeat(7,1fr);gap:1px;background:var(--hairline);border-bottom:1px solid var(--hairline)}
-.dow div{background:var(--surface-soft);padding:10px 2px;text-align:center;font-size:14px;font-weight:600;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
-.dow div.sat{color:var(--sat-fg)}
-.grid{display:grid;grid-template-columns:repeat(7,1fr);gap:1px;background:var(--hairline)}
-.cell{appearance:none;border:0;background:var(--canvas);min-height:74px;padding:5px 5px 4px;display:flex;flex-direction:column;justify-content:space-between;cursor:pointer;color:var(--body);font-family:var(--font-ui);text-align:left;min-width:0;position:relative;border-radius:0}
-.cell.blank{background:var(--surface-soft);cursor:default}
-.cell.holiday,.cell.fest-cell{background:var(--fest-tint-bg)}
-.cell-top{display:flex;align-items:baseline;justify-content:space-between;width:100%}
-.cell .bs{font-family:var(--font-ne);font-size:23px;font-weight:600;color:var(--ink);line-height:1;font-variant-numeric:tabular-nums}
-.cell.sat .bs{color:var(--sat-fg)}
-.cell.holiday:not(.sat) .bs,.cell.fest-cell:not(.sat) .bs{color:var(--fest-tint-fg)}
-.cell .ad{font-size:13px;font-weight:500;color:var(--muted-soft);font-variant-numeric:tabular-nums}
-.cell .ti{font-size:13px;font-weight:500;color:var(--muted);font-family:var(--font-ne);line-height:1.2;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.cell .ev{font-size:12.5px;line-height:1.2;color:var(--ink);font-weight:600;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.cell.today{background:var(--primary);color:var(--on-primary)}
-.cell.today .bs,.cell.today .ad,.cell.today .ti,.cell.today .ev{color:var(--on-primary)}
-.cell[aria-pressed="true"]{box-shadow:inset 0 0 0 2.5px var(--ink);z-index:1}
-.cell.today[aria-pressed="true"]{box-shadow:inset 0 0 0 2.5px var(--warning)}
-.cell .dots{display:flex;gap:3px;position:absolute;bottom:5px;right:5px}
-.cell .dots i{width:5px;height:5px;border-radius:0;display:block}
-@media(max-width:480px){.cell{min-height:66px;padding:4px 4px 3px}.cell .bs{font-size:21.5px}.cell .ev{display:none}body:not(.lang-ne) .cell .ti{font-size:12.5px;letter-spacing:-.01em}}
-
-/* cards */
-.card{background:var(--surface-soft);border:1px solid var(--hairline);border-radius:0;padding:18px;min-width:0}
-.card-white{background:var(--canvas);border:1px solid var(--hairline);border-radius:0;padding:18px;min-width:0}
-.daycard{padding:0;border:0;background:transparent}
-/* Single unified card for selected date on Calendar page (distinct from Today Bento Grid) */
-.cal-single-card{background:var(--canvas);border:1px solid var(--hairline);border-top:3px solid var(--ink);padding:18px;display:flex;flex-direction:column;gap:14px}
-.csc-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;border-bottom:1px solid var(--hairline-soft);padding-bottom:12px}
-.csc-date{font-family:var(--font-ne);font-size:26px;font-weight:700;color:var(--ink);line-height:1.15}
-.csc-dow{font-size:17px;font-weight:600;color:var(--muted);margin-top:2px}
-.csc-ad{font-size:17px;font-weight:600;color:var(--muted);font-variant-numeric:tabular-nums;text-align:right}
-.csc-kv{display:grid;grid-template-columns:120px 1fr;gap:8px 14px;font-size:17.5px;margin:0}
-.csc-kv dt{color:var(--muted);font-weight:500}
-.csc-kv dd{margin:0;color:var(--ink);font-weight:600}
-.csc-ev{background:var(--fest-tint-bg);border:1px solid var(--fest-tint-border);padding:13px 14px;display:flex;flex-direction:column;gap:4px}
-.csc-ev-top{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
-.csc-ev-title{font-size:18.5px;font-weight:700;color:var(--ink);line-height:1.25}
-.csc-ev-desc{font-size:16px;color:var(--muted);line-height:1.38}
-.csc-saait{padding:12px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px;cursor:pointer}
-.csc-saait.good{background:var(--saait-good-bg)}
-.csc-saait.avoid{background:var(--saait-avoid-bg)}
-.csc-saait-text{font-size:16.5px;color:var(--ink);font-weight:600;line-height:1.3}
-.csc-saait-sub{font-size:15px;color:var(--muted);font-weight:500;margin-top:2px}
-.pill{display:inline-flex;align-items:center;gap:5px;border-radius:0;padding:4px 10px;font-size:13.5px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;background:var(--surface-soft);border:1px solid var(--hairline);color:var(--ink);white-space:nowrap}
-.pill i{width:6px;height:6px;border-radius:0;display:inline-block}
-.pill.hol{background:var(--canvas);color:var(--fest-tint-fg);border-color:var(--fest-tint-border)}
-.pills{display:flex;flex-wrap:wrap;gap:6px}
-.vtag{font-size:13.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:4px 10px;border-radius:0;white-space:nowrap}
-.v-fav{background:var(--saait-good-badge);color:var(--saait-good-fg)}
-.v-neu{background:var(--saait-good-badge);color:var(--saait-good-fg)}
-.v-avoid{background:var(--saait-avoid-badge);color:var(--saait-avoid-fg)}
-.v-reasons{color:var(--muted)}
-
-/* sharp bento lists */
-.list{display:grid;gap:1px;background:var(--hairline);border:1px solid var(--hairline)}
-.list:empty{display:none}
-.row{display:grid;grid-template-columns:104px 1fr;gap:8px 14px;align-items:start;padding:14px 15px;background:var(--canvas);border:0;border-radius:0;cursor:pointer;text-align:left;font-family:var(--font-ui);color:var(--body);min-width:0}
-.row:hover{background:var(--surface-soft)}
-.row.hol,.row.fest-row{background:var(--fest-tint-bg)}
-.row.saait-good{background:var(--saait-good-bg)}
-.row .dt{font-family:var(--font-ne);font-weight:600;color:var(--ink);font-size:19px;line-height:1.2;font-variant-numeric:tabular-nums;white-space:nowrap;border-right:1px solid var(--hairline);padding-right:12px;align-self:stretch;display:flex;flex-direction:column;justify-content:center}
-.row .dt small{display:block;font-family:var(--font-ui);font-weight:500;color:var(--muted);font-size:15px;margin-top:2px}
-.row .nm{color:var(--ink);font-weight:600;font-size:19px;min-width:0;line-height:1.28}
-.row .nm small{display:block;font-weight:500;color:var(--muted);font-size:16px;margin-top:3px}
-.row .tg{grid-column:2;display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-start;margin-top:2px}
-.row .tg:empty{display:none}
-.back{justify-self:start;width:max-content}
-#view-festivals{--kind-fg:var(--fest-tint-fg);--kind-bg:var(--fest-tint-bg)}
-#view-holidays{--kind-fg:var(--fest-tint-fg);--kind-bg:var(--fest-tint-bg)}
-.kindhead{display:flex;gap:12px;align-items:flex-start}
-.kindicon{flex:none;width:44px;height:44px;border-radius:0;border:1px solid var(--fest-tint-border);background:var(--kind-bg);color:var(--kind-fg);display:grid;place-items:center;margin-top:2px}
-.kindicon svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
-.kindhead h1{color:var(--ink)}
-.kmonth{font-size:21px;font-weight:600;color:var(--ink);margin-top:2px}
-.ksum{margin:0;padding:12px 15px;border-radius:0;border:1px solid var(--fest-tint-border);background:var(--kind-bg);color:var(--kind-fg);font-weight:600;font-size:16.5px}
-.ksum:empty{display:none}
-.hrow{background:var(--fest-tint-bg)}
-.hrow .dt{font-size:20px}
-.hrow .dt small{font-size:15px}
-.hrow .pill{background:var(--canvas)}
-.hrow .wd{display:block;font-family:var(--font-ui);font-size:15px;font-weight:700;color:var(--fest-tint-fg)}
-.monthhead{background:var(--surface-soft);padding:9px 14px;font-size:15px;font-weight:600;color:var(--muted);letter-spacing:.05em;text-transform:uppercase;margin:0}
-@media(max-width:480px){.row{grid-template-columns:94px 1fr;gap:6px 12px;padding:13px 13px}}
-
-.form{display:grid;gap:10px;grid-template-columns:1fr 1fr 1fr}
-@media(max-width:600px){.form{grid-template-columns:1fr 1fr}.form .span2{grid-column:1/-1}}
-.result{margin-top:12px;padding:14px;background:var(--canvas);border:1px solid var(--hairline);border-radius:0}
-.result .r{font-family:var(--font-ne);font-size:clamp(20px,3.8vw,28px);font-weight:600;color:var(--ink);letter-spacing:-.01em;line-height:1.25}
-.result .s{color:var(--muted);font-size:14px;margin-top:4px}
-.note{font-size:13.5px;color:var(--muted);line-height:1.5}
-.legend{display:flex;flex-wrap:wrap;gap:12px;font-size:12px;color:var(--muted)}
-.legend span{display:inline-flex;align-items:center;gap:6px}
-.legend i{width:7px;height:7px;border-radius:0;display:inline-block}
-.two{display:grid;gap:16px;grid-template-columns:1fr}
-@media(min-width:768px){.two{grid-template-columns:1fr 1fr}}
-
-.tabbar{display:none}
-@media(max-width:767px){
-  .pillgroup.views{display:none}
-  .topnav .wrap{height:46px;padding-block:0;flex-wrap:nowrap}
-  .tabbar{position:fixed;left:0;right:0;bottom:0;z-index:9;display:grid;grid-template-columns:repeat(5,1fr);background:var(--canvas);border-top:1px solid var(--hairline);padding-bottom:env(safe-area-inset-bottom,0px)}
-  .tb{appearance:none;border:0;border-right:1px solid var(--hairline-soft);background:transparent;color:var(--muted);font:600 11.5px/1.15 var(--font-ui);padding:8px 2px 10px;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;position:relative;min-width:0}
-  .tb:last-child{border-right:0}
-  .tb svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
-  .tb[aria-current="page"]{color:var(--ink);background:var(--surface-soft)}
-  .tb[aria-current="page"]::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:var(--ink)}
-  .tb:focus-visible{outline:2px solid var(--ink);outline-offset:-2px}
-  main{padding-top:12px;padding-bottom:32px}
-  .view:not(#view-today){padding-top:4px}
-  footer{padding-bottom:calc(48px + 60px + env(safe-area-inset-bottom,0px))}
-}
-footer{background:var(--surface-soft);border-top:1px solid var(--hairline);color:var(--body);font-size:15px;padding-top:36px;padding-bottom:36px;margin-top:40px}
-footer .wrap{display:grid;gap:8px}
-footer .mark{color:var(--ink);font-weight:600;font-size:17px;letter-spacing:-.02em;margin-bottom:4px;display:flex;gap:8px;align-items:center}
-@media(max-width:767px){
-  footer{background:transparent;border-top:0;margin-top:0;padding-top:8px;padding-bottom:calc(16px + 60px + env(safe-area-inset-bottom,0px))}
-  footer .mark{display:none}
-  footer p{font-size:12.5px;color:var(--muted);text-align:center;line-height:1.5}
-}
-
-/* dark theme: opt-in from More > Dark mode. Light is the default. */
 :root[data-theme="dark"]{
-  --canvas:#121212; --surface-soft:#1a1a18; --surface-card:#1e1e1c; --surface-strong:#2c2c29;
-  --hairline:#2a2a28; --hairline-soft:#222220;
-  --ink:#f5f5f3; --body:#e4e4e0; --muted:#a1a19a; --muted-soft:#71716a;
-  --primary:#f5f5f3; --primary-active:#e4e3de; --on-primary:#121212;
-  --accent:#f5f5f3; --holiday-bg:#231a12; --holiday-fg:#fdba74; --fest-bg:#231a12; --fest-fg:#fdba74; --sat-fg:#f87171;
-  --fest-tint-bg:#231a12; --fest-tint-fg:#fdba74; --fest-tint-border:#432c18;
-  --saait-good-bg:#112218; --saait-good-fg:#86efac; --saait-good-badge:#163322;
-  --saait-avoid-bg:#251416; --saait-avoid-fg:#fca5a5; --saait-avoid-badge:#3b191d;
-  --tag-fav:#86efac; --tag-neu:#86efac; --tag-avoid:#fca5a5; --tab-active:#f5f5f3; --switch-off:#3d3d3b; --switch-on:#f5f5f3;
-  color-scheme:dark}
+  --bg:#111110;--paper:#1c1b19;--under:#2a2825;--ink:#f4f2ee;--mut:#b5afa6;
+  --line:#45413b;--line-soft:#2e2c28;
+  --bar-bg:#0a0a09;--bar-fg:#f4f2ee;--bar-mut:#b5afa6;
+  --btn-bg:#f4f2ee;--btn-fg:#141210;
+  --red:#c82319;--on-red:#ffffff;--stamp-red:#ff7b72;--jade:#4ade80;--plum:#e082cc;
+  --orange:#fbbf24;--violet:#a78bfa;--emerald:#34d399;--pink:#f472b6;--holiday-fg:#ff7b72;--fest-cell-bg:#241b12;
+  --saait-good-bg:#112218;--saait-avoid-bg:#251416;
+  --tz0-bg:#2a1414;--tz0-bd:#f87171;
+  --tz1-bg:#141e2e;--tz1-bd:#60a5fa;
+  --tz2-bg:#11241d;--tz2-bd:#34d399;
+  --tz3-bg:#1f192e;--tz3-bd:#a78bfa;
+  --tz4-bg:#2a1c12;--tz4-bd:#fb923c;
+  --tz5-bg:#122429;--tz5-bd:#22d3ee;
+  color-scheme:dark;
+}
+*{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent}
+[hidden]{display:none!important}
+html{scroll-padding-top:env(safe-area-inset-top,0px);overflow-x:clip}
+body{background:var(--bg);color:var(--ink);font:500 17px/1.5 "Mukta",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;max-width:480px;margin:0 auto;padding:0 14px 100px;min-height:100vh;overflow-x:clip;-webkit-font-smoothing:antialiased}
+button,select,input{font-family:"Mukta",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;color:inherit}
+button,.tab,.tb,.c,.ev,.r,.row{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.sr{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.y{font-family:"Mukta",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;font-weight:700;letter-spacing:-.02em}
+small,.en{font-size:15px;color:var(--mut)}
 
-/* Compact More view — Sharp Bento style */
-#view-more{max-width:640px;margin:0 auto;gap:14px}
-#view-more .head h1{font-size:24px;font-weight:700;letter-spacing:-.015em}
-#view-more .head .sub{font-size:15px;margin-top:2px}
-.more-sec-title{font-size:13.5px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);padding:0 2px;margin-bottom:-6px}
-.more-group{background:var(--hairline);border:1px solid var(--hairline);border-radius:0;overflow:hidden;display:grid;gap:1px}
-.more-item{display:flex;align-items:center;gap:12px;padding:13px 15px;background:var(--canvas);border:0;cursor:pointer;text-align:left;font-family:var(--font-ui);color:var(--body);width:100%;-webkit-tap-highlight-color:transparent}
-.more-item:hover,.more-item:active{background:var(--surface-soft)}
-.more-item:focus-visible{outline:2px solid var(--ink);outline-offset:-2px}
-.more-icon{width:38px;height:38px;border-radius:0;border:1px solid var(--hairline);background:var(--surface-soft);color:var(--ink);display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.more-icon svg{width:19px;height:19px;stroke:currentColor;stroke-width:1.85;stroke-linecap:round;stroke-linejoin:round;fill:none}
-.more-icon svg .half{fill:currentColor}
-.remind-nudge{display:flex;flex-wrap:wrap;align-items:center;gap:12px 14px;background:var(--fest-tint-bg);border:1px solid var(--fest-tint-border);border-radius:0;padding:14px 15px;margin-top:12px}
-.remind-nudge[hidden]{display:none}
-.remind-nudge .more-icon{flex:none;margin:0;background:var(--canvas)}
-.remind-nudge .rn-text{flex:1;min-width:0;line-height:1.3}
-.remind-nudge .rn-text b{display:block;font-size:17px;font-weight:600;color:var(--ink)}
-.remind-nudge .rn-text small{display:block;font-size:14.5px;color:var(--muted);margin-top:2px}
-.remind-nudge .rn-actions{flex-basis:100%;display:flex;justify-content:flex-end;gap:8px}
-.more-text{flex:1;min-width:0}
-.more-text .title{font-size:18px;font-weight:600;color:var(--ink);line-height:1.25;display:block}
-.more-text .desc{font-size:14.5px;font-weight:500;color:var(--muted);line-height:1.3;margin-top:2px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.more-arrow{font-size:22px;color:var(--muted-soft);line-height:1;padding-left:4px;flex-shrink:0}
-.more-badge{display:flex;align-items:center;justify-content:center;gap:7px;padding:12px 16px;color:var(--muted);font-size:14px;text-align:center;margin-top:2px}
-.more-badge .brand-icon{width:16px;height:16px;flex-shrink:0;color:var(--ink)}
+/* Top header */
+.top{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 2px 10px}
+.top-brand{display:flex;align-items:center;gap:9px;min-width:0}
+.brand-icon{width:24px;height:24px;display:block;flex:none;color:var(--ink)}
+.top .y{font-size:18px;line-height:1.15;color:var(--ink)}
+.top .en{color:var(--mut)}
+.lang-group{display:inline-flex;border:2px solid var(--line);background:var(--paper);flex:none}
+.lang{appearance:none;border:0;background:transparent;color:var(--ink);font:700 12.5px/1 Mukta,sans-serif;padding:6px 10px;cursor:pointer}
+.lang[aria-pressed="true"]{background:var(--btn-bg);color:var(--btn-fg)}
+.lang:focus-visible,.listen:focus-visible,.tab:focus-visible,.tb:focus-visible,.sw:focus-visible,.chips button:focus-visible,.navbtn:focus-visible,.back-btn:focus-visible,.c:focus-visible{outline:3px solid var(--red);outline-offset:2px}
 
-/* Bottom-of-page inline slot for the AdMob banner (sits inside the scrollable page above the footer, never overlapping the bottom nav) */
+/* World clocks strip on Today */
+.clocks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));background:var(--paper);color:var(--ink);margin-bottom:20px;cursor:pointer;border:1.5px solid var(--line)}
+.clocks.cols-1{grid-template-columns:minmax(0,1fr)}
+.clocks.cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.clocks div{padding:10px 8px;border-left:1px solid var(--line);border-top:4px solid var(--tz0-bd);background:var(--tz0-bg);min-width:0;overflow:hidden}
+.clocks div:first-child{border-left:0}
+.clocks div.tz-0{background:var(--tz0-bg);border-top-color:var(--tz0-bd)}
+.clocks div.tz-1{background:var(--tz1-bg);border-top-color:var(--tz1-bd)}
+.clocks div.tz-2{background:var(--tz2-bg);border-top-color:var(--tz2-bd)}
+.clocks small{display:block;color:var(--mut);font-size:14.5px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.clocks b{display:block;font:700 20px/1.2 "Mukta",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;color:var(--ink);font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px}
+.clocks .cd{display:block;font-size:15.5px;font-weight:500;color:var(--mut);line-height:1.25;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* Tear-off calendar sheet */
+.sheet{position:relative;margin-bottom:26px}
+.under{position:absolute;inset:14px 6px -12px;background:var(--under);border:1px solid var(--line-soft);transform:rotate(-1.6deg)}
+.page{position:relative;background:var(--paper);border:1.5px solid var(--line);border-bottom:0;padding-bottom:28px;-webkit-mask:conic-gradient(from -45deg at bottom,#0000,#000 1deg 89deg,#0000 90deg) 50%/18px 100%;mask:conic-gradient(from -45deg at bottom,#0000,#000 1deg 89deg,#0000 90deg) 50%/18px 100%}
+.band{position:relative;background:var(--red);color:var(--on-red);padding:28px 16px 12px;display:flex;justify-content:space-between;align-items:baseline;gap:6px 12px;flex-wrap:wrap}
+.band .y{font-size:21px;line-height:1.2;color:var(--on-red)}
+.band .en{color:var(--on-red);opacity:.92;text-align:right}
+.holes{position:absolute;top:9px;left:0;right:0;display:flex;justify-content:space-around;padding:0 56px;pointer-events:none}
+.holes i{width:11px;height:11px;border-radius:50%;background:var(--bg)}
+.date{display:flex;align-items:flex-end;gap:12px;padding:14px 16px 12px;min-width:0}
+.big{font:700 clamp(72px,21vw,96px)/.92 "Mukta",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;letter-spacing:-.05em;font-variant-numeric:tabular-nums;color:var(--ink);flex:none}
+.wk{min-width:0;flex:1;overflow-wrap:break-word}
+.wk .y{font-size:21px;line-height:1.2;color:var(--ink)}
+.wk small{display:block;color:var(--mut)}
+.wk .g{margin-top:8px;font:600 16.5px/1.38 "Mukta",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;color:var(--ink);overflow-wrap:break-word}
+.tith{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:0 16px;padding:14px 0;border-top:2px solid var(--line)}
+.tith>div{min-width:0;flex:1;overflow-wrap:break-word}
+.k-lbl{display:block;font-size:14.5px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;color:var(--mut);margin-bottom:2px}
+.tith .y{font-size:21px;line-height:1.25;color:var(--ink)}
+.listen{display:flex;align-items:center;gap:6px;background:var(--btn-bg);color:var(--btn-fg);border:0;padding:10px 13px;font:600 16px "Mukta",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;cursor:pointer;flex:none;white-space:nowrap}
+.listen.playing{background:var(--red);color:var(--on-red)}
+.listen svg{width:15px;height:15px;fill:currentColor}
+.cells{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);margin:0 16px;border-top:2px solid var(--line)}
+.cells div{padding:11px 8px 11px 0;border-bottom:1px solid var(--line);min-width:0;overflow-wrap:break-word}
+.cells div:nth-child(even){padding-left:12px;padding-right:0;border-left:1px solid var(--line)}
+.cells small{display:block;color:var(--mut)}
+.cells div>small:first-child{font-size:14.5px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;margin-bottom:2px}
+.cells .y{font-size:19px;line-height:1.25;display:block;color:var(--ink)}
+.none{margin:12px 16px 0;font-size:16.5px;color:var(--mut)}
+.today-evs{margin:12px 16px 0;display:grid;gap:8px}
+.today-ev{border:2px solid var(--red);padding:11px 12px;background:color-mix(in srgb,var(--red) 8%,var(--paper));min-width:0;overflow-wrap:break-word}
+.today-ev-top{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap}
+.today-ev .y{font-size:19px;color:var(--red);line-height:1.25}
+:root[data-theme="dark"] .today-ev .y{color:#ff7b72}
+.today-ev-tag{font:700 12px/1.2 Mukta;text-transform:uppercase;letter-spacing:.04em;background:var(--red);color:var(--on-red);padding:2px 6px}
+.today-ev p{font-size:16px;color:var(--mut);margin-top:4px;line-height:1.38}
+
+/* Paper boxes */
+.box{background:var(--paper);border:1.5px solid var(--line);margin-bottom:20px;overflow:hidden}
+.box h2{display:flex;justify-content:space-between;align-items:center;gap:4px 10px;flex-wrap:wrap;background:var(--bar-bg);color:var(--bar-fg);border-bottom:1.5px solid var(--line);padding:10px 14px;font:600 18px "Mukta",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;letter-spacing:-.01em}
+.box h2 span,.box h2 button{font:600 14px "Mukta",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;color:var(--bar-mut)}
+.box h2 .y{color:var(--bar-fg)}
+.box h2 button{background:none;border:0;cursor:pointer;text-decoration:underline;padding:0;color:var(--bar-fg)}
+.r{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px;border-bottom:1px solid var(--line);width:100%;background:transparent;border-left:0;border-right:0;border-top:0;text-align:left;color:var(--ink)}
+.r>div:first-child{min-width:0;flex:1;overflow-wrap:break-word}
+.r.click{cursor:pointer}
+.r.click:hover{background:color-mix(in srgb,var(--under) 45%,var(--paper))}
+.r.saait-good{background:var(--saait-good-bg)}
+.r.saait-avoid{background:var(--saait-avoid-bg)}
+.r.saait-good.click:hover,.r.saait-avoid.click:hover{filter:brightness(.97)}
+.r:last-child{border-bottom:0}
+.r .y{font-size:19px;line-height:1.28;color:var(--ink)}
+.r p{font-size:16px;color:var(--mut);margin-top:3px;line-height:1.38}
+.r-arrow{font-size:24px;color:var(--mut);line-height:1;flex:none}
+.stamp{flex:none;border:2.5px solid var(--c);color:var(--c);padding:4px 10px;text-align:center;transform:rotate(-4deg);line-height:1.15}
+.stamp .y{font-size:19px;color:var(--c)}
+.stamp small{display:block;color:var(--c);font-size:11px;font-weight:700;letter-spacing:.03em;text-transform:uppercase}
+
+/* Event rows */
+.ev{display:grid;grid-template-columns:58px minmax(0,1fr) auto;gap:11px;align-items:center;padding:13px 14px;border-bottom:1px solid var(--line);width:100%;background:transparent;border-left:0;border-right:0;border-top:0;text-align:left;cursor:pointer;color:var(--ink)}
+.ev>div{min-width:0;overflow-wrap:break-word}
+.ev:hover{background:color-mix(in srgb,var(--under) 45%,var(--paper))}
+.ev:last-child{border-bottom:0}
+.dn{width:58px;min-height:58px;padding:4px 2px;display:flex;flex-direction:column;align-items:center;justify-content:center;border:2px solid var(--line);line-height:1;overflow:hidden}
+.dn b{font:600 20px "Mukta",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;color:var(--ink);font-variant-numeric:tabular-nums}
+.dn small{font-size:13px;color:var(--mut);margin-top:3px;text-align:center;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dn.h{background:var(--red);border-color:var(--red);color:var(--on-red)}
+.dn.h b,.dn.h small{color:var(--on-red)}
+.ev .y{font-size:19px;line-height:1.28;color:var(--ink)}
+.ev .w{text-align:right;font-size:14px;color:var(--mut);white-space:nowrap}
+.ev .w b{display:block;font:600 16px "Mukta",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;color:var(--ink)}
+.pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.pill{display:inline-flex;align-items:center;gap:5px;border-radius:0;padding:4px 10px;font:600 13.5px/1.2 "Mukta",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;text-transform:uppercase;letter-spacing:.03em;background:var(--under);border:1.5px solid var(--line);color:var(--ink);white-space:nowrap}
+.pill i{width:6px;height:6px;border-radius:0;display:inline-block;flex:none}
+.pill.hol{background:color-mix(in srgb,var(--red) 11%,var(--paper));border-color:var(--stamp-red);color:var(--stamp-red)}
+.ck-add{padding:12px 14px;background:var(--under);border-bottom:1px solid var(--line);display:grid;gap:6px}
+.ck-add label{font:700 12.5px "Mukta",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;text-transform:uppercase;letter-spacing:.04em;color:var(--mut)}
+.key{display:inline-block;width:10px;height:10px;background:var(--red);margin-right:6px;vertical-align:middle}
+.copy{text-align:center;font-size:13px;color:var(--mut);margin-top:8px}
+
+/* Reminder nudge */
+.remind-nudge{background:var(--paper);border:2px solid var(--line);padding:14px;margin-bottom:20px;display:flex;flex-direction:column;gap:10px}
+.remind-nudge .rn-text b{display:block;font-size:16px;color:var(--ink)}
+.remind-nudge .rn-text small{display:block;margin-top:2px;color:var(--mut)}
+.remind-nudge .rn-actions{display:flex;justify-content:flex-end;gap:8px;flex-wrap:wrap}
+
+/* Bottom tab bar */
+.tabs{position:fixed;left:0;right:0;bottom:0;z-index:20;margin:0 auto;max-width:480px;background:var(--paper);color:var(--ink);border-top:1.5px solid var(--line);display:grid;grid-template-columns:repeat(5,minmax(0,1fr));padding-bottom:env(safe-area-inset-bottom,0px)}
+.tab{background:none;border:0;border-top:4px solid transparent;color:var(--mut);padding:9px 2px 8px;font:700 11.5px Mukta;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;min-width:0}
+.tab svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:square;flex:none}
+.tab[aria-current="page"]{color:var(--ink);background:var(--bar-bg);border-top-color:var(--red)}
+.tab .y{font-size:11.5px;line-height:1.15;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* Page headers & navigation controls */
+.view{display:block}
+.pt-bar{display:flex;align-items:center;justify-content:space-between;gap:8px 10px;padding:6px 2px 14px;flex-wrap:wrap}
+.pt{display:flex;align-items:baseline;gap:8px;min-width:0;flex-wrap:wrap}
+.pt .y{font-size:clamp(24px,4.5vw,34px);line-height:1.15;color:var(--ink)}
+.pt .en{color:var(--mut)}
+.navrow{display:inline-flex;border:2px solid var(--line);background:var(--paper);flex:none}
+.navbtn{appearance:none;border:0;border-left:1px solid var(--line);background:transparent;color:var(--ink);height:34px;min-width:34px;padding:0 10px;font:700 13.5px/1 Mukta;cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
+.navbtn:first-child{border-left:0}
+.navbtn:hover{background:var(--under)}
+.back-btn{appearance:none;border:2px solid var(--line);background:var(--paper);color:var(--ink);padding:5px 12px;font:700 13.5px Mukta;cursor:pointer;margin-bottom:8px;display:inline-flex;align-items:center;gap:4px}
+.back-btn:hover{background:var(--under)}
+
+/* Calendar grid */
+.b2{padding:12px 14px}
+.g7{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));border-left:1px solid var(--line)}
+.g7>*{border-right:1px solid var(--line);border-bottom:1px solid var(--line);min-width:0}
+.wd{text-align:center;padding:8px 1px;font-weight:600;font-size:14px;color:var(--mut);background:var(--under);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.wd.sat{color:var(--red)}
+:root[data-theme="dark"] .wd.sat,:root[data-theme="dark"] .c.sat b{color:#ff7b72}
+.c{appearance:none;border-top:0;border-left:0;background:var(--paper);color:var(--ink);min-height:68px;display:flex;flex-direction:column;align-items:stretch;justify-content:space-between;gap:2px;position:relative;cursor:pointer;padding:5px 4px 8px;overflow:hidden;text-align:left}
+.c.blank{background:color-mix(in srgb,var(--under) 45%,var(--paper));cursor:default}
+.c-top{display:flex;align-items:baseline;justify-content:space-between;gap:2px;width:100%}
+.c b{font:600 21.5px/1 "Mukta",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;color:var(--ink);font-variant-numeric:tabular-nums}
+.c small{font-size:13px;line-height:1;color:var(--mut);max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.c .ti{font-size:13px;font-weight:500;line-height:1.2;color:var(--mut);max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:block}
+.c.sat b{color:var(--red)}
+.c.fest-cell{background:var(--fest-cell-bg)}
+.c.hol{background:color-mix(in srgb,var(--red) 10%,var(--paper))}
+.c.td{background:var(--red);color:var(--on-red)}
+.c.td b,.c.td small,.c.td .ti{color:var(--on-red)}
+.c[aria-pressed="true"]{box-shadow:inset 0 0 0 2.5px var(--ink);z-index:1}
+.c.td[aria-pressed="true"]{box-shadow:inset 0 0 0 2.5px var(--on-red)}
+.c .dots{display:flex;gap:3px;margin-top:2px;min-height:6px;align-items:center}
+.c .dots i{width:6px;height:6px;border-radius:0;display:block}
+.legend{display:flex;flex-wrap:wrap;gap:8px 14px;font-size:13.5px;font-weight:600;color:var(--mut);margin:-10px 2px 18px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:9px;height:9px;border-radius:0;display:inline-block;flex:none}
+.lg{font-size:14.5px;color:var(--mut);margin:-10px 2px 20px;line-height:1.48}
+
+/* Filter chips */
+.chips{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.chips button{border:2px solid var(--line);background:var(--paper);color:var(--ink);padding:6px 12px;font:700 13.5px Mukta;cursor:pointer}
+.chips .on{background:var(--btn-bg);color:var(--btn-fg);border-color:var(--btn-bg)}
+.sub{padding:7px 14px;background:var(--under);color:var(--ink);font:700 13px Mukta;border-bottom:1px solid var(--line)}
+
+/* World clocks list */
+.ck{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:13px 14px;border-bottom:1px solid var(--line);color:var(--ink)}
+.ck>div:first-child{min-width:0;flex:1;overflow-wrap:break-word}
+.ck>div:last-child{flex:none;text-align:right}
+.ck:last-child{border:0}
+.ck .y{font-size:21px;line-height:1.25;color:var(--ink)}
+.ck small{display:block;margin-top:2px}
+.ck-time{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-top:6px}
+.ck .t{font:700 20px/1.2 "Mukta",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;letter-spacing:-.02em;font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--ink)}
+.ck .d{font-size:16px;color:var(--mut);white-space:nowrap}
+.ck.tz-0{background:var(--tz0-bg);border-left:5px solid var(--tz0-bd)}
+.ck.tz-1{background:var(--tz1-bg);border-left:5px solid var(--tz1-bd)}
+.ck.tz-2{background:var(--tz2-bg);border-left:5px solid var(--tz2-bd)}
+.ck.tz-3{background:var(--tz3-bg);border-left:5px solid var(--tz3-bd)}
+.ck.tz-4{background:var(--tz4-bg);border-left:5px solid var(--tz4-bd)}
+.ck.tz-5{background:var(--tz5-bg);border-left:5px solid var(--tz5-bd)}
+.w-ctrl{display:inline-flex;gap:6px;flex:none;align-items:center}
+.btn-sq{appearance:none;width:34px;height:34px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);font:700 15px/1 "Mukta",sans-serif;cursor:pointer;display:inline-grid;place-items:center}
+.btn-sq:disabled{opacity:.35;cursor:default}
+.btn-sq.rm{color:var(--red);border-color:var(--red)}
+:root[data-theme="dark"] .btn-sq.rm{color:#ff7b72;border-color:#ff7b72}
+
+/* Switch toggle */
+.sw{flex:none;width:48px;height:28px;border:2px solid var(--line);background:var(--under);position:relative;cursor:pointer;padding:0}
+.sw::after{content:"";position:absolute;top:4px;left:4px;width:16px;height:16px;background:var(--ink);transition:transform .15s}
+.sw[aria-checked="true"]{background:var(--btn-bg);border-color:var(--btn-bg)}
+.sw[aria-checked="true"]::after{transform:translateX(20px);background:var(--btn-fg)}
+
+/* Forms & buttons */
+.form-pad{padding:14px;display:grid;gap:10px}
+.form-row{display:grid;gap:10px;grid-template-columns:repeat(3,minmax(0,1fr))}
+@media(max-width:420px){.form-row{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.wform{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:center}
+label.f{display:grid;gap:4px;font:700 12px Mukta;text-transform:uppercase;letter-spacing:.04em;color:var(--mut);min-width:0}
+select,input[type="date"]{appearance:none;-webkit-appearance:none;border:2px solid var(--line);background:var(--paper);color:var(--ink);height:38px;padding:0 10px;font:600 14.5px Mukta;width:100%;min-width:0}
+select{background-image:linear-gradient(45deg,transparent 50%,var(--ink) 50%),linear-gradient(135deg,var(--ink) 50%,transparent 50%);background-position:calc(100% - 16px) 15px,calc(100% - 11px) 15px;background-size:5px 5px;background-repeat:no-repeat;padding-right:30px}
+.btn-ink{appearance:none;border:2px solid var(--btn-bg);background:var(--btn-bg);color:var(--btn-fg);height:38px;padding:0 14px;font:700 14px Mukta;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;text-decoration:none;white-space:nowrap}
+.btn-outline{appearance:none;border:2px solid var(--line);background:var(--paper);color:var(--ink);height:38px;padding:0 14px;font:700 14px Mukta;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;text-decoration:none;white-space:nowrap}
+.result{margin-top:4px;padding:12px;background:var(--under);border:1px solid var(--line);min-width:0;overflow-wrap:break-word}
+.result .rv{font:700 clamp(18px,4.8vw,21px)/1.2 "Mukta",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;letter-spacing:-.015em;color:var(--ink)}
+.result .rs{font-size:13px;color:var(--mut);margin-top:4px}
+.ksum{padding:12px 15px;background:var(--under);border-bottom:1px solid var(--line);font:600 16.5px Mukta;color:var(--ink)}
+.ksum:empty{display:none}
+.info-p{font-size:15px;color:var(--mut);line-height:1.5;margin-top:6px}
+
+/* Bottom AdMob slot */
 #ad-slot{width:100%;height:0;overflow:hidden}
 body.has-bottom-ad #ad-slot{height:calc(var(--ad-banner-h,64px) + 12px);margin-top:16px}
 
-.switch{display:block;position:relative;width:50px;height:28px;border-radius:0;border:1.5px solid var(--ink);background:var(--switch-off);transition:background .15s;flex:none}
-.switch::after{content:"";position:absolute;top:3px;left:3px;width:19px;height:19px;border-radius:0;background:var(--ink);transition:transform .15s,background .15s}
-.theme-row[aria-checked="true"] .switch{background:var(--switch-on);border-color:var(--switch-on)}
-.theme-row[aria-checked="true"] .switch::after{transform:translateX(22px);background:var(--canvas)}
+/* Tablet & Large Screen adaptive layouts */
+@media(min-width:720px){
+  body{max-width:820px;padding:0 24px 104px}
+  .tabs{max-width:none;padding-left:max(24px,calc(50% - 410px));padding-right:max(24px,calc(50% - 410px))}
+  .tab{padding:11px 4px 10px}
+  .navbtn,.btn-sq{min-width:40px;height:40px}
+  .c{min-height:78px;padding:7px 6px 9px}
+  .c b{font-size:22px}
+  .clocks div{padding:12px 14px}
+  #view-convert:not([hidden]){display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 20px;align-items:start}
+  #view-convert>.back-btn{grid-column:1 / -1;justify-self:start}
+  #view-convert>.pt-bar{grid-column:1 / -1}
+  #view-more:not([hidden]){display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 20px;align-items:start}
+  #view-more>.pt-bar{grid-column:1 / -1}
+  #view-more>.box:nth-of-type(1){grid-column:1}
+  #view-more>.box:nth-of-type(2){grid-column:2;grid-row:2 / span 2}
+  #view-more>.box:nth-of-type(3){grid-column:1}
+}
+@media(min-width:840px){
+  body{max-width:960px}
+  .tabs{padding-left:max(24px,calc(50% - 480px));padding-right:max(24px,calc(50% - 480px))}
+  #view-today:not([hidden]){display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,0.95fr);gap:0 24px;align-items:start}
+  #todaycard{display:contents}
+  #todaycard>.clocks{grid-column:1 / -1}
+  #todaycard>.sheet{grid-column:1;grid-row:2 / span 4}
+  #todaycard>.box{grid-column:2}
+  #remindNudge{grid-column:2}
+  #view-today>.box{grid-column:2}
+  #view-month:not([hidden]){display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,0.95fr);gap:0 24px;align-items:start}
+  #view-month>.pt-bar{grid-column:1 / -1}
+  #view-month>.box{grid-column:1;grid-row:2}
+  #m-legend{grid-column:1;grid-row:3}
+  #daycard{grid-column:2;grid-row:2 / span 2;position:sticky;top:16px}
+}
+@media(min-width:960px){
+  body{max-width:1180px;padding:0 32px 48px 124px}
+  .tabs{top:0;bottom:0;left:0;right:auto;width:92px;max-width:none;margin:0;border-top:0;border-right:1.5px solid var(--line);display:flex;flex-direction:column;justify-content:center;gap:4px;padding:16px 0}
+  .tab{width:100%;border-top:0;border-left:4px solid transparent;padding:14px 6px;gap:5px}
+  .tab svg{width:23px;height:23px}
+  .tab .y{font-size:12px}
+  .tab[aria-current="page"]{border-top-color:transparent;border-left-color:var(--red)}
+}
 </style>
 <script>try{document.documentElement.removeAttribute("data-theme");}catch(e){}</script>
-
-<header class="topnav"><div class="wrap">
-  <div class="wordmark"><svg class="brand-icon" width="22" height="22" viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect x="4" y="6" width="24" height="22" rx="5" stroke="currentColor" stroke-width="2"/><rect x="9" y="3" width="3" height="5" rx="1.5" fill="currentColor"/><rect x="20" y="3" width="3" height="5" rx="1.5" fill="currentColor"/><circle cx="10" cy="12" r="1.3" fill="var(--muted-soft,#9ca3af)"/><circle cx="16" cy="12" r="1.3" fill="var(--muted-soft,#9ca3af)"/><circle cx="22" cy="12" r="1.3" fill="var(--muted-soft,#9ca3af)"/><circle cx="10" cy="17" r="1.3" fill="var(--muted-soft,#9ca3af)"/><circle cx="16" cy="17" r="3.2" stroke="#E11D48" stroke-width="1.5" fill="none"/><circle cx="16" cy="17" r="1.4" fill="#F59E0B"/><circle cx="22" cy="17" r="1.3" fill="var(--muted-soft,#9ca3af)"/><circle cx="10" cy="22" r="1.3" fill="var(--muted-soft,#9ca3af)"/><circle cx="16" cy="22" r="1.3" fill="var(--muted-soft,#9ca3af)"/><circle cx="22" cy="22" r="1.3" fill="var(--muted-soft,#9ca3af)"/></svg><span data-t="app"></span></div>
-  <nav class="pillgroup views" data-al="al.views">
-    <button class="tab" data-view="today" aria-current="page" data-t="nav.today"></button>
-    <button class="tab" data-view="month" data-t="nav.month"></button>
-    <button class="tab" data-view="festivals" data-t="nav.festivals"></button>
-    <button class="tab" data-view="clocks" data-t="nav.clocks"></button>
-    <button class="tab" data-view="more" data-t="nav.more"></button>
-  </nav>
-  <div class="pillgroup" role="group" data-al="al.lang" style="flex:none">
-    <button class="tab lang" data-lang="ne" lang="ne" aria-label="नेपाली" aria-pressed="true">ने</button>
-    <button class="tab lang" data-lang="en" lang="en" aria-label="EN, English" aria-pressed="false">EN</button>
+</head>
+<body>
+<header class="top">
+  <div class="top-brand">
+    <svg class="brand-icon" width="24" height="24" viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect x="4" y="6" width="24" height="22" rx="5" stroke="currentColor" stroke-width="2"/><rect x="9" y="3" width="3" height="5" rx="1.5" fill="currentColor"/><rect x="20" y="3" width="3" height="5" rx="1.5" fill="currentColor"/><circle cx="10" cy="12" r="1.3" fill="var(--mut)"/><circle cx="16" cy="12" r="1.3" fill="var(--mut)"/><circle cx="22" cy="12" r="1.3" fill="var(--mut)"/><circle cx="10" cy="17" r="1.3" fill="var(--mut)"/><circle cx="16" cy="17" r="3.2" stroke="#E11D48" stroke-width="1.5" fill="none"/><circle cx="16" cy="17" r="1.4" fill="#F59E0B"/><circle cx="22" cy="17" r="1.3" fill="var(--mut)"/><circle cx="10" cy="22" r="1.3" fill="var(--mut)"/><circle cx="16" cy="22" r="1.3" fill="var(--mut)"/><circle cx="22" cy="22" r="1.3" fill="var(--mut)"/></svg>
+    <span class="y" data-t="app">सुन्दर पात्रो</span>
   </div>
-</div></header>
+  <div class="lang-group" role="group" data-al="al.lang">
+    <button type="button" class="lang" data-lang="ne" lang="ne" aria-label="नेपाली" aria-pressed="true">ने</button>
+    <button type="button" class="lang" data-lang="en" lang="en" aria-label="English" aria-pressed="false">EN</button>
+  </div>
+</header>
 
-<nav class="tabbar" data-al="al.views">
-  <button class="tb" data-view="today" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><span data-t="nav.today"></span></button>
-  <button class="tb" data-view="month"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="16"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span data-t="nav.month"></span></button>
-  <button class="tb" data-view="festivals"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3l2.6 5.4 5.9.8-4.3 4.1 1.1 5.9L12 16.4 6.7 19.2l1.1-5.9L3.5 9.2l5.9-.8z"/></svg><span data-t="nav.festivals"></span></button>
-  <button class="tb" data-view="clocks"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span data-t="nav.clocks"></span></button>
-  <button class="tb" data-view="more"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></svg><span data-t="nav.more"></span></button>
-</nav>
-<main class="wrap">
+<main>
   <!-- TODAY -->
   <section class="view" id="view-today">
-    <h1 class="sr" data-t="nav.today"></h1>
-    <div class="split">
-      <div>
-        <div class="daycard" id="todaycard"></div>
-        <div class="remind-nudge" id="remindNudge" hidden>
-          <div class="more-icon ic-remind"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></div>
-          <div class="rn-text"><b data-t="nudge.title"></b><small data-t="more.remind.sub"></small></div>
-          <div class="rn-actions"><button type="button" class="btn btn-secondary" id="nudgeLater" data-t="nudge.later"></button><button type="button" class="btn btn-primary" id="nudgeOn" data-t="nudge.on"></button></div>
-        </div>
-      </div>
-      <div>
-        <div class="b-label" style="margin-bottom:8px;padding:0 2px">
-          <span data-t="today.upcoming"></span>
-          <button type="button" class="more-row" data-view="festivals" style="border:0;background:transparent;color:var(--ink);font:600 11px var(--font-ui);cursor:pointer;text-transform:uppercase;letter-spacing:.05em" data-t="today.all"></button>
-        </div>
-        <div class="list" id="t-upcoming"></div>
+    <div id="todaycard"></div>
+    <div class="remind-nudge" id="remindNudge" hidden>
+      <div class="rn-text"><b data-t="nudge.title"></b><small data-t="more.remind.sub"></small></div>
+      <div class="rn-actions">
+        <button type="button" class="btn-outline" id="nudgeLater" data-t="nudge.later"></button>
+        <button type="button" class="btn-ink" id="nudgeOn" data-t="nudge.on"></button>
       </div>
     </div>
+    <section class="box" aria-label="Coming up">
+      <h2>
+        <span class="y" style="font-size:19px;opacity:1" data-t="today.upcoming"></span>
+        <span><i class="key"></i><span data-t="legend.hol"></span> · <button type="button" class="more-row" data-view="festivals" data-t="today.all"></button></span>
+      </h2>
+      <div id="t-upcoming"></div>
+    </section>
   </section>
 
-  <!-- MORE -->
-  <section class="view" id="view-more" hidden>
-    <div class="head"><div><h1 class="display-lg" data-t="nav.more"></h1><div class="sub" data-t="more.sub"></div></div></div>
-    <div class="more-group">
-      <button type="button" class="more-item theme-row" id="themeRow" role="switch" aria-checked="false">
-        <div class="more-icon ic-theme"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path class="half" d="M12 3a9 9 0 0 0 0 18z"/></svg></div>
-        <div class="more-text"><span class="title" data-t="more.theme"></span><small class="desc" data-t="more.theme.sub"></small></div>
-        <div class="tg"><span class="switch" aria-hidden="true"></span></div>
-      </button>
-      <button type="button" class="more-item theme-row" id="remindRow" role="switch" aria-checked="false" hidden>
-        <div class="more-icon ic-remind"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></div>
-        <div class="more-text"><span class="title" data-t="more.remind"></span><small class="desc" id="remindDesc" data-t="more.remind.sub"></small></div>
-        <div class="tg"><span class="switch" aria-hidden="true"></span></div>
-      </button>
-    </div>
-    <div class="more-group">
-      <button type="button" class="more-item more-row" data-view="holidays">
-        <div class="more-icon ic-supp"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 21V4M5 4h11l-2 4 2 4H5"/></svg></div>
-        <div class="more-text"><span class="title" data-t="h.title"></span><small class="desc" data-t="more.hol.sub"></small></div>
-        <div class="more-arrow">›</div>
-      </button>
-      <button type="button" class="more-item more-row" data-view="auspicious">
-        <div class="more-icon ic-ausp"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg></div>
-        <div class="more-text"><span class="title" data-t="ausp.title"></span><small class="desc" data-t="more.ausp.sub"></small></div>
-        <div class="more-arrow">›</div>
-      </button>
-      <button type="button" class="more-item more-row" data-view="convert">
-        <div class="more-icon ic-conv"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 8h14l-3-3M20 16H6l3 3"/></svg></div>
-        <div class="more-text"><span class="title" data-t="conv.title"></span><small class="desc" data-t="more.conv.sub"></small></div>
-        <div class="more-arrow">›</div>
-      </button>
-      <button type="button" class="more-item more-row" data-view="clocks">
-        <div class="more-icon ic-clock"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
-        <div class="more-text"><span class="title" data-t="clk.title"></span><small class="desc" data-t="more.clocks.sub"></small></div>
-        <div class="more-arrow">›</div>
-      </button>
-      <button type="button" class="more-item more-row" data-view="about">
-        <div class="more-icon ic-about"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg></div>
-        <div class="more-text"><span class="title" data-t="about.title"></span><small class="desc" data-t="more.about.sub"></small></div>
-        <div class="more-arrow">›</div>
-      </button>
-      <button type="button" class="more-item more-row" data-view="privacy">
-        <div class="more-icon ic-priv"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-        <div class="more-text"><span class="title" data-t="priv.title"></span><small class="desc" data-t="more.priv.sub"></small></div>
-        <div class="more-arrow">›</div>
-      </button>
-      <button type="button" class="more-item more-row" data-view="support">
-        <div class="more-icon ic-supp"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></div>
-        <div class="more-text"><span class="title" data-t="supp.title"></span><small class="desc" data-t="more.supp.sub"></small></div>
-        <div class="more-arrow">›</div>
-      </button>
-    </div>
-    <div class="more-badge">
-      <svg class="brand-icon" width="16" height="16" viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect x="4" y="6" width="24" height="22" rx="5" stroke="currentColor" stroke-width="2"/><rect x="9" y="3" width="3" height="5" rx="1.5" fill="currentColor"/><rect x="20" y="3" width="3" height="5" rx="1.5" fill="currentColor"/><circle cx="10" cy="12" r="1.3" fill="var(--muted-soft,#9ca3af)"/><circle cx="16" cy="12" r="1.3" fill="var(--muted-soft,#9ca3af)"/><circle cx="22" cy="12" r="1.3" fill="var(--muted-soft,#9ca3af)"/><circle cx="10" cy="17" r="1.3" fill="var(--muted-soft,#9ca3af)"/><circle cx="16" cy="17" r="3.2" stroke="#E11D48" stroke-width="1.5" fill="none"/><circle cx="16" cy="17" r="1.4" fill="#F59E0B"/><circle cx="22" cy="17" r="1.3" fill="var(--muted-soft,#9ca3af)"/><circle cx="10" cy="22" r="1.3" fill="var(--muted-soft,#9ca3af)"/><circle cx="16" cy="22" r="1.3" fill="var(--muted-soft,#9ca3af)"/><circle cx="22" cy="22" r="1.3" fill="var(--muted-soft,#9ca3af)"/></svg>
-      <span lang="en">Sundar Patro • Bikram Sambat Calendar</span>
-    </div>
-  </section>
-
-  <!-- WORLD CLOCKS -->
-  <section class="view" id="view-clocks" hidden>
-    <div class="bento-board" id="w-board"></div>
-    <p class="sr" id="w-status" aria-live="polite"></p>
-  </section>
-
-  <!-- ABOUT -->
-  <section class="view" id="view-about" hidden>
-    <button type="button" class="btn btn-secondary back" data-view="more" data-t="back"></button>
-    <div class="head"><div><h1 class="display-lg" data-t="about.title"></h1><div class="sub" data-t="about.sub"></div></div></div>
-    <div class="two">
-      <div class="card"><div class="title-md" data-t="about.1h"></div><p class="note" style="margin:8px 0 0" data-t="about.1p"></p></div>
-      <div class="card"><div class="title-md" data-t="about.2h"></div><p class="note" style="margin:8px 0 0" data-t="about.2p"></p></div>
-      <div class="card"><div class="title-md" data-t="about.3h"></div><p class="note" style="margin:8px 0 0" data-t="about.3p"></p></div>
-      <div class="card"><div class="title-md" data-t="about.4h"></div><p class="note" style="margin:8px 0 0" data-t="about.4p"></p></div>
-    </div>
-  </section>
-
-  <!-- PRIVACY -->
-  <section class="view" id="view-privacy" hidden>
-    <button type="button" class="btn btn-secondary back" data-view="more" data-t="back"></button>
-    <div class="head"><div><h1 class="display-lg" data-t="priv.title"></h1><div class="sub" data-t="priv.sub"></div></div></div>
-    <div class="two">
-      <div class="card"><div class="title-md" data-t="priv.1h"></div><p class="note" style="margin:8px 0 0" data-t="priv.1p"></p></div>
-      <div class="card"><div class="title-md" data-t="priv.2h"></div><p class="note" style="margin:8px 0 0" data-t="priv.2p"></p></div>
-      <div class="card"><div class="title-md" data-t="priv.3h"></div><p class="note" style="margin:8px 0 0" data-t="priv.3p"></p></div>
-      <div class="card">
-        <div class="title-md" data-t="priv.4h"></div>
-        <p class="note" style="margin:8px 0 12px" data-t="priv.4p"></p>
-        <a href="https://devcalapps-glitch.github.io/sundar-patro/privacy/" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="display:inline-flex;align-items:center;text-decoration:none" data-t="priv.open"></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- SUPPORT -->
-  <section class="view" id="view-support" hidden>
-    <button type="button" class="btn btn-secondary back" data-view="more" data-t="back"></button>
-    <div class="head"><div><h1 class="display-lg" data-t="supp.title"></h1><div class="sub" data-t="supp.sub"></div></div></div>
-    <div class="two">
-      <div class="card">
-        <div class="title-md" data-t="supp.1h"></div>
-        <p class="note" style="margin:8px 0 12px" data-t="supp.1p"></p>
-        <a href="mailto:support@longestchariot.com?subject=Sundar%20Patro%20Support" class="btn btn-primary" style="display:inline-flex;align-items:center;text-decoration:none" data-t="supp.mail"></a>
-      </div>
-      <div class="card"><div class="title-md" data-t="supp.2h"></div><p class="note" style="margin:8px 0 0" data-t="supp.2p"></p></div>
-      <div class="card"><div class="title-md" data-t="supp.3h"></div><p class="note" style="margin:8px 0 0" data-t="supp.3p"></p></div>
-      <div class="card">
-        <div class="title-md" data-t="supp.4h"></div>
-        <p class="note" style="margin:8px 0 12px" data-t="supp.4p"></p>
-        <a href="https://devcalapps-glitch.github.io/sundar-patro/support/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="display:inline-flex;align-items:center;text-decoration:none" data-t="supp.open"></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- MONTH -->
+  <!-- CALENDAR (MONTH) -->
   <section class="view" id="view-month" hidden>
-    <div class="head">
-      <div>
-        <h1 class="display-lg ne" id="m-title" aria-live="polite">—</h1>
-        <div class="sub" id="m-sub">—</div>
-      </div>
+    <div class="pt-bar">
+      <div class="pt"><span class="y" data-t="nav.month"></span><span class="en" id="m-pt-en">Calendar</span></div>
       <div class="navrow">
-        <button type="button" class="btn-today" id="m-today" data-t="nav.today"></button>
-        <button type="button" class="btn-icon nav-ring" id="m-prev" data-al="al.prev">‹</button>
-        <button type="button" class="btn-icon nav-ring" id="m-next" data-al="al.next">›</button>
+        <button type="button" class="navbtn" id="m-today" data-t="nav.today"></button>
+        <button type="button" class="navbtn" id="m-prev" data-al="al.prev">‹</button>
+        <button type="button" class="navbtn" id="m-next" data-al="al.next">›</button>
       </div>
     </div>
-    <div class="split" id="m-split">
-      <div>
-        <div class="cal">
-          <div class="dow" id="m-dow"></div>
-          <div class="grid" id="m-grid"></div>
-        </div>
-        <div class="legend" style="margin-top:10px">
-          <span><i style="background:var(--fest-tint-fg)"></i><span data-t="legend.hol"></span></span>
-          <span><i style="background:var(--orange)"></i><span data-t="cat.festival"></span></span>
-          <span><i style="background:var(--violet)"></i><span data-t="cat.civic"></span></span>
-          <span><i style="background:var(--emerald)"></i><span data-t="cat.lunar"></span></span>
-          <span><i style="background:var(--pink)"></i><span data-t="cat.community"></span></span>
-        </div>
+    <section class="box">
+      <div class="band b2">
+        <span class="y" id="m-title" aria-live="polite"></span>
+        <span class="en" id="m-sub"></span>
       </div>
-      <aside class="daycard" id="daycard" hidden></aside>
-    </div>
+      <div class="g7" id="m-grid"></div>
+    </section>
+    <div class="legend" id="m-legend"></div>
+    <aside id="daycard" hidden></aside>
   </section>
 
   <!-- FESTIVALS -->
   <section class="view" id="view-festivals" hidden>
-    <div class="head">
-      <div class="kindhead"><span class="kindicon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M12 3l2.6 5.4 5.9.8-4.3 4.1 1.1 5.9L12 16.4 6.7 19.2l1.1-5.9L3.5 9.2l5.9-.8z"/></svg></span><div><h1 class="display-lg" id="f-title"></h1><div class="kmonth ne" id="f-month" aria-live="polite"></div><div class="sub" id="f-sub"></div></div></div>
-      <div class="navrow"><button class="btn-icon nav-ring" id="f-prev" data-al="al.prev">‹</button><button class="btn-icon nav-ring" id="f-next" data-al="al.next">›</button></div>
+    <div class="pt-bar">
+      <div class="pt"><span class="y" id="f-title"></span><span class="en" id="f-sub-top">Festivals</span></div>
+      <div class="navrow">
+        <button type="button" class="navbtn" id="f-prev" data-al="al.prev">‹</button>
+        <button type="button" class="navbtn" id="f-next" data-al="al.next">›</button>
+      </div>
     </div>
-    <div class="list" id="f-list"></div>
+    <div class="chips" id="f-chips">
+      <button type="button" class="on" data-f="all" id="chip-all">सबै · All</button>
+      <button type="button" data-f="h" id="chip-h">बिदा · Holidays</button>
+      <button type="button" data-f="f" id="chip-f">चाड · Festivals</button>
+    </div>
+    <section class="box">
+      <div class="sub" id="f-month" aria-live="polite"></div>
+      <div id="f-list"></div>
+    </section>
+  </section>
+
+  <!-- WORLD CLOCKS -->
+  <section class="view" id="view-clocks" hidden>
+    <div class="pt-bar">
+      <div class="pt"><span class="y" data-t="nav.clocks"></span><span class="en" id="c-pt-en">World clocks</span></div>
+    </div>
+    <section class="box" id="w-board"></section>
+    <p class="lg" id="w-note"></p>
+    <p class="sr" id="w-status" aria-live="polite"></p>
+  </section>
+
+  <!-- MORE -->
+  <section class="view" id="view-more" hidden>
+    <div class="pt-bar">
+      <div class="pt"><span class="y" data-t="nav.more"></span><span class="en" id="more-pt-en">More</span></div>
+    </div>
+    <section class="box">
+      <h2><span class="y" style="font-size:19px;opacity:1" id="more-pref-h">सेटिङ</span><span data-t="more.sub"></span></h2>
+      <div class="r">
+        <div><div class="y" data-t="more.theme"></div><small data-t="more.theme.sub"></small></div>
+        <button type="button" class="sw" id="themeRow" role="switch" aria-checked="false" aria-label="Dark mode"></button>
+      </div>
+      <div class="r" id="remindRow" hidden>
+        <div><div class="y" data-t="more.remind"></div><small id="remindDesc" data-t="more.remind.sub"></small></div>
+        <button type="button" class="sw" id="remindSw" role="switch" aria-checked="false" aria-label="Holiday reminders"></button>
+      </div>
+    </section>
+    <section class="box">
+      <h2><span class="y" style="font-size:19px;opacity:1" id="more-tools-h">उपकरण</span><span>Tools</span></h2>
+      <button type="button" class="r click more-row" data-view="holidays">
+        <div><div class="y" data-t="h.title"></div><small data-t="more.hol.sub"></small></div>
+        <span class="r-arrow">›</span>
+      </button>
+      <button type="button" class="r click more-row" data-view="auspicious">
+        <div><div class="y" data-t="ausp.title"></div><small data-t="more.ausp.sub"></small></div>
+        <span class="r-arrow">›</span>
+      </button>
+      <button type="button" class="r click more-row" data-view="convert">
+        <div><div class="y" data-t="conv.title"></div><small data-t="more.conv.sub"></small></div>
+        <span class="r-arrow">›</span>
+      </button>
+      <button type="button" class="r click more-row" data-view="clocks">
+        <div><div class="y" data-t="clk.title"></div><small data-t="more.clocks.sub"></small></div>
+        <span class="r-arrow">›</span>
+      </button>
+    </section>
+    <section class="box">
+      <h2><span class="y" style="font-size:19px;opacity:1" id="more-about-h">बारेमा</span><span>About</span></h2>
+      <button type="button" class="r click more-row" data-view="about">
+        <div><div class="y" data-t="about.title"></div><small data-t="more.about.sub"></small></div>
+        <span class="r-arrow">›</span>
+      </button>
+      <button type="button" class="r click more-row" data-view="privacy">
+        <div><div class="y" data-t="priv.title"></div><small data-t="more.priv.sub"></small></div>
+        <span class="r-arrow">›</span>
+      </button>
+      <button type="button" class="r click more-row" data-view="support">
+        <div><div class="y" data-t="supp.title"></div><small data-t="more.supp.sub"></small></div>
+        <span class="r-arrow">›</span>
+      </button>
+    </section>
   </section>
 
   <!-- HOLIDAYS -->
   <section class="view" id="view-holidays" hidden>
-    <button type="button" class="btn btn-secondary back" data-view="more" data-t="back"></button>
-    <div class="head">
-      <div class="kindhead"><span class="kindicon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M5 21V4M5 4h11l-2 4 2 4H5"/></svg></span><div><h1 class="display-lg" id="h-title"></h1><div class="kmonth ne" id="h-month" aria-live="polite"></div><div class="sub" id="h-sub"></div></div></div>
-      <div class="navrow"><button class="btn-icon nav-ring" id="h-prev" data-al="al.prev">‹</button><button class="btn-icon nav-ring" id="h-next" data-al="al.next">›</button></div>
+    <button type="button" class="back-btn back" data-view="more" data-t="back"></button>
+    <div class="pt-bar">
+      <div class="pt"><span class="y" id="h-title"></span><span class="en" id="h-sub"></span></div>
+      <div class="navrow">
+        <button type="button" class="navbtn" id="h-prev" data-al="al.prev">‹</button>
+        <button type="button" class="navbtn" id="h-next" data-al="al.next">›</button>
+      </div>
     </div>
-    <p class="ksum" id="h-sum"></p>
-    <div class="list" id="h-list"></div>
+    <section class="box">
+      <div class="sub" id="h-month" aria-live="polite"></div>
+      <p class="ksum" id="h-sum"></p>
+      <div id="h-list"></div>
+    </section>
   </section>
 
   <!-- AUSPICIOUS -->
   <section class="view" id="view-auspicious" hidden>
-    <button type="button" class="btn btn-secondary back" data-view="more" data-t="back"></button>
-    <div class="head"><div><h1 class="display-lg" data-t="ausp.title"></h1><div class="sub" data-t="ausp.sub"></div></div></div>
-    <div class="card">
-      <div class="form">
-        <label class="f"><span data-t="ausp.ceremony"></span><select id="a-type">
-          <option value="marriage"></option><option value="bratabandha"></option><option value="griha"></option><option value="pasni"></option><option value="general"></option>
-        </select></label>
-        <label class="f"><span data-t="ausp.from"></span><input type="date" id="a-from"></label>
-        <label class="f"><span data-t="ausp.span"></span><select id="a-span"><option value="3">3</option><option value="6" selected>6</option><option value="12">12</option></select></label>
-      </div>
+    <button type="button" class="back-btn back" data-view="more" data-t="back"></button>
+    <div class="pt-bar">
+      <div class="pt"><span class="y" data-t="ausp.title"></span><span class="en" data-t="ausp.sub"></span></div>
     </div>
-    <div class="list" id="a-list"></div>
+    <section class="box">
+      <div class="form-pad">
+        <div class="form-row">
+          <label class="f"><span data-t="ausp.ceremony"></span><select id="a-type">
+            <option value="marriage"></option><option value="bratabandha"></option><option value="griha"></option><option value="pasni"></option><option value="general"></option>
+          </select></label>
+          <label class="f"><span data-t="ausp.from"></span><input type="date" id="a-from"></label>
+          <label class="f"><span data-t="ausp.span"></span><select id="a-span"><option value="3">3</option><option value="6" selected>6</option><option value="12">12</option></select></label>
+        </div>
+      </div>
+    </section>
+    <section class="box" id="a-list"></section>
   </section>
 
   <!-- CONVERT -->
   <section class="view" id="view-convert" hidden>
-    <button type="button" class="btn btn-secondary back" data-view="more" data-t="back"></button>
-    <div class="head"><div><h1 class="display-lg" data-t="conv.title"></h1><div class="sub" data-t="conv.sub"></div></div></div>
-    <div class="two">
-      <div class="card">
-        <div class="title-md" data-t="conv.bs2ad"></div>
-        <div class="form" style="margin-top:12px">
+    <button type="button" class="back-btn back" data-view="more" data-t="back"></button>
+    <div class="pt-bar">
+      <div class="pt"><span class="y" data-t="conv.title"></span></div>
+    </div>
+    <section class="box">
+      <h2><span class="y" style="font-size:19px;opacity:1" data-t="conv.bs2ad"></span></h2>
+      <div class="form-pad">
+        <div class="form-row">
           <label class="f"><span data-t="conv.year"></span><select id="c-bsy"></select></label>
           <label class="f"><span data-t="conv.month"></span><select id="c-bsm"></select></label>
           <label class="f"><span data-t="conv.day"></span><select id="c-bsd"></select></label>
         </div>
-        <div class="result" aria-live="polite"><div class="r" id="c-bs-out">—</div><div class="s" id="c-bs-sub"></div></div>
+        <div class="result" aria-live="polite"><div class="rv" id="c-bs-out"></div><div class="rs" id="c-bs-sub"></div></div>
       </div>
-      <div class="card">
-        <div class="title-md" data-t="conv.ad2bs"></div>
-        <div class="form" style="margin-top:12px">
-          <label class="f span2"><span data-t="conv.addate"></span><input type="date" id="c-ad" min="1943-04-14" max="2036-04-12"></label>
-        </div>
-        <div class="result" aria-live="polite"><div class="r ne" id="c-ad-out">—</div><div class="s" id="c-ad-sub"></div></div>
+    </section>
+    <section class="box">
+      <h2><span class="y" style="font-size:19px;opacity:1" data-t="conv.ad2bs"></span></h2>
+      <div class="form-pad">
+        <label class="f"><span data-t="conv.addate"></span><input type="date" id="c-ad" min="1943-04-14" max="2036-04-12"></label>
+        <div class="result" aria-live="polite"><div class="rv" id="c-ad-out"></div><div class="rs" id="c-ad-sub"></div></div>
       </div>
-    </div>
+    </section>
   </section>
+
+  <!-- ABOUT -->
+  <section class="view" id="view-about" hidden>
+    <button type="button" class="back-btn back" data-view="more" data-t="back"></button>
+    <div class="pt-bar"><div class="pt"><span class="y" data-t="about.title"></span><span class="en" data-t="about.sub"></span></div></div>
+    <section class="box">
+      <div class="r"><div><div class="y" data-t="about.1h"></div><p class="info-p" data-t="about.1p"></p></div></div>
+      <div class="r"><div><div class="y" data-t="about.2h"></div><p class="info-p" data-t="about.2p"></p></div></div>
+      <div class="r"><div><div class="y" data-t="about.3h"></div><p class="info-p" data-t="about.3p"></p></div></div>
+      <div class="r"><div><div class="y" data-t="about.4h"></div><p class="info-p" data-t="about.4p"></p></div></div>
+    </section>
+  </section>
+
+  <!-- PRIVACY -->
+  <section class="view" id="view-privacy" hidden>
+    <button type="button" class="back-btn back" data-view="more" data-t="back"></button>
+    <div class="pt-bar"><div class="pt"><span class="y" data-t="priv.title"></span></div></div>
+    <section class="box">
+      <div class="r"><div><div class="y" data-t="priv.1h"></div><p class="info-p" data-t="priv.1p"></p></div></div>
+      <div class="r"><div><div class="y" data-t="priv.2h"></div><p class="info-p" data-t="priv.2p"></p></div></div>
+      <div class="r"><div><div class="y" data-t="priv.3h"></div><p class="info-p" data-t="priv.3p"></p></div></div>
+      <div class="r"><div><div class="y" data-t="priv.4h"></div><p class="info-p" data-t="priv.4p"></p><div style="margin-top:10px"><a href="https://devcalapps-glitch.github.io/sundar-patro/privacy/" target="_blank" rel="noopener noreferrer" class="btn-ink" data-t="priv.open"></a></div></div></div>
+    </section>
+  </section>
+
+  <!-- SUPPORT -->
+  <section class="view" id="view-support" hidden>
+    <button type="button" class="back-btn back" data-view="more" data-t="back"></button>
+    <div class="pt-bar"><div class="pt"><span class="y" data-t="supp.title"></span></div></div>
+    <section class="box">
+      <div class="r"><div><div class="y" data-t="supp.1h"></div><p class="info-p" data-t="supp.1p"></p><div style="margin-top:10px"><a href="mailto:support@longestchariot.com?subject=Sundar%20Patro%20Support" class="btn-ink" data-t="supp.mail"></a></div></div></div>
+      <div class="r"><div><div class="y" data-t="supp.2h"></div><p class="info-p" data-t="supp.2p"></p></div></div>
+      <div class="r"><div><div class="y" data-t="supp.3h"></div><p class="info-p" data-t="supp.3p"></p></div></div>
+      <div class="r"><div><div class="y" data-t="supp.4h"></div><p class="info-p" data-t="supp.4p"></p><div style="margin-top:10px"><a href="https://devcalapps-glitch.github.io/sundar-patro/support/" target="_blank" rel="noopener noreferrer" class="btn-outline" data-t="supp.open"></a></div></div></div>
+    </section>
+  </section>
+
   <div id="ad-slot" aria-hidden="true"></div>
+  <p class="copy" data-t="footer"></p>
 </main>
 
-<footer><div class="wrap">
-  <div class="mark"><svg class="brand-icon" style="width:20px;height:20px;display:inline-block;vertical-align:middle" viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect x="4" y="6" width="24" height="22" rx="5" stroke="currentColor" stroke-width="2"/><rect x="9" y="3" width="3" height="5" rx="1.5" fill="currentColor"/><rect x="20" y="3" width="3" height="5" rx="1.5" fill="currentColor"/><circle cx="10" cy="12" r="1.3" fill="var(--muted-soft,#9ca3af)"/><circle cx="16" cy="12" r="1.3" fill="var(--muted-soft,#9ca3af)"/><circle cx="22" cy="12" r="1.3" fill="var(--muted-soft,#9ca3af)"/><circle cx="10" cy="17" r="1.3" fill="var(--muted-soft,#9ca3af)"/><circle cx="16" cy="17" r="3.2" stroke="#E11D48" stroke-width="1.5" fill="none"/><circle cx="16" cy="17" r="1.4" fill="#F59E0B"/><circle cx="22" cy="17" r="1.3" fill="var(--muted-soft,#9ca3af)"/><circle cx="10" cy="22" r="1.3" fill="var(--muted-soft,#9ca3af)"/><circle cx="16" cy="22" r="1.3" fill="var(--muted-soft,#9ca3af)"/><circle cx="22" cy="22" r="1.3" fill="var(--muted-soft,#9ca3af)"/></svg><span data-t="app"></span></div>
-  <p data-t="footer"></p>
-</div></footer>
+<nav class="tabs tabbar" data-al="al.views">
+  <button type="button" class="tab tb" data-view="today" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/></svg><span class="y" data-t="nav.today"></span></button>
+  <button type="button" class="tab tb" data-view="month"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15"/><path d="M4 10h16M9 3v4M15 3v4"/></svg><span class="y" data-t="nav.month"></span></button>
+  <button type="button" class="tab tb" data-view="festivals"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4l2.5 5 5.5.8-4 3.9.9 5.5-4.9-2.6-4.9 2.6.9-5.5-4-3.9 5.5-.8z"/></svg><span class="y" data-t="nav.festivals"></span></button>
+  <button type="button" class="tab tb" data-view="clocks"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg><span class="y" data-t="nav.clocks"></span></button>
+  <button type="button" class="tab tb" data-view="more"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h14M5 12h14M5 17h14"/></svg><span class="y" data-t="nav.more"></span></button>
+</nav>
 
 <script>
 /* ============ Bikram Sambat table ============ */
@@ -672,7 +664,7 @@ const RULES=[
  // lunar
  {k:'lunar',lm:'Chaitra',p:'Krishna',t:15,mo:'sunrise',en:'Ghode Jatra',dne:'टुँडिखेलमा घोडे जात्रा; काठमाडौं उपत्यकामा बिदा।',ne:'घोडे जात्रा',cat:'festival',hol:'valley',desc:'Horse festival at Tundikhel; holiday in Kathmandu Valley.'},
  {k:'lunar',lm:'Chaitra',p:'Shukla',t:9,mo:'sunrise',en:'Ram Navami',dne:'भगवान रामको जन्मदिन; जनकपुरमा मेला।',ne:'राम नवमी',cat:'festival',hol:'national',desc:'Birth of Lord Ram; Janakpur fair.'},
- {k:'lunar',lm:'Baisakh',p:'Krishna',t:15,mo:'sunrise',en:'Mata Tirtha Aunsi',dne:'आमाको मुख हेर्ने दिन।',ne:'मातातीर्थ औंसी',cat:'festival',hol:null,desc:'Mother\'s Day (Aama ko mukh herne din).'},
+ {k:'lunar',lm:'Baisakh',p:'Krishna',t:15,mo:'sunrise',en:'Mata Tirtha Aunsi',dne:'आमाको मुख हेर्ने दिन।',ne:'मातातीर्थ औंसी',cat:'festival',hol:null,desc:'Mother\'s Day, Aama ko mukh herne din.'},
  {k:'lunar',lm:'Baisakh',p:'Shukla',t:3,mo:'sunrise',en:'Akshaya Tritiya',dne:'नयाँ काम र खरिदका लागि शुभ दिन।',ne:'अक्षय तृतीया',cat:'lunar',hol:null,desc:'Auspicious day for new beginnings and purchases.'},
  {k:'lunar',lm:'Baisakh',p:'Shukla',t:15,mo:'sunrise',en:'Buddha Jayanti · Ubhauli',dne:'बुद्धको जन्म, बुद्धत्व र महापरिनिर्वाण; किराँत उभौली।',ne:'बुद्ध जयन्ती',cat:'festival',hol:'national',desc:'Birth, enlightenment and parinirvana of the Buddha; Kirat Ubhauli.'},
  {k:'lunar',lm:'Asar',p:'Shukla',t:11,mo:'sunrise',en:'Harishayani Ekadashi',dne:'विष्णु शयनमा जानुहुने; चातुर्मास सुरु, विवाह रोकिन्छ।',ne:'हरिशयनी एकादशी',cat:'lunar',hol:null,desc:'Vishnu begins his cosmic sleep; Chaturmas starts, marriages pause.'},
@@ -681,7 +673,7 @@ const RULES=[
  {k:'lunar',lm:'Shrawan',p:'Shukla',t:15,mo:'sunrise',en:'Janai Purnima · Rakshya Bandhan',dne:'जनै फेर्ने; क्वाँटी; गोसाइँकुण्ड मेला।',ne:'जनै पूर्णिमा',cat:'festival',hol:'national',desc:'Sacred thread renewal; kwati; Gosaikunda fair.'},
  {k:'lunar',lm:'Shrawan',p:'Shukla',t:15,mo:'sunrise',off:1,en:'Gai Jatra',dne:'दिवंगतको सम्झनामा नेवार समुदायको जात्रा; हास्यव्यङ्ग्यको दिन।',ne:'गाईजात्रा',cat:'festival',hol:'valley',desc:'Newar procession for the departed; satire day.'},
  {k:'lunar',lm:'Bhadra',p:'Krishna',t:8,mo:'noon',en:'Krishna Janmashtami',dne:'भगवान कृष्णको जन्मदिन; पाटन कृष्ण मन्दिरमा जागरण।',ne:'कृष्ण जन्माष्टमी',cat:'festival',hol:'national',desc:'Birth of Lord Krishna; Patan Krishna Mandir vigil.'},
- {k:'lunar',lm:'Bhadra',p:'Krishna',t:15,mo:'sunrise',en:'Kushe Aunsi',dne:'बुवाको मुख हेर्ने दिन; कुश टिपिन्छ।',ne:'कुशे औंसी',cat:'festival',hol:null,desc:'Father\'s Day (Buwa ko mukh herne din); kush grass gathered.'},
+ {k:'lunar',lm:'Bhadra',p:'Krishna',t:15,mo:'sunrise',en:'Kushe Aunsi',dne:'बुवाको मुख हेर्ने दिन; कुश टिपिन्छ।',ne:'कुशे औंसी',cat:'festival',hol:null,desc:'Father\'s Day, Buwa ko mukh herne din; kush grass gathered.'},
  {k:'lunar',lm:'Bhadra',p:'Shukla',t:3,mo:'sunrise',en:'Haritalika Teej',dne:'महिलाहरूको शिव व्रत; अघिल्लो रात दर खाइन्छ।',ne:'हरितालिका तीज',cat:'festival',hol:'women',desc:'Women\'s fast for Shiva; dar feast the night before.'},
  {k:'lunar',lm:'Bhadra',p:'Shukla',t:5,mo:'sunrise',en:'Rishi Panchami',dne:'तीजको व्रत समापन; सप्तऋषि पूजा।',ne:'ऋषि पञ्चमी',cat:'festival',hol:null,desc:'Sapta Rishi worship closing the Teej fast.'},
  {k:'lunar',lm:'Bhadra',p:'Shukla',t:14,mo:'sunrise',en:'Indra Jatra',dne:'येँया; काठमाडौंमा कुमारी रथयात्रा।',ne:'इन्द्रजात्रा',cat:'festival',hol:'valley',desc:'Yenya; Kumari chariot procession in Kathmandu.'},
@@ -690,7 +682,7 @@ const RULES=[
  {k:'lunar',lm:'Asoj',p:'Shukla',t:8,mo:'sunrise',en:'Maha Ashtami',dne:'कालरात्रि; दुर्गा बलि।',ne:'महाअष्टमी',cat:'festival',hol:'national',desc:'Kalratri; Durga sacrifices.'},
  {k:'lunar',lm:'Asoj',p:'Shukla',t:9,mo:'sunrise',en:'Maha Navami',dne:'सवारी र औजारको पूजा; तलेजु खुल्छ।',ne:'महानवमी',cat:'festival',hol:'national',desc:'Vehicles and tools blessed; Taleju open.'},
  {k:'lunar',lm:'Asoj',p:'Shukla',t:10,mo:'noon',en:'Vijaya Dashami',dne:'मान्यजनबाट टीका र जमरा; दशैंको मुख्य दिन।',ne:'विजया दशमी',cat:'festival',hol:'national',desc:'Tika and jamara from elders; main day of Dashain.'},
- {k:'lunar',lm:'Asoj',p:'Shukla',t:11,mo:'sunrise',en:'Ekadashi (Dashain)',dne:'टीका जारी; दशैं बिदा।',ne:'एकादशी',cat:'festival',hol:'national',desc:'Tika continues; Dashain holiday.'},
+ {k:'lunar',lm:'Asoj',p:'Shukla',t:11,mo:'sunrise',en:'Dashain Ekadashi',dne:'टीका जारी; दशैं बिदा।',ne:'एकादशी',cat:'festival',hol:'national',desc:'Tika continues; Dashain holiday.'},
  {k:'lunar',lm:'Asoj',p:'Shukla',t:15,mo:'afternoon',en:'Kojagrat Purnima',dne:'दशैंको अन्तिम दिन; लक्ष्मी जाग्राम।',ne:'कोजाग्रत पूर्णिमा',cat:'festival',hol:'national',desc:'Last day of Dashain; Laxmi stays awake.'},
  {k:'lunar',lm:'Kartik',p:'Krishna',t:13,mo:'sunrise',en:'Kaag Tihar',dne:'तिहार सुरु; कागलाई भोग।',ne:'काग तिहार',cat:'festival',hol:null,desc:'Tihar begins; offerings to crows.'},
  {k:'lunar',lm:'Kartik',p:'Krishna',t:14,mo:'sunrise',en:'Kukur Tihar',dne:'कुकुरलाई माला र भोजन।',ne:'कुकुर तिहार',cat:'festival',hol:null,desc:'Dogs garlanded and fed.'},
@@ -707,12 +699,12 @@ const RULES=[
  {k:'lunar',lm:'Falgun',p:'Shukla',t:1,mo:'morning',en:'Gyalpo Lhosar',dne:'शेर्पा र तिब्बती समुदायको नयाँ वर्ष।',ne:'ग्याल्पो ल्होसार',cat:'community',hol:'national',desc:'Sherpa and Tibetan New Year.'},
  {k:'lunar',lm:'Falgun',p:'Shukla',t:8,mo:'sunrise',en:'Holashtak begins',dne:'होलीअघिका आठ अशुभ दिन; बसन्तपुरमा चिर ठड्याइन्छ।',ne:'होलाष्टक',cat:'lunar',hol:null,desc:'Eight inauspicious days before Holi; chir raised at Basantapur.'},
  {k:'lunar',lm:'Falgun',p:'Shukla',t:15,mo:'noon',en:'Fagu Purnima · Holi',dne:'पहाडमा होली; तराईमा भोलिपल्ट।',ne:'फागु पूर्णिमा',cat:'festival',hol:'national',desc:'Holi in the hills; Terai celebrates the next day.'},
- {k:'lunar',lm:'Falgun',p:'Shukla',t:15,mo:'noon',off:1,en:'Holi (Terai)',dne:'फागु पूर्णिमाको भोलिपल्ट तराईका जिल्लामा होली।',ne:'होली (तराई)',cat:'festival',hol:'terai',desc:'Terai districts\' Holi, the day after Fagu Purnima.'},
- {k:'islamic',m:10,d:1,en:'Eid al-Fitr',dne:'रमजानको समापन (चन्द्र दर्शनअनुसार, अनुमानित)।',ne:'ईद उल फित्र',cat:'festival',hol:'national',desc:'End of Ramadan (approximate; set by moon sighting).'},
- {k:'islamic',m:12,d:10,en:'Eid al-Adha · Bakr Eid',dne:'कुर्बानीको पर्व (चन्द्र दर्शनअनुसार, अनुमानित)।',ne:'बकर ईद',cat:'festival',hol:'national',desc:'Festival of sacrifice (approximate; set by moon sighting).'},
+ {k:'lunar',lm:'Falgun',p:'Shukla',t:15,mo:'noon',off:1,en:'Holi, Terai',dne:'फागु पूर्णिमाको भोलिपल्ट तराईका जिल्लामा होली।',ne:'होली, तराई',cat:'festival',hol:'terai',desc:'Terai districts\' Holi, the day after Fagu Purnima.'},
+ {k:'islamic',m:10,d:1,en:'Eid al-Fitr',dne:'रमजानको समापन, चन्द्र दर्शनअनुसार अनुमानित।',ne:'ईद उल फित्र',cat:'festival',hol:'national',desc:'End of Ramadan, approximate and set by moon sighting.'},
+ {k:'islamic',m:12,d:10,en:'Eid al-Adha · Bakr Eid',dne:'कुर्बानीको पर्व, चन्द्र दर्शनअनुसार अनुमानित।',ne:'बकर ईद',cat:'festival',hol:'national',desc:'Festival of sacrifice, approximate and set by moon sighting.'},
 ];
 const CAT_COLOR={festival:'var(--orange)',civic:'var(--violet)',lunar:'var(--emerald)',community:'var(--pink)'};
-const HOL_LABEL={national:'National holiday',valley:'Valley holiday',women:'Holiday (women)',community:'Community holiday',terai:'Terai holiday'};
+const HOL_LABEL={national:'National holiday',valley:'Valley holiday',women:'Women\'s holiday',community:'Community holiday',terai:'Terai holiday'};
 function momentJ(g,mo){ if(mo==='sunrise')return sunEvent(g.y,g.m,g.d,false); if(mo==='sunset')return sunEvent(g.y,g.m,g.d,true);
   if(mo==='midnight')return jd(g.y,g.m,g.d,24-TZ); if(mo==='morning')return jd(g.y,g.m,g.d,10-TZ); if(mo==='afternoon')return jd(g.y,g.m,g.d,14-TZ); return jd(g.y,g.m,g.d,12-TZ); }
 const eventCache=new Map();
@@ -767,61 +759,61 @@ const RASHI_NE=['मेष','वृष','मिथुन','कर्कट','स
 const T={
  app:['Sundar Patro','सुन्दर पात्रो'],
  'nav.today':['Today','आज'],'nav.month':['Calendar','पात्रो'],'nav.festivals':['Festivals','चाडपर्व'],'nav.clocks':['Clocks','विश्व घडी'],'nav.holidays':['Holidays','बिदा'],'nav.more':['More','थप'],
- 'today.upcoming':['Coming up','आउँदै गरेका'],'today.all':['All →','सबै →'],'npt':['Nepal time','नेपाल समय'],
+ 'today.upcoming':['Coming up','आउँदै गरेका'],'today.all':['View all','सबै'],'npt':['Nepal time','नेपाल समय'],
  'clk.title':['World clocks','विश्व घडी'],'more.clocks.sub':['Reorder or add city clocks; top 2 appear on Today','सहरको घडी थप्नुहोस् वा क्रम मिलाउनुहोस्; शीर्ष २ आजमा देखिन्छन्'],
- 'clk.sub':['Move cities up or down. The top 2 appear on Today; all others appear here.','सहरहरू तल-माथि सार्नुहोस्। शीर्ष २ सहर आज पृष्ठमा देखिन्छन्, बाँकी यहाँ मात्र।'],
- 'clk.city':['Add any city clock','जुनसुकै सहर थप्नुहोस्'],'clk.add':['Add','थप्नुहोस्'],'clk.remove':['Remove','हटाउनुहोस्'],'clk.nepal':['Nepal (Kathmandu)','नेपाल (काठमाडौं)'],'clk.always':['Pinned on Today','आज पृष्ठमा सधैं'],
- 'clk.top2':['Top 2 clocks — shown on Today page','शीर्ष २ घडी — आज पृष्ठमा देखिने'],'clk.others':['Other clocks — shown on Clocks tab only','अन्य घडीहरू — घडी पृष्ठमा मात्र देखिने'],
+ 'clk.sub':['Move cities up or down. The top 2 appear on Today. All others appear here.','सहरहरू तल वा माथि सार्नुहोस्। शीर्ष २ सहर आज पृष्ठमा देखिन्छन्, बाँकी यहाँ मात्र।'],
+ 'clk.city':['Add any city clock','जुनसुकै सहर थप्नुहोस्'],'clk.add':['Add','थप्नुहोस्'],'clk.remove':['Remove','हटाउनुहोस्'],'clk.nepal':['Nepal, Kathmandu','नेपाल, काठमाडौं'],'clk.always':['Pinned on Today','आज पृष्ठमा सधैं'],
+ 'clk.top2':['Top 2 clocks, shown on Today page','शीर्ष २ घडी, आज पृष्ठमा देखिने'],'clk.others':['Other clocks, shown on Clocks tab only','अन्य घडीहरू, घडी पृष्ठमा मात्र देखिने'],
  'clk.ontoday':['On Today page','आज पृष्ठमा देखिने'],'clk.onclocks':['Clocks tab only','घडी पृष्ठमा मात्र'],
  'clk.up':['Move up','माथि सार्नुहोस्'],'clk.down':['Move down','तल सार्नुहोस्'],
  'clk.full':['All available cities have been added.','सबै उपलब्ध सहरहरू थपिएका छन्।'],'clk.added':['added','थपियो'],'clk.removed':['removed','हटाइयो'],
  'more.hol.sub':['Public holidays by month','महिनाअनुसार सार्वजनिक बिदा'],
- 'al.views':['Main menu','मुख्य मेनु'],'al.lang':['Language','भाषा'],'al.prev':['Previous month','अघिल्लो महिना'],'al.next':['Next month','अर्को महिना'],'today.open':['Open in calendar','पात्रोमा हेर्नुहोस्'],'today.listen':['Listen','सुन्नुहोस्'],'today.pause':['Pause','रोक्नुहोस्'],'today.none':['Nothing in the next 45 days.','आगामी ४५ दिनमा केही छैन।'],'tomorrow':['Tomorrow','भोलि'],
- 'more.theme':['Dark mode','डार्क मोड'],'more.remind':['Holiday reminders','चाडपर्व र बिदा सम्झना'],'more.remind.sub':['A notification at 6 PM the evening before','अघिल्लो दिन बेलुका ६ बजे सूचना'],'more.remind.blocked':['Notifications are off. Tap to allow them in Settings.','सूचना बन्द छ। सेटिङमा अनुमति दिन थिच्नुहोस्।'],'remind.tom':['Tomorrow','भोलि'],'nudge.title':['Never miss a festival','चाडपर्व सम्झना पाउनुहोस्'],'nudge.on':['Turn on','सुरु गर्नुहोस्'],'nudge.later':['Not now','अहिले होइन'],'more.theme.sub':['Use a dark theme. Light is the default.','गाढा थिम प्रयोग गर्नुहोस्। पूर्वनिर्धारित उज्यालो हो।'],'more.sub':['Tools and reference','उपकरण र जानकारी'],'more.ausp.sub':['Screen days for marriage, bratabandha, griha pravesh and more','विवाह, व्रतबन्ध, गृहप्रवेश आदिका लागि शुभ दिन'],'more.conv.sub':['Bikram Sambat ⇄ Gregorian, 1943–2036','विक्रम सम्वत् ⇄ ईस्वी सम्वत्, १९४३–२०३६'],'more.about.sub':['How dates, tithis and festivals are worked out','मिति, तिथि र चाडपर्व कसरी गणना गरिन्छ'],
+ 'al.views':['Main menu','मुख्य मेनु'],'al.lang':['Language','भाषा'],'al.prev':['Previous month','अघिल्लो महिना'],'al.next':['Next month','अर्को महिना'],'today.open':['Open in calendar','पात्रोमा हेर्नुहोस्'],'today.listen':['Listen','सुन्नुहोस्'],'today.pause':['Pause','रोक्नुहोस्'],'today.none':['No events fall in the next 45 days.','आगामी ४५ दिनमा केही छैन।'],'tomorrow':['Tomorrow','भोलि'],
+ 'more.theme':['Dark mode','डार्क मोड'],'more.remind':['Holiday reminders','चाडपर्व र बिदा सम्झना'],'more.remind.sub':['A notification at 6 PM the evening before','अघिल्लो दिन बेलुका ६ बजे सूचना'],'more.remind.blocked':['Notifications are off. Tap to allow them in Settings.','सूचना बन्द छ। सेटिङमा अनुमति दिन थिच्नुहोस्।'],'remind.tom':['Tomorrow','भोलि'],'nudge.title':['Turn on festival reminders','चाडपर्व सम्झना पाउनुहोस्'],'nudge.on':['Turn on','सुरु गर्नुहोस्'],'nudge.later':['Not now','अहिले होइन'],'more.theme.sub':['Use a dark theme. Light is the default.','गाढा थिम प्रयोग गर्नुहोस्। पूर्वनिर्धारित उज्यालो हो।'],'more.sub':['Tools and reference','उपकरण र जानकारी'],'more.ausp.sub':['Screen days for marriage, bratabandha, griha pravesh and more','विवाह, व्रतबन्ध, गृहप्रवेश आदिका लागि शुभ दिन'],'more.conv.sub':['Convert between Bikram Sambat and Gregorian, 1943 to 2036','विक्रम सम्वत् र ईस्वी सम्वत् रूपान्तरण, १९४३ देखि २०३६'],'more.about.sub':['How the app calculates dates, tithis and festivals','मिति, तिथि र चाडपर्व कसरी गणना गरिन्छ'],
  back:['‹ More','‹ थप'],
  'about.title':['About the data','विधि'],'about.sub':['The sources and methods behind every date','हरेक मितिको स्रोत र विधि'],
- 'about.1h':['Bikram Sambat ⇄ Gregorian','विक्रम सम्वत् ⇄ ईस्वी सम्वत्'],
- 'about.1p':['BS months have no formula; their lengths (29–32 days) are fixed by Nepal\'s calendar authority. Conversion uses the standard month-length table for BS 2000–2092, anchored at 1 Baisakh 2000 = 14 April 1943, and verified against the published New Year dates for 2070–2083. Every BS ⇄ Gregorian conversion is exact.','विक्रम सम्वत्का महिनाको कुनै सूत्र छैन; तिनको लम्बाइ (२९–३२ दिन) नेपालको पञ्चाङ्ग समितिले तोक्छ। रूपान्तरणका लागि वि.सं. २०००–२०९२ को मानक महिना-तालिका प्रयोग गरिएको छ (१ वैशाख २००० = १४ अप्रिल १९४३) र २०७०–२०८३ का प्रकाशित नयाँ वर्षका मितिसँग प्रमाणित गरिएको छ। हरेक वि.सं. ⇄ ई.सं. रूपान्तरण सही छ।'],
+ 'about.1h':['Bikram Sambat and Gregorian','विक्रम सम्वत् र ईस्वी सम्वत्'],
+ 'about.1p':['Bikram Sambat months have no formula. Nepal\'s calendar authority fixes their lengths at 29 to 32 days. Conversion uses the standard month-length table for Bikram Sambat 2000 to 2092, anchored at 1 Baisakh 2000 on 14 April 1943, and verified against the published New Year dates for 2070 to 2083. Every Bikram Sambat and Gregorian conversion is exact.','विक्रम सम्वत्का महिनाको कुनै सूत्र छैन। तिनको लम्बाइ २९ देखि ३२ दिनसम्म नेपालको पञ्चाङ्ग समितिले तोक्छ। रूपान्तरणका लागि वि.सं. २००० देखि २०९२ को मानक महिना तालिका प्रयोग गरिएको छ, १ वैशाख २००० बराबर १४ अप्रिल १९४३ मानेर, र २०७० देखि २०८३ का प्रकाशित नयाँ वर्षका मितिसँग प्रमाणित गरिएको छ। हरेक वि.सं. र ई.सं. रूपान्तरण सही छ।'],
  'about.2h':['Tithis, nakshatras, lunar months','तिथि, नक्षत्र, चान्द्र मास'],
- 'about.2p':['Sun and Moon longitudes come from the Meeus algorithms; a tithi is each 12° of Moon–Sun elongation. The day\'s tithi is the one at Kathmandu sunrise, with the time it ends. Lunar months are named purnimanta style with adhik mas detected from sankranti counts. Nakshatra and rashi use the Lahiri ayanamsa. Accurate to minutes; a tithi ending near sunrise can differ from a printed panchanga.','सूर्य र चन्द्रको स्थिति मीयस (Meeus) विधिबाट गणना गरिन्छ; चन्द्र–सूर्यको प्रत्येक १२° अन्तर एक तिथि हो। दिनको तिथि काठमाडौंको सूर्योदयको तिथि हो, समाप्त हुने समयसहित। चान्द्र मास पूर्णिमान्त पद्धतिमा नामकरण गरिन्छ र संक्रान्तिको गणनाबाट अधिक मास पत्ता लगाइन्छ। नक्षत्र र राशिमा लाहिरी अयनांश प्रयोग गरिएको छ। मिनेटसम्म सही; सूर्योदय नजिक सकिने तिथि छापिएको पञ्चाङ्गभन्दा फरक पर्न सक्छ।'],
+ 'about.2p':['Sun and Moon longitudes come from the Meeus algorithms. A tithi is each 12° of Moon to Sun elongation. The day\'s tithi is the one at Kathmandu sunrise, with the time it ends. The app names lunar months in the purnimanta style and detects adhik mas from sankranti counts. Nakshatra and rashi use the Lahiri ayanamsa. Calculations are accurate to the minute. A tithi ending near sunrise can differ from a printed panchanga.','सूर्य र चन्द्रको स्थिति मीयस विधिबाट गणना गरिन्छ। चन्द्र र सूर्यको प्रत्येक १२° अन्तर एक तिथि हो। दिनको तिथि काठमाडौंको सूर्योदयको तिथि हो, समाप्त हुने समयसहित। चान्द्र मास पूर्णिमान्त पद्धतिमा नामकरण गरिन्छ र संक्रान्तिको गणनाबाट अधिक मास पत्ता लगाइन्छ। नक्षत्र र राशिमा लाहिरी अयनांश प्रयोग गरिएको छ। मिनेटसम्म सही हुन्छ। सूर्योदय नजिक सकिने तिथि छापिएको पञ्चाङ्गभन्दा फरक पर्न सक्छ।'],
  'about.3h':['Festivals','चाडपर्व'],
- 'about.3p':['Fixed BS and AD dates are exact. Lunar festivals are found from the tithi at each festival\'s traditional reference moment: sunrise for most, afternoon for Vijaya Dashami, dusk for Laxmi Puja, midnight for Shivaratri. Skipped (kshaya) tithis are assigned to the day they fall in. Eid dates use the tabular Islamic calendar and depend on moon sighting. The Nepal Panchanga Nirnayak Samiti\'s annual ruling is final and can differ by a day.','निश्चित वि.सं. र ई.सं. मिति ठीक छन्। चान्द्र चाडपर्व प्रत्येक पर्वको परम्परागत समयको तिथिबाट निकालिन्छ: धेरैजसो सूर्योदय, विजया दशमीमा अपराह्न, लक्ष्मी पूजामा साँझ, शिवरात्रिमा मध्यरात्रि। क्षय तिथि परेको दिनमै राखिन्छ। ईदका मिति इस्लामी तालिका-पात्रोबाट निकालिएका हुन् र चन्द्र दर्शनमा भर पर्छन्। नेपाल पञ्चाङ्ग निर्णायक समितिको वार्षिक निर्णय अन्तिम हो र एक दिन फरक पर्न सक्छ।'],
+ 'about.3p':['Fixed Bikram Sambat and Gregorian dates are exact. The app finds lunar festivals from the tithi at each festival\'s traditional reference moment: sunrise for most, afternoon for Vijaya Dashami, dusk for Laxmi Puja, and midnight for Shivaratri. The app assigns skipped kshaya tithis to the day they fall in. Eid dates use the tabular Islamic calendar and depend on moon sighting. The Nepal Panchanga Nirnayak Samiti\'s annual ruling is final and can differ by a day.','निश्चित वि.सं. र ई.सं. मिति ठीक छन्। चान्द्र चाडपर्व प्रत्येक पर्वको परम्परागत समयको तिथिबाट निकालिन्छ: धेरैजसो सूर्योदय, विजया दशमीमा अपराह्न, लक्ष्मी पूजामा साँझ, शिवरात्रिमा मध्यरात्रि। क्षय तिथि परेको दिनमै राखिन्छ। ईदका मिति इस्लामी तालिका पात्रोबाट निकालिएका हुन् र चन्द्र दर्शनमा भर पर्छन्। नेपाल पञ्चाङ्ग निर्णायक समितिको वार्षिक निर्णय अन्तिम हो र एक दिन फरक पर्न सक्छ।'],
  'about.4h':['Holidays and saait','बिदा र साइत'],
- 'about.4p':['Holidays are the ones Nepal usually gazettes, tagged national, valley, women, community or Terai; the cabinet changes the list each year. Saait screening applies the conventions most panchangas share (Chaturmas, Kharmas, Adhik mas, Pitri paksha, Holashtak, rikta tithis, weekdays, nakshatras). It is a shortlist, not a muhurat: confirm the lagna with a jyotishi or the printed patro.','बिदाहरू नेपाल सरकारले सामान्यतया राजपत्रमा प्रकाशन गर्नेहरू हुन्: राष्ट्रिय, उपत्यका, महिला, समुदाय वा तराई; मन्त्रिपरिषद्ले सूची हरेक वर्ष बदल्छ। साइत छनोटमा अधिकांश पञ्चाङ्गका साझा नियम (चातुर्मास, खरमास, अधिक मास, पितृ पक्ष, होलाष्टक, रिक्ता तिथि, बार, नक्षत्र) लागू गरिएका छन्। यो छोटो सूची मात्र हो, मुहूर्त होइन: लग्न ज्योतिषी वा छापिएको पात्रोबाट पक्का गर्नुहोस्।'],
+ 'about.4p':['Holidays are the ones Nepal usually gazettes, tagged national, valley, women, community or Terai. The cabinet changes the list each year. Saait screening applies the conventions most panchangas share, such as Chaturmas, Kharmas, Adhik mas, Pitri paksha, Holashtak, rikta tithis, weekdays, and nakshatras. It is a shortlist, not a muhurat. Confirm the lagna with a jyotishi or the printed patro.','बिदाहरू नेपाल सरकारले सामान्यतया राजपत्रमा प्रकाशन गर्नेहरू हुन्: राष्ट्रिय, उपत्यका, महिला, समुदाय वा तराई। मन्त्रिपरिषद्ले सूची हरेक वर्ष बदल्छ। साइत छनोटमा अधिकांश पञ्चाङ्गका साझा नियमहरू जस्तै चातुर्मास, खरमास, अधिक मास, पितृ पक्ष, होलाष्टक, रिक्ता तिथि, बार र नक्षत्र लागू गरिएका छन्। यो छोटो सूची मात्र हो, मुहूर्त होइन। लग्न ज्योतिषी वा छापिएको पात्रोबाट पक्का गर्नुहोस्।'],
  'legend.hol':['Public holiday','सार्वजनिक बिदा'],'cat.festival':['Religious festival','धार्मिक चाड'],'cat.civic':['National / civic','राष्ट्रिय'],'cat.lunar':['Lunar observance','चान्द्र पर्व'],'cat.community':['Community','समुदाय'],
- 'f.title':['Festivals','चाडपर्व'],'h.title':['Public holidays','सार्वजनिक बिदा'],'h.onsat':['Falls on Saturday','शनिबार परेको'],'h.none':['No public holidays this month.','यो महिना सार्वजनिक बिदा छैन।'],'to':['to','देखि'],'bs':['BS','वि.सं.'],'none':['No entries.','केही छैन।'],
+ 'f.title':['Festivals','चाडपर्व'],'h.title':['Public holidays','सार्वजनिक बिदा'],'h.onsat':['Falls on Saturday','शनिबार परेको'],'h.none':['No public holidays fall in this month.','यो महिना सार्वजनिक बिदा छैन।'],'to':['to','देखि'],'bs':['BS','वि.सं.'],'none':['No entries match.','केही छैन।'],
  'ausp.title':['Auspicious dates','शुभ साइत'],'ausp.sub':['Saait screening for ceremonies','संस्कार र शुभ कार्यका लागि साइत छनोट'],'ausp.ceremony':['Ceremony','कार्य'],'ausp.from':['From','देखि'],'ausp.span':['Months ahead','कति महिना'],
- 'ausp.none':['No favourable days in this window. Try a longer span; Chaturmas (roughly July–November) and Kharmas (mid-December to mid-January, mid-March to mid-April) close the season for marriage, bratabandha and griha pravesh.','यस अवधिमा शुभ दिन छैन। लामो अवधि छान्नुहोस्; चातुर्मास (साउन–कात्तिक) र खरमास (पुस र चैत) मा विवाह, व्रतबन्ध र गृहप्रवेश हुँदैन।'],
- 'conv.title':['Convert dates','मिति रूपान्तरण'],'conv.sub':['Bikram Sambat ⇄ Gregorian, BS 2000–2092 (AD 1943–2036)','विक्रम सम्वत् ⇄ ईस्वी सम्वत्, वि.सं. २०००–२०९२ (ई.सं. १९४३–२०३६)'],'conv.bs2ad':['BS → AD','वि.सं. → ई.सं.'],'conv.ad2bs':['AD → BS','ई.सं. → वि.सं.'],'conv.year':['Year','वर्ष'],'conv.month':['Month','महिना'],'conv.day':['Day','गते'],'conv.addate':['Gregorian date','ईस्वी मिति'],'conv.range':['Out of range','सीमाभन्दा बाहिर'],'conv.supported':['Supported: 14 April 1943 to 12 April 2036.','समर्थित: १४ अप्रिल १९४३ देखि १२ अप्रिल २०३६।'],
- 'day.tithi':['Tithi','तिथि'],'day.lmonth':['Lunar month','चान्द्र मास'],'day.nak':['Nakshatra','नक्षत्र'],'day.rashi':['Sun rashi','सूर्य राशि'],'day.sun':['Sun','सूर्य'],'day.until':['until','सम्म'],'day.midnight':['after midnight','मध्यरात्रिपछि'],'day.paksha':['paksha','पक्ष'],'day.adhik':['Adhik','अधिक'],'day.noevent':['No festival or holiday.','कुनै चाड वा बिदा छैन।'],'day.close':['Close','बन्द'],
- 'priv.title':['Privacy policy','गोपनीयता नीति'],'more.priv.sub':['Privacy disclosures & data handling','गोपनीयता र डेटा नीति'],
- 'priv.sub':['How Sundar Patro protects your privacy','सुन्दर पात्रोले तपाईंको गोपनीयता कसरी सुरक्षित गर्छ'],
+ 'ausp.none':['No favourable days fall in this window. Try a longer span. Chaturmas from July to November and Kharmas from mid-December to mid-January and mid-March to mid-April close the season for marriage, bratabandha and griha pravesh.','यस अवधिमा शुभ दिन छैन। लामो अवधि छान्नुहोस्। चातुर्मास, साउनदेखि कात्तिकसम्म, र खरमास, पुस र चैतमा विवाह, व्रतबन्ध र गृहप्रवेश हुँदैन।'],
+ 'conv.title':['Convert dates','मिति रूपान्तरण'],'conv.sub':['Convert between Bikram Sambat 2000 to 2092 and Gregorian 1943 to 2036','विक्रम सम्वत् २००० देखि २०९२ र ईस्वी सम्वत् १९४३ देखि २०३६ रूपान्तरण'],'conv.bs2ad':['Bikram Sambat to Gregorian','वि.सं. बाट ई.सं.'],'conv.ad2bs':['Gregorian to Bikram Sambat','ई.सं. बाट वि.सं.'],'conv.year':['Year','वर्ष'],'conv.month':['Month','महिना'],'conv.day':['Day','गते'],'conv.addate':['Gregorian date','ईस्वी मिति'],'conv.range':['Out of range','सीमाभन्दा बाहिर'],'conv.supported':['The converter supports dates from 14 April 1943 to 12 April 2036.','समर्थित: १४ अप्रिल १९४३ देखि १२ अप्रिल २०३६।'],
+ 'day.tithi':['Tithi','तिथि'],'day.lmonth':['Lunar month','चान्द्र मास'],'day.nak':['Nakshatra','नक्षत्र'],'day.rashi':['Sun rashi','सूर्य राशि'],'day.sun':['Sun','सूर्य'],'day.until':['until','सम्म'],'day.midnight':['after midnight','मध्यरात्रिपछि'],'day.paksha':['paksha','पक्ष'],'day.adhik':['Adhik','अधिक'],'day.noevent':['No festival or holiday falls on this day.','कुनै चाड वा बिदा छैन।'],'day.close':['Close','बन्द'],
+ 'priv.title':['Privacy policy','गोपनीयता नीति'],'more.priv.sub':['Privacy disclosures and data handling','गोपनीयता र डेटा नीति'],
+ 'priv.sub':['How Sundar Patro handles your data','सुन्दर पात्रोले तपाईंको गोपनीयता कसरी सुरक्षित गर्छ'],
  'priv.1h':['Local calendar data','स्थानीय क्यालेन्डर डेटा'],
- 'priv.1p':['Sundar Patro does not collect, store, or transmit your personal calendar or reminder data. There are no user accounts and no sign-in required.','सुन्दर पात्रोले तपाईंको व्यक्तिगत क्यालेन्डर वा सम्झना डेटा संकलन, भण्डारण वा साझेदारी गर्दैन। कुनै खाता वा साइन-इन आवश्यक छैन।'],
- 'priv.2h':['Advertisements (Google AdMob)','विज्ञापन (गुगल AdMob)'],
- 'priv.2p':['The app displays banner ads via Google AdMob to support maintenance. AdMob may process device identifiers and ad interactions in accordance with Google\'s Privacy Policy.','एप सञ्चालनका लागि Google AdMob मार्फत ब्यानर विज्ञापन देखाइन्छ। AdMob ले गुगलको गोपनीयता नीति अनुसार प्राविधिक पहिचानकर्ता प्रयोग गर्न सक्छ।'],
+ 'priv.1p':['Sundar Patro does not collect, store, or transmit your personal calendar or reminder data. The app requires no user account or sign-in.','सुन्दर पात्रोले तपाईंको व्यक्तिगत क्यालेन्डर वा सम्झना डेटा संकलन, भण्डारण वा साझेदारी गर्दैन। कुनै खाता वा साइन इन आवश्यक छैन।'],
+ 'priv.2h':['Google AdMob advertisements','गुगल AdMob विज्ञापन'],
+ 'priv.2p':['The app displays banner ads from Google AdMob to fund maintenance. AdMob may process device identifiers and ad interactions under Google\'s Privacy Policy.','एप सञ्चालनका लागि Google AdMob मार्फत ब्यानर विज्ञापन देखाइन्छ। AdMob ले गुगलको गोपनीयता नीति अनुसार प्राविधिक पहिचानकर्ता प्रयोग गर्न सक्छ।'],
  'priv.3h':['Minimal permissions','न्यूनतम अनुमति'],
- 'priv.3p':['The app does not access your microphone, camera, location, contacts, or photos. Notification permission is used solely for optional on-device festival reminders.','यस एपले क्यामेरा, माइक, स्थान, सम्पर्क वा फोटोहरू पहुँच गर्दैन। सूचना अनुमति केवल वैकल्पिक चाडपर्व सम्झनाका लागि मात्र प्रयोग हुन्छ।'],
- 'priv.4h':['Official online policy','आधिकारिक अनलाइन नीति'],
- 'priv.4p':['View our live, web-hosted privacy policy anytime:','हाम्रो अनलाइन गोपनीयता नीति हेर्नुहोस्:'],
- 'priv.open':['Open web policy ↗','अनलाइन नीति हेर्नुहोस् ↗'],
- 'supp.title':['Support & help','सहयोग र सहायता'],'more.supp.sub':['FAQs and developer contact','प्रायः सोधिने प्रश्न र सम्पर्क'],
+ 'priv.3p':['The app does not access your microphone, camera, location, contacts, or photos. It uses notification permission only for optional on-device festival reminders.','यस एपले क्यामेरा, माइक, स्थान, सम्पर्क वा फोटोहरू पहुँच गर्दैन। सूचना अनुमति केवल वैकल्पिक चाडपर्व सम्झनाका लागि मात्र प्रयोग हुन्छ।'],
+ 'priv.4h':['Online privacy policy','आधिकारिक अनलाइन नीति'],
+ 'priv.4p':['Read the full privacy policy on the web.','हाम्रो अनलाइन गोपनीयता नीति हेर्नुहोस्।'],
+ 'priv.open':['Open web policy','अनलाइन नीति हेर्नुहोस्'],
+ 'supp.title':['Support and help','सहयोग र सहायता'],'more.supp.sub':['Frequently asked questions and developer contact','प्रायः सोधिने प्रश्न र सम्पर्क'],
  'supp.sub':['Help and contact for Sundar Patro','सुन्दर पात्रो सहायता र सम्पर्क'],
  'supp.1h':['Contact us','हामीलाई सम्पर्क गर्नुहोस्'],
- 'supp.1p':['Have a question, feedback, or found an issue? Email us directly at support@longestchariot.com. We usually reply within 2 business days.','कुनै जिज्ञासा, सुझाव वा समस्या छ? हामीलाई support@longestchariot.com मा इमेल गर्नुहोस्।'],
- 'supp.mail':['Email Support ✉','इमेल गर्नुहोस् ✉'],
+ 'supp.1p':['Email questions, feedback, or bug reports to support@longestchariot.com. We reply within 2 business days.','कुनै जिज्ञासा, सुझाव वा समस्या छ? हामीलाई support@longestchariot.com मा इमेल गर्नुहोस्।'],
+ 'supp.mail':['Email support','इमेल गर्नुहोस्'],
  'supp.2h':['Is internet required?','के इन्टरनेट चाहिन्छ?'],
- 'supp.2p':['No. Sundar Patro is designed to be 100% offline. All Bikram Sambat conversion algorithms, tithis, and festival dates are built into the app.','पर्दैन। सुन्दर पात्रो पूर्णतः अफलाइन चल्छ। सबै वि.सं. मिति, तिथि र चाडपर्व एपभित्रै समावेश छन्।'],
+ 'supp.2p':['No. Sundar Patro runs offline. The app bundles all Bikram Sambat conversion tables, tithis, and festival dates.','पर्दैन। सुन्दर पात्रो पूर्णतः अफलाइन चल्छ। सबै वि.सं. मिति, तिथि र चाडपर्व एपभित्रै समावेश छन्।'],
  'supp.3h':['Switching language and theme','भाषा र थिम परिवर्तन'],
- 'supp.3p':['Tap the "ने / EN" toggle in the header to change language, or use the Dark Mode switch in the More menu.','माथिको "ने / EN" बटन थिचेर भाषा र "थप" मेनुबाट डार्क मोड परिवर्तन गर्न सकिन्छ।'],
- 'supp.4h':['Web support portal','अनलाइन सहायता पोर्टल'],
- 'supp.4p':['Find detailed release notes and FAQs on our web portal:','हाम्रो वेबसाइटमा थप जानकारी हेर्नुहोस्:'],
- 'supp.open':['Visit web support ↗','वेब सहायता पृष्ठ ↗'],
+ 'supp.3p':['Tap the "ने / EN" toggle in the header to change language, or use the Dark mode switch in the More menu.','माथिको "ने / EN" बटन थिचेर भाषा र "थप" मेनुबाट डार्क मोड परिवर्तन गर्न सकिन्छ।'],
+ 'supp.4h':['Web support page','अनलाइन सहायता पृष्ठ'],
+ 'supp.4p':['Read release notes and frequently asked questions on our website.','हाम्रो वेबसाइटमा थप जानकारी हेर्नुहोस्।'],
+ 'supp.open':['Visit web support','वेब सहायता पृष्ठ'],
  footer:['© 2026 Longest Chariot LLC. All rights reserved.','© २०२६ Longest Chariot LLC. सर्वाधिकार सुरक्षित।'],
 };
 const t=k=>T[k][lang==='ne'?1:0];
 const CAT_T={festival:'cat.festival',civic:'cat.civic',lunar:'cat.lunar',community:'cat.community'};
-const HOL_T={national:['National holiday','राष्ट्रिय बिदा'],valley:['Valley holiday','उपत्यका बिदा'],women:['Holiday (women)','महिला बिदा'],community:['Community holiday','सामुदायिक बिदा'],terai:['Terai holiday','तराई बिदा']};
+const HOL_T={national:['National holiday','राष्ट्रिय बिदा'],valley:['Valley holiday','उपत्यका बिदा'],women:['Women\'s holiday','महिला बिदा'],community:['Community holiday','सामुदायिक बिदा'],terai:['Terai holiday','तराई बिदा']};
 const hol=h=>HOL_T[h][lang==='ne'?1:0];
 const SAAIT_T={marriage:['Marriage','विवाह'],bratabandha:['Bratabandha','व्रतबन्ध'],griha:['Griha Pravesh','गृहप्रवेश'],pasni:['Pasni','पास्नी'],general:['New venture','शुभ कार्य']};
 const V_T={favorable:['favorable','शुभ'],neutral:['neutral','सामान्य'],avoid:['avoid','वर्जित']};
@@ -832,11 +824,11 @@ const LMON=i=>lang==='ne'?LUNAR_NE[i]:LUNAR_NAMES[i];
 const EV=e=>lang==='ne'?e.ne:e.en;
 const DESC=e=>lang==='ne'?(e.dne||e.desc):e.desc;
 function reasonText(r){ const ne_=lang==='ne';
-  if(r.k==='block'){ const B={adhik:['Adhik mas (intercalary month)','अधिक मास'],kharmas:[`Kharmas (Sun in ${RASHI_EN[r.rashi]})`,`खरमास (सूर्य ${RASHI_NE[r.rashi]} राशिमा)`],chaturmas:['Chaturmas (Harishayani to Haribodhini Ekadashi)','चातुर्मास (हरिशयनीदेखि हरिबोधिनी एकादशीसम्म)'],pitri:['Pitri paksha (Sohra Shraddha)','पितृ पक्ष (सोह्र श्राद्ध)'],holashtak:['Holashtak','होलाष्टक'],amavasya:['Amavasya','औंसी']}; return B[r.code][ne_?1:0]; }
+  if(r.k==='block'){ const B={adhik:['Adhik mas, intercalary month','अधिक मास'],kharmas:[`Kharmas, Sun in ${RASHI_EN[r.rashi]}`,`खरमास, सूर्य ${RASHI_NE[r.rashi]} राशिमा`],chaturmas:['Chaturmas, Harishayani to Haribodhini Ekadashi','चातुर्मास, हरिशयनीदेखि हरिबोधिनी एकादशीसम्म'],pitri:['Pitri paksha, Sohra Shraddha','पितृ पक्ष, सोह्र श्राद्ध'],holashtak:['Holashtak','होलाष्टक'],amavasya:['Amavasya','औंसी']}; return B[r.code][ne_?1:0]; }
   const name=r.k==='month'?LMON(r.i):r.k==='tithi'?(r.raw===15?(ne_?'पूर्णिमा':'Purnima'):(ne_?TITHI_NE[r.i]:TITHI_EN[r.i])):r.k==='dow'?DOWN(r.i):NAK(r.i);
-  if(ne_){ const unit={month:'मास',tithi:'तिथि',dow:'',nak:'नक्षत्र'}[r.k]; const st={good:'शुभ',bad:'वर्जित',neu:'सामान्य'}[r.s]; return `${name}${r.k==='tithi'&&r.s==='bad'?' (रिक्ता)':''} ${unit} ${st}`.replace(/\s+/g,' ').trim(); }
+  if(ne_){ const unit={month:'मास',tithi:'तिथि',dow:'',nak:'नक्षत्र'}[r.k]; const st={good:'शुभ',bad:'वर्जित',neu:'सामान्य'}[r.s]; return `${name}${r.k==='tithi'&&r.s==='bad'?', रिक्ता,':''} ${unit} ${st}`.replace(/\s+/g,' ').trim(); }
   if(r.k==='month')return r.s==='good'?`${name} is a preferred month`:`${name} is not a preferred month`;
-  const unit={tithi:' tithi',dow:'',nak:' nakshatra'}[r.k]; const st={good:'favourable',bad:r.k==='tithi'?'(rikta) avoided':'avoided',neu:'neutral'}[r.s]; return `${name}${unit} ${st}`; }
+  const unit={tithi:' tithi',dow:'',nak:' nakshatra'}[r.k]; const st={good:'favourable',bad:r.k==='tithi'?'is rikta and avoided':'avoided',neu:'neutral'}[r.s]; return `${name}${unit} ${st}`; }
 const reasons=sa=>sa.reasons.map(reasonText).join(' · ');
 function groupVerdicts(list){const out=[];for(const s of list){const why=reasons(s),g=out.find(o=>o.v===s.v&&o.why===why);if(g)g.tys.push(s.ty);else out.push({v:s.v,why,tys:[s.ty]});}return out;}
 const todayN=(()=>{const t=new Date();return dnum(t.getFullYear(),t.getMonth()+1,t.getDate());})();
@@ -855,165 +847,209 @@ function applyStatic(){ document.querySelectorAll('[data-t]').forEach(el=>{el.te
   [...$('#a-span').options].forEach(o=>{o.textContent=N(o.value);});
   document.title=t('app'); }
 
-function renderMonth(){ const {y,m}=cur; const days=bsDays(y,m), first=bs2dnum(y,m,1), firstDow=fromDnum(first).dow, last=first+days-1;
-  if(!selN||selN<first||selN>last){selN=(todayN>=first&&todayN<=last)?todayN:first;}
-  const g1=fromDnum(first), g2=fromDnum(last);
-  $('#m-title').textContent=`${MON(m-1)} ${N(y)}`;
-  $('#m-sub').innerHTML=lang==='ne'?`${ne(g1.d)} ${AD_MONTHS_NE[g1.m-1]} – ${ne(g2.d)} ${AD_MONTHS_NE[g2.m-1]} ${ne(g2.y)}`:`<span lang="ne">${BS_MONTHS_NE[m-1]} ${ne(y)}</span> · ${AD_MONTHS[g1.m-1].slice(0,3)} ${g1.d} – ${AD_MONTHS[g2.m-1].slice(0,3)} ${g2.d}, ${g2.y}`;
-  $('#m-dow').innerHTML=(lang==='ne'?DOW_SHORT_NE:DOW_SHORT_EN).map((d,i)=>`<div${i===6?' class="sat"':''}>${d}</div>`).join('');
-  const grid=$('#m-grid'); grid.innerHTML='';
-  for(let i=0;i<firstDow;i++){const b=document.createElement('div');b.className='cell blank';grid.appendChild(b);}
-  for(let d=1;d<=days;d++){const n=first+d-1, info=dayInfo(n), evs=eventsFor(n), holi=isHoliday(evs), hasEv=evs.length>0;
-    const c=document.createElement('button'); c.type='button'; c.dataset.n=n; c.className='cell'+(info.g.dow===6?' sat':'')+(holi?' holiday':hasEv?' fest-cell':'')+(n===todayN?' today':''); c.setAttribute('aria-pressed',n===selN?'true':'false');
-    if(n===todayN)c.setAttribute('aria-current','date');
-    const adLbl=lang==='ne'?`${ne(info.g.d)}${info.g.d===1?' '+AD_MONTHS_NE[info.g.m-1]:''}`:`${info.g.d}${info.g.d===1?' '+AD_MONTHS[info.g.m-1].slice(0,3):''}`;
-    const srTail=(evs.length?', '+evs.map(EV).join(', '):'')+(holi?', '+t('legend.hol'):'');
-    c.innerHTML=`<div class="cell-top"><span class="bs">${N(d)}</span><span class="ad" aria-hidden="true">${adLbl}</span></div><span class="sr"> ${MON(m-1)} ${N(y)}, ${fmtAD(info.g)},</span><span class="ti">${TN(info.raw)}</span>`+(evs.length?`<span class="ev" aria-hidden="true">${EV(evs[0]).split(' · ')[0]}</span>`:'')+(srTail?`<span class="sr">${srTail}</span>`:'')+`<span class="dots" aria-hidden="true">${evs.slice(0,3).map(e=>`<i style="background:${n===todayN?'var(--warning)':dotCol(e)}"></i>`).join('')}</span>`;
-    c.addEventListener('click',()=>{selN=n;renderMonth();renderDay();const sc=$(`.cell[data-n="${n}"]`);if(sc)sc.focus({preventScroll:true});}); grid.appendChild(c);}
-  const total=firstDow+days, rem=(7-total%7)%7; for(let i=0;i<rem;i++){const b=document.createElement('div');b.className='cell blank';grid.appendChild(b);}
+let festFilter='all';
+
+function updateStaticExtras(){
+  const ne_=lang==='ne';
+  $('#m-pt-en').textContent=ne_?'Calendar':'पात्रो';
+  $('#f-sub-top').textContent=ne_?'Festivals':'चाडपर्व';
+  $('#c-pt-en').textContent=ne_?'World clocks':'विश्व घडी';
+  $('#more-pt-en').textContent=ne_?'More':'थप';
+  $('#more-pref-h').textContent=ne_?'सेटिङ':'Preferences';
+  $('#more-tools-h').textContent=ne_?'उपकरण':'Tools';
+  $('#more-about-h').textContent=ne_?'बारेमा':'About';
+  $('#m-legend').innerHTML=`
+    <span><i style="background:var(--holiday-fg)"></i>${t('legend.hol')}</span>
+    <span><i style="background:var(--orange)"></i>${t('cat.festival')}</span>
+    <span><i style="background:var(--violet)"></i>${t('cat.civic')}</span>
+    <span><i style="background:var(--emerald)"></i>${t('cat.lunar')}</span>
+    <span><i style="background:var(--pink)"></i>${t('cat.community')}</span>`;
+  $('#w-note').textContent=ne_
+    ?'समय अन्तर नेपाल समय (NPT, UTC+5:45) बाट गणना गरिएको छ।'
+    :'Differences are measured from Nepal time (NPT, UTC+5:45).';
+  $('#chip-all').textContent=ne_?'सबै · All':'All';
+  $('#chip-h').textContent=ne_?'बिदा · Holidays':'Holidays';
+  $('#chip-f').textContent=ne_?'चाड · Festivals':'Festivals';
 }
-function renderDay(target,nSel){ target=target||'#daycard'; const n=nSel||selN;
-  if(target==='#daycard'){ const dc=$('#daycard'); dc.hidden=!n; $('#m-split').classList.toggle('solo',!n); if(!n)return; }
+
+function renderMonth(){
+  const {y,m}=cur;
+  const days=bsDays(y,m), first=bs2dnum(y,m,1), firstDow=fromDnum(first).dow, last=first+days-1;
+  if(!selN||selN<first||selN>last){selN=(todayN>=first&&todayN<=last)?todayN:first;}
+  const g1=fromDnum(first), g2=fromDnum(last), ne_=lang==='ne';
+  $('#m-title').textContent=`${MON(m-1)} ${N(y)}`;
+  $('#m-sub').textContent=ne_
+    ?`${ne(g1.d)} ${AD_MONTHS_NE[g1.m-1]} देखि ${ne(g2.d)} ${AD_MONTHS_NE[g2.m-1]} ${ne(g2.y)}`
+    :`${AD_MONTHS[g1.m-1].slice(0,3)} ${g1.d} to ${AD_MONTHS[g2.m-1].slice(0,3)} ${g2.d}, ${g2.y}`;
+  const grid=$('#m-grid');
+  grid.innerHTML='';
+  (ne_?DOW_SHORT_NE:DOW_SHORT_EN).forEach((w,i)=>{
+    const el=document.createElement('small');
+    el.className='wd'+(i===6?' sat':'');
+    el.textContent=w;
+    grid.appendChild(el);
+  });
+  for(let i=0;i<firstDow;i++){
+    const b=document.createElement('span');
+    b.className='c blank';
+    grid.appendChild(b);
+  }
+  for(let d=1;d<=days;d++){
+    const n=first+d-1, info=dayInfo(n), evs=eventsFor(n), holi=isHoliday(evs), hasEv=evs.length>0;
+    const c=document.createElement('button');
+    c.type='button';
+    c.dataset.n=n;
+    c.className='c'+(info.g.dow===6?' sat':'')+(holi?' hol':hasEv?' fest-cell':'')+(n===todayN?' td':'');
+    c.setAttribute('aria-pressed',n===selN?'true':'false');
+    if(n===todayN)c.setAttribute('aria-current','date');
+    const adLbl=ne_
+      ?`${ne(info.g.d)}${info.g.d===1?' '+AD_MONTHS_NE[info.g.m-1].slice(0,3):''}`
+      :`${info.g.d===1?AD_MONTHS[info.g.m-1].slice(0,3)+' ':''}${info.g.d}`;
+    const dotsHtml=evs.slice(0,3).map(e=>`<i style="background:${n===todayN?'#ffffff':dotCol(e)}"></i>`).join('');
+    c.innerHTML=`<span class="c-top"><b>${N(d)}</b><small>${adLbl}</small></span><span class="ti">${TN(info.raw)}</span><span class="dots" aria-hidden="true">${dotsHtml}</span>`;
+    c.addEventListener('click',()=>{
+      selN=n;
+      renderMonth();
+      renderDay('#daycard',selN);
+      const sc=$(`.c[data-n="${n}"]`);
+      if(sc)sc.focus({preventScroll:true});
+    });
+    grid.appendChild(c);
+  }
+  const total=firstDow+days, rem=(7-total%7)%7;
+  for(let i=0;i<rem;i++){
+    const b=document.createElement('span');
+    b.className='c blank';
+    grid.appendChild(b);
+  }
+}
+
+function renderDay(target,nSel){
+  target=target||'#daycard';
+  const n=nSel||selN;
+  if(target==='#daycard'){
+    const dc=$('#daycard');
+    dc.hidden=!n;
+    if(!n)return;
+  }
   const info=dayInfo(n), evs=eventsFor(n), bs=info.bs, ne_=lang==='ne';
   const sa=['marriage','bratabandha','griha'].map(ty=>({ty,...saait(info,ty)}));
-  const topClocks=clocks.slice(0,2);
-  const cSpan=topClocks.length===2?'span-4':topClocks.length===1?'span-6':'span-12';
-  const clocksRow=target==='#todaycard'?`
-    <div class="b-cell soft ${cSpan} clickable" data-go-clocks="1">
-      <div class="b-label"><span>${t('npt')}</span><span>NPT</span></div>
-      <div class="b-clock-time"><time data-tz="${NEPAL_TZ}" data-fmt="time" id="npt-time"></time></div>
-      <div class="b-sub"><time data-tz="${NEPAL_TZ}" data-fmt="dow"></time></div>
-    </div>
-    ${topClocks.map(z=>`
-      <div class="b-cell ${cSpan} clickable" data-go-clocks="1">
-        <div class="b-label"><span>${cityName(z)}</span></div>
-        <div class="b-clock-time"><time data-tz="${z}" data-fmt="time"></time></div>
-        <div class="b-sub"><time data-tz="${z}" data-fmt="dow"></time></div>
-      </div>`).join('')}`:'';
-
   const tithiEndStr=info.tithiEndsSameDay?(ne_?hm12(info.tithiEnd)+' '+t('day.until'):t('day.until')+' '+hm12(info.tithiEnd)):t('day.midnight');
-  const evCells=evs.length?evs.map(e=>`
-    <div class="b-cell tint-fest span-12">
-      <div class="b-label">
-        <span style="color:var(--fest-tint-fg)">${t(CAT_T[e.cat])}</span>
-        ${e.hol?`<span class="tag-sharp fest"><i style="background:${dotCol(e)}"></i>${hol(e.hol)}</span>`:`<span class="tag-sharp fest"><i style="background:${dotCol(e)}"></i>${t(CAT_T[e.cat])}</span>`}
-      </div>
-      <div class="b-val-lg" style="margin-top:5px">${EV(e)}${ne_?'':` <span class="ne muted" lang="ne" style="font-weight:500">${e.ne}</span>`}</div>
-      <div class="b-sub" style="margin-top:3px">${DESC(e)}</div>
-    </div>`).join(''):`
-    <div class="b-cell soft span-12">
-      <div class="b-sub">${t('day.noevent')}</div>
-    </div>`;
+  const tithiFullNe=`${PAK(info.paksha)} ${tithiName(info.raw).ne}`;
+  const tithiFullEn=`${info.paksha} ${tithiName(info.raw).en}`;
 
-  const verdictCells=groupVerdicts(sa).map(g=>{
+  const verdictRows=groupVerdicts(sa).map(g=>{
     const isAv=g.v==='avoid';
+    const namesNe=g.tys.map(ty=>SAAIT_T[ty][1]).join(', ');
+    const namesEn=g.tys.map(ty=>SAAIT_T[ty][0]).join(', ');
     return `
-      <div class="b-cell ${isAv?'tint-saait-avoid':'tint-saait-good'} span-12 clickable" data-go-ausp="1" style="flex-direction:row;align-items:center;justify-content:space-between;gap:10px">
-        <div style="min-width:0;flex:1">
-          <div class="b-label" style="color:${isAv?'var(--saait-avoid-fg)':'var(--saait-good-fg)'}"><span>${t('ausp.title')} · ${g.tys.map(ty=>SAAIT_T[ty][ne_?1:0]).join(', ')}</span></div>
-          <div class="b-sub" style="color:var(--ink);font-weight:500;margin-top:3px">${g.why}</div>
+      <button type="button" class="r click ${isAv?'saait-avoid':'saait-good'}" data-go-ausp="1">
+        <div>
+          <div class="y">${ne_?namesNe:namesEn}</div>
+          <small>${ne_?namesEn:namesNe}</small>
+          <p>${g.why}</p>
         </div>
-        <span class="tag-sharp ${isAv?'avoid':'good'}">${V_T[g.v][ne_?1:0]}</span>
-      </div>`;
+        <div class="stamp" style="--c:var(${isAv?'--stamp-red':'--jade'})">
+          <div class="y">${V_T[g.v][1]}</div>
+          <small>${V_T[g.v][0]}</small>
+        </div>
+      </button>`;
   }).join('');
 
-  const isTodayCard=target==='#todaycard';
-  if(!isTodayCard){
-    $(target).innerHTML=`
-      <div class="cal-single-card">
-        <div class="csc-head">
-          <div>
-            <div class="csc-date">${N(bs.d)} ${MON(bs.m-1)} ${N(bs.y)}</div>
-            <div class="csc-dow">${DOWN(info.g.dow)}${ne_?'':` · <span class="ne" lang="ne">${DOW_NE[info.g.dow]}</span>`}${n===todayN?' · '+t('nav.today'):''}</div>
+  const evBlock=evs.length?`
+    <div class="today-evs">
+      ${evs.map(e=>`
+        <div class="today-ev">
+          <div class="today-ev-top">
+            <span class="y">${EV(e)}</span>
           </div>
-          <div class="csc-ad">${fmtAD(info.g)}</div>
+          <small>${ne_?e.en:e.ne}</small>
+          ${evPills(e)}
+          ${DESC(e)?`<p>${DESC(e)}</p>`:''}
+        </div>`).join('')}
+    </div>`:`<p class="none">${t('day.noevent')}</p>`;
+
+  if(target!=='#todaycard'){
+    $(target).innerHTML=`
+      <section class="box">
+        <h2>
+          <span class="y" style="font-size:20px;opacity:1">${N(bs.d)} ${MON(bs.m-1)} ${N(bs.y)}</span>
+          <span>${DOWN(info.g.dow)} · ${fmtAD(info.g)}</span>
+        </h2>
+        ${evBlock}
+        <div class="cells" style="margin-top:12px">
+          <div><small>${t('day.tithi')}</small><span class="y">${ne_?tithiFullNe:tithiFullEn}</span><small>${tithiEndStr}</small></div>
+          <div><small>${t('day.lmonth')}</small><span class="y">${ne_?LUNAR_NE[info.purnimanta]:LUNAR_NAMES[info.purnimanta]}</span><small>${info.adhik?t('day.adhik'):(ne_?LUNAR_NAMES[info.purnimanta]:LUNAR_NE[info.purnimanta])}</small></div>
+          <div><small>${t('day.nak')}</small><span class="y">${NAK(info.nak)}</span><small>${t('day.rashi')} ${RASHI(info.rashi)}</small></div>
+          <div><small>${t('day.sun')}</small><span class="y">${hm12(info.sunrise)}</span><small>${hm12(info.sunset)}</small></div>
         </div>
-        ${evs.length?evs.map(e=>`
-          <div class="csc-ev">
-            <div class="csc-ev-top">
-              <span class="csc-ev-title">${EV(e)}${ne_?'':` <span class="ne muted" lang="ne" style="font-weight:500">${e.ne}</span>`}</span>
-              <span class="tag-sharp fest"><i style="background:${dotCol(e)}"></i>${e.hol?hol(e.hol):t(CAT_T[e.cat])}</span>
-            </div>
-            <div class="csc-ev-desc">${DESC(e)}</div>
-          </div>`).join(''):''}
-        <dl class="csc-kv">
-          <dt>${t('day.tithi')}</dt>
-          <dd>${ne_?TN(info.raw):`<span class="ne" lang="ne">${tithiName(info.raw).ne}</span> · ${tithiName(info.raw).en}`}, ${PAK(info.paksha)} <span class="muted" style="font-weight:500">· ${tithiEndStr}</span></dd>
-          <dt>${t('day.lmonth')}</dt>
-          <dd>${ne_?LUNAR_NE[info.purnimanta]:`<span class="ne" lang="ne">${LUNAR_NE[info.purnimanta]}</span> · ${LUNAR_NAMES[info.purnimanta]}`}${info.adhik?' ('+t('day.adhik')+')':''}</dd>
-          <dt>${t('day.nak')}</dt>
-          <dd>${NAK(info.nak)} · ${t('day.rashi')}: ${RASHI(info.rashi)}</dd>
-          <dt>${t('day.sun')}</dt>
-          <dd>↑ ${hm12(info.sunrise)} · ↓ ${hm12(info.sunset)}${ne_?'':' NPT'}</dd>
-        </dl>
-        ${groupVerdicts(sa).map(g=>{
-          const isAv=g.v==='avoid';
-          return `
-            <div class="csc-saait ${isAv?'avoid':'good'}" data-go-ausp="1">
-              <div style="min-width:0;flex:1">
-                <div class="csc-saait-text">${g.tys.map(ty=>SAAIT_T[ty][ne_?1:0]).join(', ')}</div>
-                <div class="csc-saait-sub">${g.why}</div>
-              </div>
-              <span class="tag-sharp ${isAv?'avoid':'good'}">${V_T[g.v][ne_?1:0]}</span>
-            </div>`;
-        }).join('')}
-      </div>`;
+        ${verdictRows}
+      </section>`;
     $(target).querySelectorAll('[data-go-ausp]').forEach(el=>el.addEventListener('click',()=>showView('auspicious')));
     return;
   }
 
-  $(target).innerHTML=`
-    <div class="bento-board">
-      ${clocksRow}
-      <div class="b-cell inverted span-7">
-        <div class="b-label">
-          <span>${DOWN(info.g.dow)} · ${t('nav.today')}</span>
-          <span>${t('bs')}</span>
-        </div>
-        <div class="b-hero-num">${N(bs.d)}</div>
-        <div>
-          <div class="b-val-lg ne" style="font-size:21px;margin-top:0">${MON(bs.m-1)} ${N(bs.y)}</div>
-          <div class="b-sub" style="opacity:.88">${fmtAD(info.g)}</div>
-        </div>
-      </div>
-      <div class="b-cell span-5">
-        <div>
-          <div class="b-label"><span>${t('day.tithi')}</span><span>${PAK(info.paksha)}</span></div>
-          <div class="b-val-lg">${ne_?TN(info.raw):`<span class="ne" lang="ne">${tithiName(info.raw).ne}</span> · ${tithiName(info.raw).en}`}</div>
-          <div class="b-sub">${tithiEndStr}</div>
-        </div>
-        <button type="button" class="btn-listen" id="t-narrate" aria-label="${t('today.listen')}"></button>
-      </div>
-      ${evCells}
-      <div class="b-cell soft span-4">
-        <div class="b-label"><span>${t('day.lmonth')}</span></div>
-        <div class="b-val-md">${ne_?LUNAR_NE[info.purnimanta]:LUNAR_NAMES[info.purnimanta]}</div>
-        <div class="b-sub">${info.adhik?t('day.adhik'):(ne_?LUNAR_NAMES[info.purnimanta]:LUNAR_NE[info.purnimanta])}</div>
-      </div>
-      <div class="b-cell soft span-4">
-        <div class="b-label"><span>${t('day.nak')}</span></div>
-        <div class="b-val-md">${NAK(info.nak)}</div>
-        <div class="b-sub">${t('day.rashi')}: ${RASHI(info.rashi)}</div>
-      </div>
-      <div class="b-cell soft span-4">
-        <div class="b-label"><span>${t('day.sun')}</span></div>
-        <div class="b-val-md">↑ ${hm12(info.sunrise)}</div>
-        <div class="b-sub">↓ ${hm12(info.sunset)}</div>
-      </div>
-      ${verdictCells}
+  const topClocks=clocks.slice(0,2);
+  const colCls=topClocks.length===0?'cols-1':topClocks.length===1?'cols-2':'';
+  const clocksBar=`
+    <div class="clocks ${colCls}" data-go-clocks="1" aria-label="${t('clk.title')}">
+      <div class="tz-0"><small>${ne_?'नेपाल · Nepal':'Nepal · नेपाल'}</small><b data-tz="${NEPAL_TZ}" data-fmt="time"></b><span class="cd" data-tz="${NEPAL_TZ}" data-fmt="day"></span></div>
+      ${topClocks.map((z,i)=>`<div class="tz-${(i+1)%6}"><small>${cityName(z)}</small><b data-tz="${z}" data-fmt="time"></b><span class="cd" data-tz="${z}" data-fmt="day"></span></div>`).join('')}
     </div>`;
+
+  $(target).innerHTML=`
+    ${clocksBar}
+    <section class="sheet" aria-label="${t('nav.today')}">
+      <div class="under"></div>
+      <div class="page">
+        <div class="band">
+          <div class="holes"><i></i><i></i></div>
+          <span class="y">${MON(bs.m-1)} ${N(bs.y)}</span>
+          <span class="en">${ne_?`${BS_MONTHS_EN[bs.m-1]} ${bs.y} BS`:`${BS_MONTHS_NE[bs.m-1]} ${ne(bs.y)}`}</span>
+        </div>
+        <div class="date">
+          <div class="big">${N(bs.d)}</div>
+          <div class="wk">
+            <div class="y">${DOWN(info.g.dow)}</div>
+            <small>${ne_?DOW_EN[info.g.dow]:DOW_NE[info.g.dow]}</small>
+            <div class="g">${fmtAD(info.g)}<small>${ne_?`${info.g.d} ${AD_MONTHS[info.g.m-1]} ${info.g.y}`:`${ne(info.g.d)} ${AD_MONTHS_NE[info.g.m-1]} ${ne(info.g.y)}`}</small></div>
+          </div>
+        </div>
+        <div class="tith">
+          <div>
+            <small class="k-lbl">${ne_?'तिथि · TITHI':'TITHI · तिथि'}</small>
+            <div class="y">${ne_?tithiFullNe:tithiFullEn}</div>
+            <small>${ne_?tithiFullEn:tithiFullNe} · ${tithiEndStr}</small>
+          </div>
+          <button type="button" class="listen" id="t-narrate" aria-label="${t('today.listen')}"></button>
+        </div>
+        <div class="cells">
+          <div><small>${ne_?'नक्षत्र · Nakshatra':'Nakshatra · नक्षत्र'}</small><span class="y">${NAK(info.nak)}</span><small>${t('day.rashi')} ${RASHI(info.rashi)}</small></div>
+          <div><small>${ne_?'चन्द्र मास · Lunar month':'Lunar month · चन्द्र मास'}</small><span class="y">${ne_?LUNAR_NE[info.purnimanta]:LUNAR_NAMES[info.purnimanta]}</span><small>${info.adhik?t('day.adhik'):(ne_?LUNAR_NAMES[info.purnimanta]:LUNAR_NE[info.purnimanta])}</small></div>
+          <div><small>${ne_?'सूर्योदय · Sunrise':'Sunrise · सूर्योदय'}</small><span class="y">${hm12(info.sunrise)}</span></div>
+          <div><small>${ne_?'सूर्यास्त · Sunset':'Sunset · सूर्यास्त'}</small><span class="y">${hm12(info.sunset)}</span></div>
+        </div>
+        ${evBlock}
+      </div>
+    </section>
+    <section class="box" aria-label="${t('ausp.title')}">
+      <h2><span class="y" style="font-size:19px;opacity:1">${t('ausp.title')}</span><span>${ne_?'Auspicious dates':'शुभ मिति'}</span></h2>
+      ${verdictRows}
+    </section>`;
 
   $(target).querySelectorAll('[data-go-clocks]').forEach(el=>el.addEventListener('click',()=>showView('clocks')));
   $(target).querySelectorAll('[data-go-ausp]').forEach(el=>el.addEventListener('click',()=>showView('auspicious')));
-  if(target==='#todaycard')tickClocks();
-  const na=$('#t-narrate'); if(na){
+  tickClocks();
+
+  const na=$('#t-narrate');
+  if(na){
     const TTS_URL='https://sundar-patro-tts.<your-subdomain>.workers.dev';
     const hasCloud=!TTS_URL.includes('<your-subdomain>');
     const hasNative=!!(window.SundarNative&&window.SundarNative.speak);
-    if(!window._narrationAudio){window._narrationAudio=new Audio('sundar_patro_today_narration_ne.mp3');}
+    if(!window._narrationAudio){window._narrationAudio=new Audio('app/src/main/assets/sundar_patro_today_narration_ne.mp3');}
     const aud=window._narrationAudio;
     const buildText=()=>{
-      const tNe=tithiName(info.raw).ne, pakNe=info.paksha==='shukla'?'शुक्ल':'कृष्ण';
+      const tNe=tithiName(info.raw).ne, pakNe=info.paksha==='Shukla'?'शुक्ल':'कृष्ण';
       const evNe=evs.length?evs.map(e=>e.ne+(e.dne?', '+e.dne:'')).join(', '):'कुनै विशेष चाडपर्व वा बिदा छैन';
       return `नमस्कार, आज ${DOW_NE[info.g.dow]}, ${BS_MONTHS_NE[bs.m-1]} ${ne(bs.d)} गते ${ne(bs.y)} साल हो, आज ${pakNe} पक्षको ${tNe} तिथि, ${NAK_NE[info.nak]} नक्षत्र र ${RASHI_NE[info.rashi]} राशि रहेको छ, आज ${evNe}`;
     };
@@ -1022,11 +1058,18 @@ function renderDay(target,nSel){ target=target||'#daycard'; const n=nSel||selN;
     const playNote=()=>{try{const ctx=window._bgCtx;if(!ctx||!isPlaying())return;const t0=ctx.currentTime,f=notes[(window._bgStep=(window._bgStep||0)+1)%notes.length];const o=ctx.createOscillator(),vib=ctx.createOscillator(),vg=ctx.createGain(),flt=ctx.createBiquadFilter(),g=ctx.createGain();o.type='sine';o.frequency.value=f;vib.frequency.value=4.8;vg.gain.value=3.2;vib.connect(vg);vg.connect(o.frequency);flt.type='lowpass';flt.frequency.value=900;g.gain.setValueAtTime(0.0001,t0);g.gain.linearRampToValueAtTime(0.03,t0+0.35);g.gain.exponentialRampToValueAtTime(0.0001,t0+2.1);o.connect(flt);flt.connect(g);g.connect(ctx.destination);o.start(t0);vib.start(t0);o.stop(t0+2.15);vib.stop(t0+2.15);}catch(e){}};
     const startBg=()=>{try{const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;if(!window._bgCtx)window._bgCtx=new AC();if(window._bgCtx.state==='suspended')window._bgCtx.resume();if(!window._bgTimer){playNote();window._bgTimer=setInterval(playNote,1450);}}catch(e){}};
     const stopBg=()=>{if(window._bgTimer){clearInterval(window._bgTimer);window._bgTimer=null;}};
-    const PLAY_SVG='<svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="7,4 20,12 7,20"/></svg>';
+    const PLAY_SVG='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9zM16 8a5 5 0 0 1 0 8" stroke="currentColor" stroke-width="2" fill="currentColor"/></svg>';
     const PAUSE_SVG='<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>';
-    const syncNa=()=>{const p=!isPlaying();na.innerHTML=(p?PLAY_SVG:PAUSE_SVG)+`<span>${p?t('today.listen'):t('today.pause')}</span>`;na.classList.toggle('playing',!p);na.setAttribute('aria-label',p?t('today.listen'):t('today.pause'));if(p)stopBg();};
+    const syncNa=()=>{
+      const p=!isPlaying();
+      na.innerHTML=(p?PLAY_SVG:PAUSE_SVG)+`<span>${p?t('today.listen'):t('today.pause')}</span>`;
+      na.classList.toggle('playing',!p);
+      na.setAttribute('aria-label',p?t('today.listen'):t('today.pause'));
+      if(p)stopBg();
+    };
     window._onNarrationDone=()=>{window._nativeSpeaking=false;syncNa();};
-    syncNa();aud.onended=syncNa;
+    syncNa();
+    aud.onended=syncNa;
     na.addEventListener('click',()=>{
       if(isPlaying()){
         if(window._nativeSpeaking){window._nativeSpeaking=false;window.SundarNative.stopSpeak();}
@@ -1046,11 +1089,18 @@ function renderDay(target,nSel){ target=target||'#daycard'; const n=nSel||selN;
     });
   }
 }
-/* ============ World clocks: Nepal + unlimited reorderable cities (top 2 on Today) ============ */
+
+/* ============ World clocks: Nepal + unlimited reorderable cities, top 2 on Today ============ */
 const NEPAL_TZ='Asia/Kathmandu', TODAY_CLOCKS=2;
-const CITIES=[['America/Los_Angeles','Los Angeles','लस एन्जलस'],['America/Phoenix','Phoenix','फिनिक्स'],['America/Denver','Denver','डेन्भर'],['America/Chicago','Chicago','शिकागो'],['America/New_York','New York','न्युयोर्क'],['America/Toronto','Toronto','टोरन्टो'],
- ['Europe/London','London','लन्डन'],['Europe/Lisbon','Lisbon','लिस्बन'],['Europe/Paris','Paris','पेरिस'],['Europe/Berlin','Berlin','बर्लिन'],['Asia/Riyadh','Riyadh','रियाद'],['Asia/Kuwait','Kuwait','कुवेत'],['Asia/Qatar','Doha','दोहा'],['Asia/Dubai','Dubai','दुबई'],
- ['Asia/Kolkata','New Delhi','नयाँ दिल्ली'],['Asia/Kuala_Lumpur','Kuala Lumpur','क्वालालम्पुर'],['Asia/Hong_Kong','Hong Kong','हङकङ'],['Australia/Perth','Perth','पर्थ'],['Asia/Seoul','Seoul','सोल'],['Asia/Tokyo','Tokyo','टोकियो'],['Australia/Sydney','Sydney','सिड्नी'],['Pacific/Auckland','Auckland','अकल्यान्ड']];
+const CITIES=[
+  ['America/Los_Angeles','Los Angeles','लस एन्जलस'],['America/Phoenix','Phoenix','फिनिक्स'],['America/Denver','Denver','डेन्भर'],
+  ['America/Chicago','Chicago','शिकागो'],['America/New_York','New York','न्युयोर्क'],['America/Toronto','Toronto','टोरन्टो'],
+  ['Europe/London','London','लन्डन'],['Europe/Lisbon','Lisbon','लिस्बन'],['Europe/Paris','Paris','पेरिस'],['Europe/Berlin','Berlin','बर्लिन'],
+  ['Asia/Riyadh','Riyadh','रियाद'],['Asia/Kuwait','Kuwait','कुवेत'],['Asia/Qatar','Doha','दोहा'],['Asia/Dubai','Dubai','दुबई'],
+  ['Asia/Kolkata','New Delhi','नयाँ दिल्ली'],['Asia/Kuala_Lumpur','Kuala Lumpur','क्वालालम्पुर'],['Asia/Hong_Kong','Hong Kong','हङकङ'],
+  ['Australia/Perth','Perth','पर्थ'],['Asia/Seoul','Seoul','सोल'],['Asia/Tokyo','Tokyo','टोकियो'],['Australia/Sydney','Sydney','सिड्नी'],
+  ['Pacific/Auckland','Auckland','अकल्यान्ड']
+];
 const CITY=Object.fromEntries(CITIES.map(([z,en,ne])=>[z,{en,ne}]));
 const cityName=z=>CITY[z][lang==='ne'?'ne':'en'];
 let clocks=[]; try{const s=JSON.parse(localStorage.getItem('patro-clocks')||'[]'); if(Array.isArray(s))clocks=[...new Set(s)].filter(z=>CITY[z]);}catch(e){}
@@ -1060,72 +1110,91 @@ function zoneNow(tz){
   if(tz===NEPAL_TZ){const ms=Date.now()+TZ*3600000, d=new Date(ms); return {n:Math.floor(ms/86400000),h:d.getUTCHours(),m:d.getUTCMinutes(),dow:d.getUTCDay()};}
   const f=CLOCK_FMT[tz]||(CLOCK_FMT[tz]=new Intl.DateTimeFormat('en-US',{timeZone:tz,hourCycle:'h23',year:'numeric',month:'numeric',day:'numeric',hour:'numeric',minute:'numeric'}));
   const p={}; for(const x of f.formatToParts(new Date()))p[x.type]=x.value; const n=dnum(+p.year,+p.month,+p.day);
-  return {n,h:+p.hour%24,m:+p.minute,dow:fromDnum(n).dow}; }
-function time12(h,m){ const h12=h%12||12, mm=String(m).padStart(2,'0');
+  return {n,h:+p.hour%24,m:+p.minute,dow:fromDnum(n).dow};
+}
+function zoneOffsetMin(tz){
+  if(tz===NEPAL_TZ)return 345;
+  const now=new Date();
+  const zt=new Date(now.toLocaleString('en-US',{timeZone:tz}));
+  const ut=new Date(now.toLocaleString('en-US',{timeZone:'UTC'}));
+  return Math.round((zt-ut)/60000);
+}
+function diffFromNpt(tz){
+  if(tz===NEPAL_TZ)return lang==='ne'?'स्थानीय समय':'Local time';
+  const df=zoneOffsetMin(tz)-345, a=Math.abs(df);
+  const h=Math.floor(a/60), m=a%60;
+  return (df<0?'-':'+')+h+'h'+(m?' '+m+'m':'');
+}
+function time12(h,m){
+  const h12=h%12||12, mm=String(m).padStart(2,'0');
   if(lang==='ne'){const per=h<4?'राति':h<12?'बिहान':h<16?'दिउँसो':h<20?'बेलुका':'राति'; return `${per} ${ne(h12)}:${ne(mm)}`;}
-  return `${h12}:${mm} ${h<12?'AM':'PM'}`; }
+  return `${h12}:${mm} ${h<12?'AM':'PM'}`;
+}
 const hm12=hm=>{const [h,m]=hm.split(':').map(Number); return time12(h,m);};
-function clockText(tz,mode){ const z=zoneNow(tz), dw=(lang==='ne'?DOW_SHORT_NE:DOW_SHORT_EN)[z.dow], tm=time12(z.h,z.m);
-  if(mode==='time')return tm; if(mode==='dow')return dw; return `${dw} ${tm}`; }
-function tickClocks(){ document.querySelectorAll('time[data-tz]').forEach(el=>{const s=clockText(el.dataset.tz,el.dataset.fmt); if(el.textContent!==s)el.textContent=s;}); }
+function clockText(tz,mode){
+  const z=zoneNow(tz), dw=(lang==='ne'?DOW_SHORT_NE:DOW_SHORT_EN)[z.dow], tm=time12(z.h,z.m);
+  if(mode==='time')return tm;
+  if(mode==='day')return dw;
+  if(mode==='dow')return `${dw} · ${diffFromNpt(tz)}`;
+  return `${dw} ${tm}`;
+}
+function tickClocks(){
+  document.querySelectorAll('[data-tz]').forEach(el=>{
+    const s=clockText(el.dataset.tz,el.dataset.fmt);
+    if(el.textContent!==s)el.textContent=s;
+  });
+}
 setInterval(tickClocks,1000);
+
 function renderClocks(){
+  const ne_=lang==='ne';
   const avail=CITIES.filter(([z])=>!clocks.includes(z));
-  const addSection=avail.length?`
-    <div class="b-cell span-12" style="gap:8px">
-      <div class="b-label"><span>${t('clk.city')}</span></div>
-      <div class="form wform" id="w-form">
-        <select id="w-city" aria-label="${t('clk.city')}">${avail.map(([z])=>`<option value="${z}">${cityName(z)}</option>`).join('')}</select>
-        <button type="button" class="btn btn-primary" id="w-add">${t('clk.add')}</button>
-      </div>
-    </div>`:`
-    <div class="b-cell soft span-12"><div class="b-sub">${t('clk.full')}</div></div>`;
-
-  const topHdr=clocks.length?`
-    <div class="b-cell soft span-12" style="padding:7px 13px">
-      <div class="b-label" style="color:var(--ink)"><span>${t('clk.top2')}</span><span>1–2</span></div>
-    </div>`:'';
-
   const items=clocks.map((z,idx)=>{
     const isTop=idx<TODAY_CLOCKS;
-    const otherHdr=idx===TODAY_CLOCKS?`
-      <div class="b-cell soft span-12" style="padding:7px 13px">
-        <div class="b-label"><span>${t('clk.others')}</span><span>3+</span></div>
-      </div>`:'';
-    return `${otherHdr}
-      <div class="b-cell ${isTop?'tint-saait-good':''} span-12" style="flex-direction:row;align-items:center;justify-content:space-between;gap:10px">
-        <div style="min-width:0;flex:1">
-          <div class="b-label"><span style="color:${isTop?'var(--saait-good-fg)':'var(--muted-soft)'}">#${N(idx+1)} · ${isTop?t('clk.ontoday'):t('clk.onclocks')}</span></div>
-          <div class="b-val-lg" style="margin-top:2px">${cityName(z)}</div>
-          <div class="b-sub" style="color:var(--ink);font-weight:600"><time data-tz="${z}"></time></div>
+    return `
+      <div class="ck tz-${(idx+1)%6}">
+        <div>
+          <div class="y">${CITY[z][ne_?'ne':'en']}</div>
+          <small>${CITY[z][ne_?'en':'ne']} · ${isTop?t('clk.ontoday'):t('clk.onclocks')}</small>
+          <div class="ck-time">
+            <span class="t" data-tz="${z}" data-fmt="time"></span>
+            <span class="d" data-tz="${z}" data-fmt="dow"></span>
+          </div>
         </div>
         <div class="w-ctrl">
-          <button type="button" class="btn-sq wmv" data-idx="${idx}" data-dir="-1" ${idx===0?'disabled':''} aria-label="${t('clk.up')} ${cityName(z)}" title="${t('clk.up')}">↑</button>
-          <button type="button" class="btn-sq wmv" data-idx="${idx}" data-dir="1" ${idx===clocks.length-1?'disabled':''} aria-label="${t('clk.down')} ${cityName(z)}" title="${t('clk.down')}">↓</button>
-          <button type="button" class="btn-sq rm wrm" data-tz="${z}" aria-label="${t('clk.remove')} ${cityName(z)}" title="${t('clk.remove')}">✕</button>
+          <button type="button" class="btn-sq wmv" data-idx="${idx}" data-dir="-1" ${idx===0?'disabled':''} aria-label="${t('clk.up')} ${cityName(z)}">↑</button>
+          <button type="button" class="btn-sq wmv" data-idx="${idx}" data-dir="1" ${idx===clocks.length-1?'disabled':''} aria-label="${t('clk.down')} ${cityName(z)}">↓</button>
+          <button type="button" class="btn-sq rm wrm" data-rm="${z}" aria-label="${t('clk.remove')} ${cityName(z)}">✕</button>
         </div>
       </div>`;
   }).join('');
 
-  $('#w-board').innerHTML=`
-    <div class="b-cell inverted span-12">
-      <div class="b-label"><span>${t('clk.title')}</span><span>${N(clocks.length+1)}</span></div>
-      <div class="b-val-lg" style="font-size:20px">${t('clk.title')}</div>
-      <div class="b-sub" style="opacity:.82">${t('clk.sub')}</div>
-    </div>
-    <div class="b-cell soft span-12" style="flex-direction:row;align-items:center;justify-content:space-between;gap:10px">
-      <div>
-        <div class="b-label"><span>NPT · UTC+05:45</span></div>
-        <div class="b-val-lg">${t('clk.nepal')}</div>
-        <div class="b-sub" style="color:var(--ink);font-weight:600"><time data-tz="${NEPAL_TZ}"></time></div>
+  const addRow=avail.length?`
+    <div class="ck-add">
+      <label for="w-city">${t('clk.city')}</label>
+      <div class="wform">
+        <select id="w-city" aria-label="${t('clk.city')}">${avail.map(([z])=>`<option value="${z}">${cityName(z)}</option>`).join('')}</select>
+        <button type="button" class="btn-ink" id="w-add">${t('clk.add')}</button>
       </div>
-      <span class="tag-sharp good">${t('clk.always')}</span>
+    </div>`:`<div class="ck-add"><small>${t('clk.full')}</small></div>`;
+
+  $('#w-board').innerHTML=`
+    <div class="ck tz-0">
+      <div>
+        <div class="y">${ne_?'नेपाल':'Nepal'}</div>
+        <small>${ne_?'Nepal · काठमाडौं':'नेपाल · Kathmandu'}</small>
+        <div class="ck-time">
+          <span class="t" data-tz="${NEPAL_TZ}" data-fmt="time"></span>
+          <span class="d" data-tz="${NEPAL_TZ}" data-fmt="dow"></span>
+        </div>
+      </div>
+      <div><span class="pill hol">${t('clk.always')}</span></div>
     </div>
-    ${addSection}
-    ${topHdr}
+    ${addRow}
     ${items}`;
 
-  const addBtn=$('#w-add'); if(addBtn)addBtn.addEventListener('click',()=>{
+  const addBtn=$('#w-add');
+  if(addBtn)addBtn.addEventListener('click',()=>{
     const sel=$('#w-city'); if(!sel)return; const z=sel.value;
     if(!CITY[z]||clocks.includes(z))return;
     clocks.push(z); saveClocks(); renderClocks(); $('#w-status').textContent=`${cityName(z)} ${t('clk.added')}`;
@@ -1137,134 +1206,311 @@ function renderClocks(){
     saveClocks(); renderClocks();
   }));
   $('#w-board').querySelectorAll('.wrm').forEach(b=>b.addEventListener('click',()=>{
-    const z=b.dataset.tz; clocks=clocks.filter(x=>x!==z);
+    const z=b.dataset.rm; clocks=clocks.filter(x=>x!==z);
     saveClocks(); renderClocks(); $('#w-status').textContent=`${cityName(z)} ${t('clk.removed')}`;
   }));
-  tickClocks(); }
-function eventRow(n,e,sub,tags,extraCls){ const i=dayInfo(n); const r=document.createElement('button');r.type='button';r.className='row'+(e?' fest-row':'')+(extraCls?' '+extraCls:'');
-  r.innerHTML=`<div class="dt">${N(i.bs.d)} ${MON(i.bs.m-1)}<small>${fmtADshort(i.g)}</small></div><div class="nm">${e?EV(e)+(lang==='ne'?'':` <span class="ne" lang="ne" style="font-weight:400">${e.ne}</span>`):''}${sub?`<small>${sub}</small>`:''}</div><div class="tg">${tags||''}</div>`;
-  r.addEventListener('click',()=>{selN=n;cur={y:i.bs.y,m:i.bs.m};showView('month');}); return r; }
-const catPill=e=>`<span class="pill hol"><i style="background:${CAT_COLOR[e.cat]}"></i>${t(CAT_T[e.cat])}</span>`;
-function renderToday(){ renderDay('#todaycard',todayN);
-  const el=$('#t-upcoming'); el.innerHTML=''; let count=0;
-  for(let n=todayN+1;n<=todayN+45&&count<10;n++){ const evs=eventsFor(n); if(!evs.length)continue; const inDays=n-todayN;
-    for(const e of evs){ if(count>=10)break; count++;
-      const when=inDays===1?t('tomorrow'):(lang==='ne'?`${ne(inDays)} दिनमा`:`In ${inDays} days`);
-      el.appendChild(eventRow(n,e,`${when}${e.hol?' · '+hol(e.hol):''}`,catPill(e))); } }
-  if(!count)el.innerHTML=`<p class="note">${t('today.none')}</p>`;
+  tickClocks();
 }
-function renderList(kind){ const {y,m}=listM, first=bs2dnum(y,m,1), days=bsDays(y,m), last=first+days-1, map=yearEvents(y);
+
+function evPills(e){
+  if(!e)return '';
+  const h=e.hol?`<span class="pill hol"><i style="background:var(--stamp-red)"></i>${hol(e.hol)}</span>`:'';
+  const c=`<span class="pill"><i style="background:${CAT_COLOR[e.cat]}"></i>${t(CAT_T[e.cat])}</span>`;
+  return `<div class="pills">${h}${c}</div>`;
+}
+
+function makeEvRow(n,e,subLine,rightTop,rightBot){
+  const i=dayInfo(n), ne_=lang==='ne';
+  const r=document.createElement('button');
+  r.type='button';
+  r.className='ev';
+  const isHol=!!(e&&e.hol);
+  r.innerHTML=`
+    <div class="dn${isHol?' h':''}"><b>${N(i.bs.d)}</b><small>${MON(i.bs.m-1)}</small></div>
+    <div>
+      <div class="y">${e?EV(e):''}</div>
+      <small>${e?(ne_?e.en:e.ne)+' · ':''}${fmtADshort(i.g)}</small>
+      ${subLine?`<small style="display:block;margin-top:2px">${subLine}</small>`:''}
+      ${evPills(e)}
+    </div>
+    <div class="w">${rightTop?`<b>${rightTop}</b>`:''}${rightBot||''}</div>`;
+  r.addEventListener('click',()=>{selN=n;cur={y:i.bs.y,m:i.bs.m};showView('month');});
+  return r;
+}
+
+function renderToday(){
+  renderDay('#todaycard',todayN);
+  const el=$('#t-upcoming');
+  el.innerHTML='';
+  let count=0;
+  for(let n=todayN+1;n<=todayN+45&&count<10;n++){
+    const evs=eventsFor(n);
+    if(!evs.length)continue;
+    const inDays=n-todayN;
+    for(const e of evs){
+      if(count>=10)break;
+      count++;
+      const top=inDays===1?t('tomorrow'):(lang==='ne'?`${ne(inDays)} दिन`:`${inDays} days`);
+      const bot=inDays===1?'':(lang==='ne'?`in ${inDays} days`:`in ${inDays} days`);
+      el.appendChild(makeEvRow(n,e,'',top,bot));
+    }
+  }
+  if(!count)el.innerHTML=`<div class="r"><small>${t('today.none')}</small></div>`;
+}
+
+function renderList(kind){
+  const {y,m}=listM, first=bs2dnum(y,m,1), days=bsDays(y,m), last=first+days-1, map=yearEvents(y);
   const ns=[...map.keys()].filter(n=>n>=first&&n<=last).sort((a,b)=>a-b);
-  const el=$(kind==='festivals'?'#f-list':'#h-list'); el.innerHTML='';
-  const g1=fromDnum(first), g2=fromDnum(last), pre=kind==='festivals'?'f':'h';
+  const el=$(kind==='festivals'?'#f-list':'#h-list');
+  el.innerHTML='';
+  const g1=fromDnum(first), g2=fromDnum(last), pre=kind==='festivals'?'f':'h', ne_=lang==='ne';
   $('#'+pre+'-title').textContent=t(kind==='festivals'?'f.title':'h.title');
-  $('#'+pre+'-month').textContent=`${MON(m-1)} ${N(y)}`;
-  const rng=lang==='ne'?`${ne(g1.d)} ${AD_MONTHS_NE[g1.m-1]} – ${ne(g2.d)} ${AD_MONTHS_NE[g2.m-1]} ${ne(g2.y)}`:`${AD_MONTHS[g1.m-1].slice(0,3)} ${g1.d} – ${AD_MONTHS[g2.m-1].slice(0,3)} ${g2.d}, ${g2.y}`;
-  $('#'+pre+'-sub').textContent=rng;
+  const rng=ne_?`${ne(g1.d)} ${AD_MONTHS_NE[g1.m-1]} देखि ${ne(g2.d)} ${AD_MONTHS_NE[g2.m-1]} ${ne(g2.y)}`:`${AD_MONTHS[g1.m-1].slice(0,3)} ${g1.d} to ${AD_MONTHS[g2.m-1].slice(0,3)} ${g2.d}, ${g2.y}`;
+  $('#'+pre+'-month').textContent=`${MON(m-1)} ${N(y)} · ${rng}`;
+  if(pre==='h')$('#h-sub').textContent=ne_?'Public holidays':'सार्वजनिक बिदा';
+
   if(kind==='festivals'){
-    for(const n of ns)for(const e of map.get(n))el.appendChild(eventRow(n,e,DESC(e),(e.hol?`<span class="pill hol">${hol(e.hol)}</span>`:'')+catPill(e)));
+    for(const n of ns){
+      for(const e of map.get(n)){
+        if(festFilter==='h'&&!e.hol)continue;
+        if(festFilter==='f'&&e.cat!=='festival')continue;
+        const diff=n-todayN;
+        const top=diff===0?t('nav.today'):diff>0?(ne_?`${ne(diff)} दिन`:`${diff}d`):'';
+        const bot=diff>0?`in ${diff} days`:'';
+        el.appendChild(makeEvRow(n,e,DESC(e),top,bot));
+      }
+    }
   } else {
-    let sat=0;
-    for(const n of ns){ const evs=map.get(n).filter(e=>e.hol); if(!evs.length)continue; const r=holidayRow(n,evs); if(r.dataset.sat)sat++; el.appendChild(r); }
-    const cnt=el.children.length, ne_=lang==='ne';
-    $('#h-sum').textContent=!cnt?'':ne_?`यो महिना ${ne(cnt)} सार्वजनिक बिदा`+(sat?` · ${ne(sat)} शनिबार परेको`:'')
+    let sat=0, cnt=0;
+    for(const n of ns){
+      const evs=map.get(n).filter(e=>e.hol);
+      if(!evs.length)continue;
+      const i=dayInfo(n), isSat=i.g.dow===6;
+      if(isSat)sat++;
+      cnt++;
+      const scopePills=[...new Set(evs.map(e=>e.hol))].map(h=>`<span class="pill hol"><i style="background:var(--stamp-red)"></i>${hol(h)}</span>`).join('');
+      const satPill=isSat?`<span class="pill">${t('h.onsat')}</span>`:'';
+      const r=document.createElement('button');
+      r.type='button';
+      r.className='ev';
+      r.innerHTML=`
+        <div class="dn h"><b>${N(i.bs.d)}</b><small>${MON(i.bs.m-1)}</small></div>
+        <div>
+          <div class="y">${evs.map(EV).join(' / ')}</div>
+          <small>${fmtAD(i.g)} · ${DOWN(i.g.dow)}</small>
+          <div class="pills">${scopePills}${satPill}</div>
+        </div>
+        <div class="w"></div>`;
+      r.addEventListener('click',()=>{selN=n;cur={y:i.bs.y,m:i.bs.m};showView('month');});
+      el.appendChild(r);
+    }
+    $('#h-sum').textContent=!cnt?'':ne_
+      ?`यो महिना ${ne(cnt)} सार्वजनिक बिदा`+(sat?` · ${ne(sat)} शनिबार परेको`:'')
       :`${cnt} public ${cnt===1?'holiday':'holidays'} this month`+(sat?` · ${sat} ${sat===1?'falls':'fall'} on a Saturday`:'');
   }
-  if(!el.children.length)el.innerHTML=`<p class="note">${t(kind==='holidays'?'h.none':'none')}</p>`;
+  if(!el.children.length)el.innerHTML=`<div class="r"><small>${t(kind==='holidays'?'h.none':'none')}</small></div>`;
 }
-/* Holidays list: one row per day off, led by the weekday and who gets the day off. */
-function holidayRow(n,evs){ const i=dayInfo(n), ne_=lang==='ne', isSat=i.g.dow===6; const r=document.createElement('button'); r.type='button'; r.className='row hrow';
-  if(isSat)r.dataset.sat='1';
-  const scopes=[...new Set(evs.map(e=>e.hol))];
-  r.innerHTML=`<div class="dt">${N(i.bs.d)} ${MON(i.bs.m-1)}<span class="wd">${DOWN(i.g.dow)}</span></div><div class="nm">${evs.map(e=>EV(e)+(ne_?'':` <span class="ne" lang="ne" style="font-weight:400">${e.ne}</span>`)).join('<br>')}<small>${fmtAD(i.g)}</small></div><div class="tg">${scopes.map(h=>`<span class="pill hol">${hol(h)}</span>`).join('')}${isSat?`<span class="pill">${t('h.onsat')}</span>`:''}</div>`;
-  r.addEventListener('click',()=>{selN=n;cur={y:i.bs.y,m:i.bs.m};showView('month');}); return r; }
-function stepList(kind,d){ let {y,m}=listM; m+=d; if(m<1){if(y<=BS_START)return; y--; m=12;} else if(m>12){if(y>=BS_END)return; y++; m=1;} listM={y,m}; renderList(kind); }
-function renderAusp(){ const type=$('#a-type').value, from=$('#a-from').value, span=+$('#a-span').value; const el=$('#a-list'); el.innerHTML='';
-  const [fy,fm,fd]=from.split('-').map(Number); let n=dnum(fy,fm,fd); const end=Math.min(n+Math.round(span*30.4),YEAR_START_DAYS[BS.length]-1); let count=0,lastM=-1;
-  for(;n<=end&&count<80;n++){ const info=dayInfo(n); if(!info.bs)continue; const s=saait(info,type); if(s.v!=='favorable')continue; count++;
-    if(info.bs.m!==lastM){lastM=info.bs.m;const h=document.createElement('div');h.className='monthhead';h.textContent=`${MON(lastM-1)} ${N(info.bs.y)}`;el.appendChild(h);}
-    const r=eventRow(n,null,reasons(s),`<span class="vtag v-fav">${V_T.favorable[lang==='ne'?1:0]}</span>`,'saait-good');
-    r.querySelector('.nm').insertAdjacentHTML('afterbegin',`${TN(info.raw)}, ${PAK(info.paksha)} · ${NAK(info.nak)}`); el.appendChild(r);}
-  if(!count)el.innerHTML=`<p class="note">${t('ausp.none')}</p>`;
+
+function stepList(kind,d){
+  let {y,m}=listM; m+=d;
+  if(m<1){if(y<=BS_START)return; y--; m=12;}
+  else if(m>12){if(y>=BS_END)return; y++; m=1;}
+  listM={y,m};
+  renderList(kind);
 }
-function renderConvert(){ const ys=$('#c-bsy');
+
+function renderAusp(){
+  const type=$('#a-type').value, from=$('#a-from').value, span=+$('#a-span').value;
+  const el=$('#a-list'); el.innerHTML='';
+  const [fy,fm,fd]=from.split('-').map(Number);
+  let n=dnum(fy,fm,fd);
+  const end=Math.min(n+Math.round(span*30.4),YEAR_START_DAYS[BS.length]-1);
+  let count=0, lastM=-1;
+  for(;n<=end&&count<80;n++){
+    const info=dayInfo(n); if(!info.bs)continue;
+    const s=saait(info,type); if(s.v!=='favorable')continue;
+    count++;
+    if(info.bs.m!==lastM){
+      lastM=info.bs.m;
+      const h=document.createElement('div');
+      h.className='sub';
+      h.textContent=`${MON(lastM-1)} ${N(info.bs.y)}`;
+      el.appendChild(h);
+    }
+    const r=document.createElement('button');
+    r.type='button';
+    r.className='ev';
+    r.innerHTML=`
+      <div class="dn"><b>${N(info.bs.d)}</b><small>${MON(info.bs.m-1)}</small></div>
+      <div>
+        <div class="y">${TN(info.raw)}, ${PAK(info.paksha)} · ${NAK(info.nak)}</div>
+        <small>${fmtADshort(info.g)}</small>
+        <small style="display:block">${reasons(s)}</small>
+      </div>
+      <div class="stamp" style="--c:var(--jade)"><div class="y">${V_T.favorable[1]}</div><small>${V_T.favorable[0]}</small></div>`;
+    r.addEventListener('click',()=>{selN=n;cur={y:info.bs.y,m:info.bs.m};showView('month');});
+    el.appendChild(r);
+  }
+  if(!count)el.innerHTML=`<div class="r"><small>${t('ausp.none')}</small></div>`;
+}
+
+function renderConvert(){
+  const ys=$('#c-bsy');
   if(ys.dataset.lang!==lang){const keep=ys.value||todayBS.y;ys.innerHTML='';for(let yy=BS_START;yy<=BS_END;yy++)ys.add(new Option(N(yy),yy));ys.value=keep;ys.dataset.lang=lang;}
-  const y=clampY(+ys.value||todayBS.y); ys.value=y; const ms=$('#c-bsm'), ds=$('#c-bsd'); const ne_=lang==='ne';
+  const y=clampY(+ys.value||todayBS.y); ys.value=y;
+  const ms=$('#c-bsm'), ds=$('#c-bsd'), ne_=lang==='ne';
   if(ms.dataset.lang!==lang){const keep=ms.value||todayBS.m;ms.innerHTML='';BS_MONTHS_EN.forEach((nm,i)=>ms.add(new Option(ne_?BS_MONTHS_NE[i]:`${nm} · ${BS_MONTHS_NE[i]}`,i+1)));ms.value=keep;ms.dataset.lang=lang;}
-  const m=+ms.value, days=bsDays(y,m), keep=Math.min(+ds.value||todayBS.d,days); ds.innerHTML=''; for(let d=1;d<=days;d++)ds.add(new Option(ne_?ne(d):`${d} · ${ne(d)}`,d)); ds.value=keep;
-  const n=bs2dnum(y,m,keep), g=fromDnum(n); $('#c-bs-out').textContent=`${DOWN(g.dow)}, ${fmtAD(g)}`;
+  const m=+ms.value, days=bsDays(y,m), keep=Math.min(+ds.value||todayBS.d,days);
+  ds.innerHTML=''; for(let d=1;d<=days;d++)ds.add(new Option(ne_?ne(d):`${d} · ${ne(d)}`,d)); ds.value=keep;
+  const n=bs2dnum(y,m,keep), g=fromDnum(n);
+  $('#c-bs-out').textContent=`${DOWN(g.dow)}, ${fmtAD(g)}`;
   $('#c-bs-sub').textContent=ne_?`${fmtBS({y,m,d:keep})} · ${BS_MONTHS_NE[m-1]} ${ne(y)} मा ${ne(days)} दिन`:`${fmtBSen({y,m,d:keep})} · ${days} days in ${BS_MONTHS_EN[m-1]} ${y}`;
-  const ad=$('#c-ad'); if(!ad.value){const tt=fromDnum(todayN);ad.value=`${tt.y}-${String(tt.m).padStart(2,'0')}-${String(tt.d).padStart(2,'0')}`;}
-  const [ay,am,ad_]=ad.value.split('-').map(Number); const bs=dnum2bs(dnum(ay,am,ad_));
-  if(bs){const info=dayInfo(dnum(ay,am,ad_)); $('#c-ad-out').textContent=`${DOWN(info.g.dow)}, ${fmtBSl(bs)}`; $('#c-ad-sub').innerHTML=`${ne_?'':`<span lang="ne">${fmtBS(bs)}</span> · `}${TN(info.raw)}, ${PAK(info.paksha)} ${t('day.paksha')}`;}
-  else {$('#c-ad-out').textContent=t('conv.range'); $('#c-ad-sub').textContent=t('conv.supported');}
+  const ad=$('#c-ad');
+  if(!ad.value){const tt=fromDnum(todayN);ad.value=`${tt.y}-${String(tt.m).padStart(2,'0')}-${String(tt.d).padStart(2,'0')}`;}
+  const [ay,am,ad_]=ad.value.split('-').map(Number);
+  const bs=dnum2bs(dnum(ay,am,ad_));
+  if(bs){
+    const info=dayInfo(dnum(ay,am,ad_));
+    $('#c-ad-out').textContent=`${DOWN(info.g.dow)}, ${fmtBSl(bs)}`;
+    $('#c-ad-sub').textContent=`${ne_?'':fmtBS(bs)+' · '}${TN(info.raw)}, ${PAK(info.paksha)} ${t('day.paksha')}`;
+  } else {
+    $('#c-ad-out').textContent=t('conv.range');
+    $('#c-ad-sub').textContent=t('conv.supported');
+  }
 }
+
 function showView(v,keepScroll){
   document.querySelectorAll('.view').forEach(sec=>sec.hidden=sec.id!=='view-'+v);
   const navV=(v==='auspicious'||v==='convert'||v==='holidays'||v==='about'||v==='privacy'||v==='support')?'more':v;
-  document.querySelectorAll('.tab[data-view],.tb').forEach(tb=>{if(tb.dataset.view===navV)tb.setAttribute('aria-current','page');else tb.removeAttribute('aria-current');});
-  if(v==='today'){renderToday();} else if(v==='month'){renderMonth();renderDay();} else if(v==='festivals'||v==='holidays'){if(!keepScroll)listM={y:todayBS.y,m:todayBS.m}; renderList(v);} else if(v==='auspicious'){renderAusp();} else if(v==='clocks'){renderClocks();} else if(v==='convert'){renderConvert();}
-  if(location.hash!=='#'+v){try{history.replaceState(null,'','#'+v);}catch(e){}} if(!keepScroll)window.scrollTo({top:0});
+  document.querySelectorAll('.tab[data-view],.tb').forEach(tb=>{
+    if(tb.dataset.view===navV)tb.setAttribute('aria-current','page');
+    else tb.removeAttribute('aria-current');
+  });
+  if(v==='today'){renderToday();}
+  else if(v==='month'){renderMonth();renderDay('#daycard',selN);}
+  else if(v==='festivals'||v==='holidays'){if(!keepScroll)listM={y:todayBS.y,m:todayBS.m}; renderList(v);}
+  else if(v==='auspicious'){renderAusp();}
+  else if(v==='clocks'){renderClocks();}
+  else if(v==='convert'){renderConvert();}
+  if(location.hash!=='#'+v){try{history.replaceState(null,'','#'+v);}catch(e){}}
+  if(!keepScroll)window.scrollTo({top:0});
   if(window._checkBottomAd)setTimeout(window._checkBottomAd,50);
 }
+
 document.querySelectorAll('.tab[data-view],.tb,.more-row,.back').forEach(b=>b.addEventListener('click',()=>showView(b.dataset.view)));
-function setLang(l){lang=l; try{localStorage.setItem('patro-lang',l);}catch(e){} document.querySelectorAll('.lang').forEach(b=>b.setAttribute('aria-pressed',b.dataset.lang===l?'true':'false')); document.documentElement.lang=l; document.body.classList.toggle('lang-ne',l==='ne');
-  applyStatic(); const v=[...document.querySelectorAll('.view')].find(x=>!x.hidden).id.replace('view-',''); showView(v,true); pushReminders();}
+document.querySelectorAll('#f-chips button').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('#f-chips button').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on');
+  festFilter=b.dataset.f;
+  renderList('festivals');
+}));
+
+function setLang(l){
+  lang=l;
+  try{localStorage.setItem('patro-lang',l);}catch(e){}
+  document.querySelectorAll('.lang').forEach(b=>b.setAttribute('aria-pressed',b.dataset.lang===l?'true':'false'));
+  document.documentElement.lang=l;
+  applyStatic();
+  updateStaticExtras();
+  const active=[...document.querySelectorAll('.view')].find(x=>!x.hidden);
+  showView(active?active.id.replace('view-',''):'today',true);
+  pushReminders();
+}
 document.querySelectorAll('.lang').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
 document.querySelectorAll('.lang').forEach(b=>b.setAttribute('aria-pressed',b.dataset.lang===lang?'true':'false'));
-document.addEventListener('keydown',e=>{ if(e.key!=='Escape')return; const dc=$('#daycard'); if(dc&&!dc.hidden){const cl=$('#dc-close'); if(cl)cl.click();} });
-document.documentElement.lang=lang; document.body.classList.toggle('lang-ne',lang==='ne');
+document.documentElement.lang=lang;
 window.addEventListener('hashchange',()=>{const v=location.hash.slice(1); if(VIEWS.includes(v))showView(v);});
-$('#m-today').addEventListener('click',()=>{cur={y:todayBS.y,m:todayBS.m};selN=todayN;renderMonth();renderDay();});
-$('#m-prev').addEventListener('click',()=>{if(cur.m===1){if(cur.y>BS_START){cur.y--;cur.m=12;}}else cur.m--; renderMonth();renderDay();});
-$('#m-next').addEventListener('click',()=>{if(cur.m===12){if(cur.y<BS_END){cur.y++;cur.m=1;}}else cur.m++; renderMonth();renderDay();});
+
+$('#m-today').addEventListener('click',()=>{cur={y:todayBS.y,m:todayBS.m};selN=todayN;renderMonth();renderDay('#daycard',selN);});
+$('#m-prev').addEventListener('click',()=>{if(cur.m===1){if(cur.y>BS_START){cur.y--;cur.m=12;}}else cur.m--; renderMonth();renderDay('#daycard',selN);});
+$('#m-next').addEventListener('click',()=>{if(cur.m===12){if(cur.y<BS_END){cur.y++;cur.m=1;}}else cur.m++; renderMonth();renderDay('#daycard',selN);});
 $('#f-prev').addEventListener('click',()=>stepList('festivals',-1));
 $('#f-next').addEventListener('click',()=>stepList('festivals',1));
 $('#h-prev').addEventListener('click',()=>stepList('holidays',-1));
 $('#h-next').addEventListener('click',()=>stepList('holidays',1));
 ['#a-type','#a-from','#a-span'].forEach(sel=>$(sel).addEventListener('change',renderAusp));
 ['#c-bsy','#c-bsm','#c-bsd','#c-ad'].forEach(sel=>$(sel).addEventListener('change',renderConvert));
-$('#c-bsy').addEventListener('input',renderConvert);
 {const tt=fromDnum(todayN);$('#a-from').value=`${tt.y}-${String(tt.m).padStart(2,'0')}-${String(tt.d).padStart(2,'0')}`;}
+
 applyStatic();
-const initV=location.hash.slice(1); showView(VIEWS.includes(initV)?initV:'today');
+updateStaticExtras();
+const initV=location.hash.slice(1);
+showView(VIEWS.includes(initV)?initV:'today');
 
-(function(){const row=document.getElementById('themeRow'),root=document.documentElement;
-const apply=d=>{if(d)root.setAttribute('data-theme','dark');else root.removeAttribute('data-theme');row.setAttribute('aria-checked',d?'true':'false');if(window.SundarNative&&window.SundarNative.setThemeMode)window.SundarNative.setThemeMode(!!d);};
-apply(false);
-row.addEventListener('click',()=>{const d=root.getAttribute('data-theme')!=='dark';apply(d);try{localStorage.setItem('patro-theme',d?'dark':'light');}catch(e){}});})();
+/* Theme switch */
+(function(){
+  const sw=document.getElementById('themeRow'), root=document.documentElement;
+  const apply=d=>{
+    if(d)root.setAttribute('data-theme','dark');
+    else root.removeAttribute('data-theme');
+    sw.setAttribute('aria-checked',d?'true':'false');
+    if(window.SundarNative&&window.SundarNative.setThemeMode)window.SundarNative.setThemeMode(!!d);
+  };
+  apply(false);
+  sw.addEventListener('click',()=>{
+    const d=root.getAttribute('data-theme')!=='dark';
+    apply(d);
+    try{localStorage.setItem('patro-theme',d?'dark':'light');}catch(e){}
+  });
+})();
 
-/* ============ Holiday reminders (Android app only) ============
-   Festivals and public holidays in the next 90 days become one notification per day, at 6 PM local
-   time the evening before. The page builds the text; the app stores it and posts it on time. */
+/* Holiday reminders (Android bridge) */
 const REMIND_DAYS=90, REMIND_HOUR=18;
-function pushReminders(){ const R=window.SundarNative; if(!R||!R.remindersEnabled())return;
+function pushReminders(){
+  const R=window.SundarNative; if(!R||!R.remindersEnabled())return;
   const out=[], now=Date.now();
-  for(let n=todayN;n<=todayN+REMIND_DAYS;n++){ const evs=eventsFor(n).filter(e=>e.hol||e.cat==='festival'); if(!evs.length)continue;
+  for(let n=todayN;n<=todayN+REMIND_DAYS;n++){
+    const evs=eventsFor(n).filter(e=>e.hol||e.cat==='festival'); if(!evs.length)continue;
     const eve=fromDnum(n-1), at=new Date(eve.y,eve.m-1,eve.d,REMIND_HOUR,0,0).getTime(); if(at<=now)continue;
     const i=dayInfo(n), scopes=[...new Set(evs.filter(e=>e.hol).map(e=>hol(e.hol)))];
     out.push({at,title:`${t('remind.tom')}: ${evs.map(EV).join(' · ')}`,
-      body:[`${DOWN(i.g.dow)}, ${N(i.bs.d)} ${MON(i.bs.m-1)} ${N(i.bs.y)} · ${fmtAD(i.g)}`,...scopes].join(' · ')}); }
-  R.setReminders(JSON.stringify(out)); }
-(function(){ const R=window.SundarNative, row=$('#remindRow'); if(!R||!row)return; row.hidden=false;
-  const show=(on,blocked)=>{row.setAttribute('aria-checked',on?'true':'false'); const d=$('#remindDesc'); d.dataset.t=blocked?'more.remind.blocked':'more.remind.sub'; d.textContent=t(d.dataset.t);};
-  /* One-time prompt under the Today card. Hidden while reminders are on or while snoozed. */
+      body:[`${DOWN(i.g.dow)}, ${N(i.bs.d)} ${MON(i.bs.m-1)} ${N(i.bs.y)} · ${fmtAD(i.g)}`,...scopes].join(' · ')});
+  }
+  R.setReminders(JSON.stringify(out));
+}
+(function(){
+  const R=window.SundarNative, row=$('#remindRow'), sw=$('#remindSw');
+  if(!row||!sw)return;
+  row.hidden=false;
+  const WEB_KEY='patro-remind-web';
+  const isOn=()=>R?R.remindersEnabled():(localStorage.getItem(WEB_KEY)==='1');
+  const show=(on,blocked)=>{
+    sw.setAttribute('aria-checked',on?'true':'false');
+    const d=$('#remindDesc');
+    d.dataset.t=blocked?'more.remind.blocked':'more.remind.sub';
+    d.textContent=t(d.dataset.t);
+  };
   const nudge=$('#remindNudge'), DAY=864e5, SNOOZE='patro-remind-snooze';
   const snoozeFor=days=>{try{localStorage.setItem(SNOOZE,String(Date.now()+days*DAY));}catch(e){}};
   const snoozed=()=>{try{return Date.now()<Number(localStorage.getItem(SNOOZE)||0);}catch(e){return false;}};
   const syncNudge=on=>{nudge.hidden=on||snoozed();};
+  const enableWeb=()=>{
+    const finish=(granted)=>{
+      try{localStorage.setItem(WEB_KEY,granted?'1':'0');}catch(e){}
+      window.onRemindersChanged(granted,!granted);
+    };
+    if('Notification' in window && Notification.permission==='default'){
+      Notification.requestPermission().then(p=>finish(p==='granted')).catch(()=>finish(true));
+    }else if('Notification' in window && Notification.permission==='denied'){
+      finish(false);
+    }else{
+      finish(true);
+    }
+  };
+  const disableWeb=()=>{try{localStorage.setItem(WEB_KEY,'0');}catch(e){} window.onRemindersChanged(false,false);};
   $('#nudgeLater').addEventListener('click',()=>{snoozeFor(7);syncNudge(false);});
-  // Snooze before asking, so a denied permission prompt does not bring the banner straight back.
-  $('#nudgeOn').addEventListener('click',()=>{snoozeFor(30);R.enableReminders();});
+  $('#nudgeOn').addEventListener('click',()=>{snoozeFor(30); if(R)R.enableReminders(); else enableWeb();});
   window.onRemindersChanged=(on,blocked)=>{show(on,blocked&&!on); syncNudge(on); if(on)pushReminders();};
-  show(R.remindersEnabled(),false); syncNudge(R.remindersEnabled());
-  // Turning reminders off in More is a deliberate choice: keep the prompt away.
-  row.addEventListener('click',()=>{ if(row.getAttribute('aria-checked')==='true'){snoozeFor(365);R.disableReminders();} else R.enableReminders(); });
-  pushReminders(); })();
+  const initOn=isOn();
+  show(initOn,false); syncNudge(initOn);
+  sw.addEventListener('click',()=>{
+    if(sw.getAttribute('aria-checked')==='true'){snoozeFor(365); if(R)R.disableReminders(); else disableWeb();}
+    else {if(R)R.enableReminders(); else enableWeb();}
+  });
+  pushReminders();
+})();
 
-/* ============ Bottom-of-page Inline AdMob Banner Sync ============
-   Locks the native AdMob view to the exact Y position of #ad-slot inside the page flow,
-   and hides it whenever it would overlap the bottom navigation bar. */
+/* AdMob inline slot sync */
 (function(){
   const R=window.SundarNative;
   window.onAdLoaded=(loaded,hDp)=>{
@@ -1276,14 +1522,13 @@ function pushReminders(){ const R=window.SundarNative; if(!R||!R.remindersEnable
     if(!R||!R.syncAdSlot)return;
     const slot=document.getElementById('ad-slot');
     const tb=document.querySelector('.tabbar');
-    const tn=document.querySelector('.topnav');
     if(!slot){R.syncAdSlot(false,0);return;}
     const r=slot.getBoundingClientRect();
     const winH=window.innerHeight||document.documentElement.clientHeight||0;
-    const navTop=(tb&&getComputedStyle(tb).display!=='none')?tb.getBoundingClientRect().top:winH;
-    const headerBot=tn?tn.getBoundingClientRect().bottom:48;
+    const tbRect=(tb&&getComputedStyle(tb).display!=='none')?tb.getBoundingClientRect():null;
+    const navTop=(tbRect&&tbRect.top>winH*0.5)?tbRect.top:winH;
     const adH=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--ad-banner-h'))||64;
-    const fitsAboveNav=(r.top>=headerBot)&&(r.top+adH<=navTop-4);
+    const fitsAboveNav=(r.top>=48)&&(r.top+adH<=navTop-4);
     R.syncAdSlot(fitsAboveNav,Math.round(r.top));
   };
   window.addEventListener('scroll',window._checkBottomAd,{passive:true});
@@ -1291,5 +1536,5 @@ function pushReminders(){ const R=window.SundarNative; if(!R||!R.remindersEnable
   setTimeout(window._checkBottomAd,200);
 })();
 </script>
-
-</body></html>
+</body>
+</html>
